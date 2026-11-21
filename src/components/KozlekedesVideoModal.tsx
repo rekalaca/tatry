@@ -3,9 +3,11 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { X, Sparkles } from "lucide-react";
 
+type TransitionStage = "playing" | "fade-black" | "fade-page";
+
 export default function KozlekedesVideoModal() {
   const [isOpen, setIsOpen] = useState(true);
-  const [isClosing, setIsClosing] = useState(false);
+  const [stage, setStage] = useState<TransitionStage>("playing");
   const [mounted, setMounted] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
@@ -13,11 +15,14 @@ export default function KozlekedesVideoModal() {
     setMounted(true);
   }, []);
 
-  // Smooth close handler with 400ms fadeout for manual clicks
+  // Smooth two-phase manual close: video fades to black first, then page fades in
   const handleClose = useCallback(() => {
-    setIsClosing(true);
+    setStage("fade-black");
     setTimeout(() => {
-      setIsOpen(false);
+      setStage("fade-page");
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 1000);
     }, 450);
   }, []);
 
@@ -31,60 +36,56 @@ export default function KozlekedesVideoModal() {
       }
     };
 
-    document.body.style.overflow = "hidden";
+    // Unlock body scroll once the page starts fading in
+    if (stage === "fade-page") {
+      document.body.style.overflow = "";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [mounted, isOpen, handleClose]);
+  }, [mounted, isOpen, stage, handleClose]);
 
-  // Automatic 20-second fadeout and close timer
+  // Automatic 19-21s cinematic transition:
+  // 19.0s: Video smoothly fades to pitch black (750ms)
+  // 19.8s: Fullscreen black screen dissolves, smoothly fading the website content in (1100ms)
+  // 21.0s: Modal unmounts completely
   useEffect(() => {
     if (!mounted || !isOpen) return;
 
-    // Start graceful fade-out at 19.3 seconds, unmounts at 20.0 seconds
-    const fadeTimer = setTimeout(() => {
-      setIsClosing(true);
-    }, 19300);
+    const blackTimer = setTimeout(() => {
+      setStage("fade-black");
+    }, 19000);
+
+    const revealTimer = setTimeout(() => {
+      setStage("fade-page");
+    }, 19800);
 
     const closeTimer = setTimeout(() => {
       setIsOpen(false);
-    }, 20000);
+    }, 21000);
 
     return () => {
-      clearTimeout(fadeTimer);
+      clearTimeout(blackTimer);
+      clearTimeout(revealTimer);
       clearTimeout(closeTimer);
     };
   }, [mounted, isOpen]);
 
-  // YouTube IFrame API fallback event listener
-  useEffect(() => {
-    if (!mounted || !isOpen) return;
-
-    const handleMessage = (e: MessageEvent) => {
-      try {
-        const data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
-        if (data?.event === "onStateChange" && data?.info === 0) {
-          handleClose();
-        }
-      } catch {}
-    };
-
-    window.addEventListener("message", handleMessage);
-
-    return () => {
-      window.removeEventListener("message", handleMessage);
-    };
-  }, [mounted, isOpen, handleClose]);
-
   if (!mounted || !isOpen) return null;
+
+  const isFadingToBlack = stage === "fade-black" || stage === "fade-page";
+  const isRevealingPage = stage === "fade-page";
 
   return (
     <div
-      className={`fixed inset-0 z-[100] bg-black/92 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 transition-all duration-700 ease-out ${
-        isClosing ? "opacity-0 pointer-events-none" : "opacity-100 animate-modal-backdrop"
+      className={`fixed inset-0 z-[100] bg-[#060c14] flex items-center justify-center p-3 sm:p-6 transition-opacity duration-1000 ease-in-out ${
+        isRevealingPage ? "opacity-0 pointer-events-none" : "opacity-100 animate-modal-backdrop"
       }`}
       onClick={handleClose}
       role="dialog"
@@ -93,18 +94,26 @@ export default function KozlekedesVideoModal() {
     >
       {/* Video Container: Vertical 9:16 aspect ratio centered */}
       <div
-        className={`relative w-full max-w-[380px] sm:max-w-[420px] h-[86vh] sm:h-[88vh] max-h-[760px] aspect-[9/16] rounded-3xl overflow-hidden bg-slate-950 border border-sky-400/40 shadow-2xl shadow-sky-500/25 flex flex-col transition-all duration-700 ease-out ${
-          isClosing ? "scale-90 opacity-0 translate-y-3" : "scale-100 opacity-100 animate-modal-expand"
+        className={`relative w-full max-w-[380px] sm:max-w-[420px] h-[86vh] sm:h-[88vh] max-h-[760px] aspect-[9/16] rounded-3xl overflow-hidden bg-black border border-sky-400/40 shadow-2xl shadow-sky-500/25 flex flex-col transition-all duration-700 ease-out ${
+          isFadingToBlack ? "border-transparent shadow-none" : "animate-modal-expand"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* 20-second Slim Ambient Progress Line */}
-        <div className="absolute top-0 inset-x-0 h-1 bg-white/10 z-40 overflow-hidden pointer-events-none">
-          <div className="h-full bg-gradient-to-r from-sky-400 via-sky-200 to-amber-300 animate-progress-20s" />
+        {/* 19-second Slim Ambient Progress Line */}
+        <div
+          className={`absolute top-0 inset-x-0 h-1 bg-white/10 z-50 overflow-hidden pointer-events-none transition-opacity duration-500 ${
+            isFadingToBlack ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          <div className="h-full bg-gradient-to-r from-sky-400 via-sky-200 to-amber-300 animate-progress-19s" />
         </div>
 
         {/* Top Info Badge */}
-        <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/75 border border-white/20 backdrop-blur-md text-[11px] text-sky-200 pointer-events-none">
+        <div
+          className={`absolute top-3 left-3 z-30 flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/75 border border-white/20 backdrop-blur-md text-[11px] text-sky-200 pointer-events-none transition-opacity duration-500 ${
+            isFadingToBlack ? "opacity-0" : "opacity-100"
+          }`}
+        >
           <Sparkles className="w-3.5 h-3.5 text-amber-300" />
           <span className="font-semibold">Štrbské Pleso • TEŽ</span>
         </div>
@@ -112,7 +121,9 @@ export default function KozlekedesVideoModal() {
         {/* Close Button in the top right */}
         <button
           onClick={handleClose}
-          className="absolute top-3 right-3 z-30 p-2.5 rounded-full bg-black/80 hover:bg-sky-500 text-white hover:text-slate-950 border border-white/25 hover:border-sky-400 shadow-xl backdrop-blur-md transition-all active:scale-95 cursor-pointer"
+          className={`absolute top-3 right-3 z-30 p-2.5 rounded-full bg-black/80 hover:bg-sky-500 text-white hover:text-slate-950 border border-white/25 hover:border-sky-400 shadow-xl backdrop-blur-md transition-all active:scale-95 cursor-pointer ${
+            isFadingToBlack ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
           aria-label="Videó bezárása"
           title="Bezárás (ESC)"
         >
@@ -120,7 +131,7 @@ export default function KozlekedesVideoModal() {
         </button>
 
         {/* Embedded YouTube Shorts Video muted & autostarted */}
-        <div className="w-full h-full relative">
+        <div className="w-full h-full relative bg-black">
           <iframe
             ref={iframeRef}
             id="yt-shorts-iframe"
@@ -132,8 +143,19 @@ export default function KozlekedesVideoModal() {
           />
         </div>
 
+        {/* Cinematic Blackout Veil: fades in over the video to turn it completely black */}
+        <div
+          className={`absolute inset-0 z-40 bg-black pointer-events-none transition-opacity duration-700 ease-in-out ${
+            isFadingToBlack ? "opacity-100" : "opacity-0"
+          }`}
+        />
+
         {/* Bottom Skip Bar */}
-        <div className="absolute bottom-3 inset-x-4 z-20">
+        <div
+          className={`absolute bottom-3 inset-x-4 z-30 transition-opacity duration-500 ${
+            isFadingToBlack ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
+        >
           <button
             onClick={handleClose}
             className="w-full py-2 px-3 rounded-xl bg-slate-950/85 hover:bg-slate-900 border border-white/20 text-xs text-slate-200 hover:text-white transition-all text-center backdrop-blur-md font-medium shadow-lg"

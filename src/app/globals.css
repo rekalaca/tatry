@@ -164,3 +164,16 @@ h1, h2, h3, h4, h5, h6 {
 .animate-progress-20s {
   animation: progress20s 20s linear forwards;
 }
+
+@keyframes progress19s {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-progress-19s {
+  animation: progress19s 19s linear forwards;
+}
