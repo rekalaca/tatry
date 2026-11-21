@@ -5,7 +5,6 @@ import SnowEffect from "@/components/SnowEffect";
 import TezOverviewSection from "@/components/TezOverviewSection";
 import TezLiveMap from "@/components/TezLiveMap";
 import TezTimetable from "@/components/TezTimetable";
-import TezGallery from "@/components/TezGallery";
 import {
   Train,
   Car,
@@ -16,9 +15,7 @@ import {
   ExternalLink,
   ShieldAlert,
   PhoneCall,
-  Sparkles,
   Smartphone,
-  Navigation,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -126,20 +123,14 @@ export default function KozlekedesPage() {
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-        {/* Title: 2 lines, line 2 "Magas-Tátrában" in one piece */}
+        {/* Title: 2 lines, line 2 "Magas-Tátrában" in one piece with plenty of descender room */}
         <div className="max-w-4xl mx-auto mb-8">
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight mb-6">
-            <span className="block">Közlekedés a</span>
-            <span className="block whitespace-nowrap bg-gradient-to-r from-sky-400 via-sky-200 to-amber-300 bg-clip-text text-transparent">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.15]">
+            <span className="block mb-1">Közlekedés a</span>
+            <span className="inline-block whitespace-nowrap bg-gradient-to-r from-sky-400 via-sky-200 to-amber-300 bg-clip-text text-transparent pt-1 pb-4 leading-[1.25]">
               Magas-Tátrában
             </span>
           </h1>
-
-          <p className="text-slate-300 text-base sm:text-xl leading-relaxed max-w-3xl mx-auto">
-            Hogyan utazzunk okosan, kényelmesen és büntetésmentesen a téli hegyekben?
-            Minden fontos tudnivaló a szállásunk melletti <strong>TEŽ villamosról</strong>, élő térképről,
-            menetrendekről és a szlovák autós szabályokról egy helyen!
-          </p>
         </div>
 
         {/* Highlight Banner: Villa Greystone & Pod lesom connection */}
@@ -150,7 +141,7 @@ export default function KozlekedesPage() {
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
-                <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-1.5">
+                <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-1.5 font-sans">
                   Villa Greystone & Pod lesom vasútállomás kapcsolata
                   <span className="text-[10px] bg-amber-400/20 text-amber-300 px-2 py-0.5 rounded-full font-mono font-semibold">
                     900 méter
@@ -201,25 +192,11 @@ export default function KozlekedesPage() {
             <span>Jegyárak & Vásárlás</span>
           </a>
           <a
-            href="#galeria"
-            className="px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-sky-500/20 border border-slate-800 hover:border-sky-400/40 text-xs text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-            <span>TEŽ Képgaléria</span>
-          </a>
-          <a
             href="#autos-kisokos"
             className="px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-sky-500/20 border border-slate-800 hover:border-sky-400/40 text-xs text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
           >
             <Car className="w-3.5 h-3.5 text-rose-400" />
             <span>Autós Szabályok & Matrica</span>
-          </a>
-          <a
-            href="#szallas-megkozelites"
-            className="px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-sky-500/20 border border-slate-800 hover:border-sky-400/40 text-xs text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
-          >
-            <MapPin className="w-3.5 h-3.5 text-amber-300" />
-            <span>Villa Greystone GPS</span>
           </a>
         </div>
       </section>
@@ -379,12 +356,7 @@ export default function KozlekedesPage() {
           </div>
         </section>
 
-        {/* Section 5: TEŽ Photo Gallery */}
-        <section id="galeria">
-          <TezGallery />
-        </section>
-
-        {/* Section 6: Driving Rules, Vignettes & Emergency Numbers */}
+        {/* Driving Rules, Vignettes & Emergency Numbers */}
         <section id="autos-kisokos" className="glass-panel rounded-3xl p-6 sm:p-8 border border-sky-500/20">
           <div className="text-center max-w-3xl mx-auto mb-10">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-500/10 border border-rose-400/30 text-rose-300 text-xs font-semibold mb-3">
@@ -496,93 +468,7 @@ export default function KozlekedesPage() {
           </div>
         </section>
 
-        {/* Section 7: Villa Greystone Directions & Walking Map to Pod lesom */}
-        <section id="szallas-megkozelites" className="glass-panel rounded-3xl p-6 sm:p-8 border border-sky-500/20">
-          <div className="max-w-3xl mx-auto text-center mb-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs font-semibold mb-2">
-              <Navigation className="w-3.5 h-3.5" />
-              <span>Megközelítés & Sétaútvonal</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
-              Hogyan jutsz el a Villa Greystone-hoz és a Pod lesom vasútállomáshoz?
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300">
-              Cím: <strong>Zakladateľov 387, 059 86 Nová Lesná (Alsóerdőfalva)</strong>
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Driving to the villa */}
-            <div className="p-5 rounded-2xl bg-slate-950/70 border border-slate-800 flex flex-col justify-between">
-              <div>
-                <h4 className="font-bold text-white text-base mb-2 flex items-center gap-2">
-                  <Car className="w-4 h-4 text-sky-400" />
-                  <span>Autóval érkezőknek</span>
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
-                  Budapest felől az <strong>M2 / Parassapuszta ➔ Zólyom ➔ Besztercebánya ➔ D1-es autópálya</strong> a
-                  legjobban karbantartott útvonal Poprádig. Poprádról Nová Lesná kb. 8 km (10 perc).
-                  A Villa Greystone előtt ingyenes, kijelölt privát parkoló áll rendelkezésre.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2.5 pt-2">
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=Villa+Greystone+Nova+Lesna"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-md shadow-sky-500/20"
-                >
-                  <span>Google Maps navigáció</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href="https://waze.com/ul?q=Villa%20Greystone%20Nova%20Lesna"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-bold border border-slate-700 flex items-center gap-1.5 transition-all"
-                >
-                  <span>Waze indítása</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Walking to Pod lesom station */}
-            <div className="p-5 rounded-2xl bg-slate-950/70 border border-amber-500/30 flex flex-col justify-between">
-              <div>
-                <h4 className="font-bold text-white text-base mb-2 flex items-center gap-2">
-                  <Train className="w-4 h-4 text-amber-400" />
-                  <span>Gyalogos séta a Pod lesom vasútállomáshoz (900 m)</span>
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
-                  A villától kilépve Nová Lesná csendes utcáján a vasútállomás felé tartva kb.
-                  <strong> 10-12 perc alatt</strong> kényelmesen elérhető a Pod lesom állomás peronja.
-                  A mobilodon a lenti gombra kattintva azonnal elindul a gyalogos Google Maps navigáció!
-                </p>
-              </div>
-
-              <div className="space-y-3 pt-1">
-                <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200">
-                  <strong className="block text-white mb-0.5">Menetidők a Pod lesom állomásról:</strong>
-                  <span>Ótátrafüred (Starý Smokovec): 12 perc • Poprád: 15 perc • Csorba-tó: kb. 52 perc</span>
-                </div>
-
-                <a
-                  href="https://www.google.com/maps/dir/?api=1&origin=Zakladate%C4%BEov+387,+059+86+Nov%C3%A1+Lesn%C3%A1&destination=Zelezni%C4%8Dn%C3%A1+stanica+Pod+Lesom,+Nov%C3%A1+Lesn%C3%A1&travelmode=walking"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold shadow-md shadow-amber-500/20 transition-all"
-                >
-                  <span>Gyalogos útvonaltervezés megnyitása (Google Maps)</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 8: Sources & Acknowledgements */}
+        {/* Sources & Acknowledgements */}
         <section className="p-5 rounded-2xl bg-slate-950/60 border border-slate-800 text-xs text-slate-400 text-center">
           <p className="mb-2">
             <strong>Adatforrások és hivatkozások:</strong> Menetrendi adatok: ŽSR (GTFS 2025/2026, 183-as és 184-es vonal),

@@ -41,20 +41,14 @@ body {
   overflow-x: hidden;
 }
 
-/* Larger display headings (H1, H2, and main section H3) styled with Instrument Serif */
-h1, h2, h3 {
-  font-family: 'Instrument Serif', Georgia, "Times New Roman", serif;
-  letter-spacing: -0.01em;
+/* All headings use clean, crisp Montserrat across the entire website */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-montserrat), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  letter-spacing: normal;
 }
 
-/* All smaller headings (H4, H5, H6) and card titles strictly use crisp, legible Montserrat */
-h4, h5, h6,
-h3.text-xs,
-h3.text-sm,
-h3.text-base,
-.font-sans {
-  font-family: var(--font-montserrat), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-  letter-spacing: normal !important;
+.font-serif {
+  font-family: 'Instrument Serif', Georgia, "Times New Roman", serif !important;
 }
 
 /* Custom winter scrollbar */
