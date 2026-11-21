@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SnowEffect from "@/components/SnowEffect";
+import KozlekedesVideoModal from "@/components/KozlekedesVideoModal";
 import TezOverviewSection from "@/components/TezOverviewSection";
 import TezLiveMap from "@/components/TezLiveMap";
 import TezTimetable from "@/components/TezTimetable";
@@ -116,6 +117,9 @@ export default function KozlekedesPage() {
 
   return (
     <main className="min-h-screen relative selection:bg-sky-500 selection:text-white pb-16">
+      {/* Intro YouTube Shorts video (muted, auto-plays on navigation, auto-closes on end or via X) */}
+      <KozlekedesVideoModal />
+
       {/* Falling snow particles */}
       <SnowEffect />
 
