@@ -139,36 +139,30 @@ export default function KozlekedesPage() {
         </div>
 
         {/* Highlight Banner: Villa Greystone & Pod lesom connection */}
-        <div className="max-w-3xl mx-auto mb-10 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-500/20 via-sky-500/15 to-emerald-500/20 border border-amber-400/40 shadow-xl text-left">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="flex items-start gap-3">
-              <div className="p-2.5 rounded-xl bg-amber-500/20 text-amber-300 shrink-0 mt-0.5">
-                <MapPin className="w-5 h-5" />
-              </div>
-              <div>
-                <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-1.5 font-sans">
-                  Villa Greystone & Pod lesom vasútállomás kapcsolata
-                  <span className="text-[10px] bg-amber-400/20 text-amber-300 px-2 py-0.5 rounded-full font-mono font-semibold">
-                    900 méter
-                  </span>
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-300 mt-0.5 leading-relaxed">
-                  A szállásunktól alig <strong>10–12 perc könnyű séta</strong> a Pod lesom vasúti megálló.
-                  Nem kell a jeges hegyi utakon autózni, hóláncolni és 15 €-s parkolódíjakat fizetni:
-                  a fűtött, panorámaablakos villamos közvetlenül elvisz Ótátrafüredre, Poprádra vagy a Csorba-tóhoz!
-                </p>
-              </div>
-            </div>
+        <div className="max-w-3xl mx-auto mb-10 p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-amber-500/20 via-sky-500/15 to-emerald-500/20 border border-amber-400/40 shadow-xl">
+          <h2 className="text-base sm:text-lg font-bold text-white text-center mb-3 font-sans">
+            Villa Greystone & Pod lesom vasútállomás kapcsolata
+          </h2>
+          <p
+            lang="hu"
+            className="text-xs sm:text-sm text-slate-200 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full mb-4"
+          >
+            A szállásunktól alig <strong>10–12 perc könnyű séta</strong> a Pod lesom vasúti megálló.
+            Nem kell a jeges hegyi utakon autózni, hóláncolni és 15 €-s parkolódíjakat fizetni:
+            a fűtött, panorámaablakos villamos közvetlenül elvisz Ótátrafüredre, Poprádra vagy a Csorba-tóhoz!
+          </p>
 
-            {/* Sétaútvonal button directly opens Google Maps walking directions */}
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
+            <span className="inline-flex items-center px-3.5 py-2 rounded-xl bg-amber-400/20 border border-amber-400/40 text-amber-300 text-xs font-mono font-semibold">
+              900 méter
+            </span>
             <a
               href="https://www.google.com/maps/dir/?api=1&origin=Zakladate%C4%BEov+387,+059+86+Nov%C3%A1+Lesn%C3%A1&destination=Zelezni%C4%8Dn%C3%A1+stanica+Pod+Lesom,+Nov%C3%A1+Lesn%C3%A1&travelmode=walking"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold shadow-md shadow-amber-500/25 transition-all shrink-0 self-start sm:self-center"
+              className="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold shadow-md shadow-amber-500/25 transition-all"
             >
-              <span>Sétaútvonal (Google Maps)</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              Sétaútvonal (Google Maps)
             </a>
           </div>
         </div>

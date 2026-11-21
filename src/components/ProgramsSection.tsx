@@ -17,6 +17,7 @@ import {
 interface Program {
   id: string;
   title: string;
+  region: "smokovec" | "strbske-pleso" | "lomnica" | "other";
   category: "outdoor" | "family" | "ski";
   categoryLabel: string;
   badgeColor: string;
@@ -28,10 +29,75 @@ interface Program {
   linkText?: string;
 }
 
+interface RegionConfig {
+  id: "smokovec" | "strbske-pleso" | "lomnica" | "other";
+  anchorId: string;
+  name: string;
+  shortName: string;
+  tag: string;
+  subtitle: string;
+  borderColor: string;
+  bgGradient: string;
+  badgeClass: string;
+  iconBg: string;
+}
+
+const REGIONS: RegionConfig[] = [
+  {
+    id: "smokovec",
+    anchorId: "regio-smokovec",
+    name: "Ótátrafüred (Starý Smokovec) & Tarajka (Hrebienok)",
+    shortName: "Ótátrafüred",
+    tag: "Ótátrafüred környéke",
+    subtitle: "A Villa Greystone-hoz legközelebbi hegyi központ (1 TEŽ vasúti megálló, alig 10 perc). Tátrai Jégdóm, szánkópálya és családi látnivalók.",
+    borderColor: "border-amber-500/50 hover:border-amber-400/80",
+    bgGradient: "bg-gradient-to-b from-amber-500/10 via-slate-900/60 to-slate-950/80 shadow-amber-500/5",
+    badgeClass: "bg-amber-400/20 text-amber-300 border-amber-400/40",
+    iconBg: "bg-amber-500/20 border-amber-400/30 text-amber-300",
+  },
+  {
+    id: "strbske-pleso",
+    anchorId: "regio-strbske-pleso",
+    name: "Csorba-tó (Štrbské Pleso) környéke",
+    shortName: "Csorba-tó",
+    tag: "Csorba-tó környéke",
+    subtitle: "A Magas-Tátra legmagasabban fekvő tava és síparadicsoma (1346 m). Közvetlen, fűtött panorámás villamossal (TEŽ) elérhető parkolási díj nélkül!",
+    borderColor: "border-sky-500/50 hover:border-sky-400/80",
+    bgGradient: "bg-gradient-to-b from-sky-500/10 via-slate-900/60 to-slate-950/80 shadow-sky-500/5",
+    badgeClass: "bg-sky-400/20 text-sky-300 border-sky-400/40",
+    iconBg: "bg-sky-500/20 border-sky-400/30 text-sky-300",
+  },
+  {
+    id: "lomnica",
+    anchorId: "regio-lomnica",
+    name: "Tátralomnic (Tatranská Lomnica) & Lomnici-csúcs",
+    shortName: "Tátralomnic",
+    tag: "Tátralomnic környéke",
+    subtitle: "Szlovákia leghosszabb sípályái, modern kabinos felvonók a Kő-pataki tóhoz és a 2634 m magas Lomnici-csúcs legendás piros függővasútja.",
+    borderColor: "border-indigo-500/50 hover:border-indigo-400/80",
+    bgGradient: "bg-gradient-to-b from-indigo-500/10 via-slate-900/60 to-slate-950/80 shadow-indigo-500/5",
+    badgeClass: "bg-indigo-400/20 text-indigo-300 border-indigo-400/40",
+    iconBg: "bg-indigo-500/20 border-indigo-400/30 text-indigo-300",
+  },
+  {
+    id: "other",
+    anchorId: "regio-kirandulasok",
+    name: "További Tátrai Kirándulások & Különleges Élmények",
+    shortName: "Egyéb élmények",
+    tag: "Bélai-Tátra, Lengyelország & Hálózat",
+    subtitle: "A Bélai-Tátra lenyűgöző lombkorona tanösvénye, gőzölgő alpesi élményfürdő a lengyel oldalon és a teljes hegyi vasúthálózat élménye.",
+    borderColor: "border-emerald-500/50 hover:border-emerald-400/80",
+    bgGradient: "bg-gradient-to-b from-emerald-500/10 via-slate-900/60 to-slate-950/80 shadow-emerald-500/5",
+    badgeClass: "bg-emerald-400/20 text-emerald-300 border-emerald-400/40",
+    iconBg: "bg-emerald-500/20 border-emerald-400/30 text-emerald-300",
+  },
+];
+
 const programs: Program[] = [
   {
     id: "hrebienok-ice",
     title: "Tarajka (Hrebienok) & Tátrai Jégdóm",
+    region: "smokovec",
     category: "outdoor",
     categoryLabel: "Kiemelt Téli Csoda",
     badgeColor: "bg-sky-500/20 text-sky-300 border-sky-500/30",
@@ -45,6 +111,7 @@ const programs: Program[] = [
   {
     id: "hrebienok-sanko",
     title: "2,5 km-es Tarajka Szánkópálya",
+    region: "smokovec",
     category: "ski",
     categoryLabel: "Szánkózás & Adrenalin",
     badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
@@ -56,8 +123,23 @@ const programs: Program[] = [
     linkText: "Szánkópálya nyitvatartás & infók"
   },
   {
+    id: "tricklandia",
+    title: "Tricklandia – Optikai Illúziók Palotája",
+    region: "smokovec",
+    category: "family",
+    categoryLabel: "Gyerek- & Családi kedvenc",
+    badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+    location: "Ótátrafüred (Starý Smokovec)",
+    duration: "1 - 1,5 óra",
+    description: "Beltéri varázsvilág optikai illúziókkal, tükörlabirintussal, fejjel lefelé fordított szobákkal és szlovák népmesék ihlette 3D festményekkel.",
+    tips: "Tökéletes választás havas vagy hideg időjárás esetén. Előzetes online időpontfoglalás nagyon ajánlott!",
+    link: "https://www.tripadvisor.com/Attraction_Review-g274943-d11629671-Reviews-Tricklandia-Stary_Smokovec_Presov_Region.html",
+    linkText: "TripAdvisor vélemények & infók"
+  },
+  {
     id: "strbske-pleso",
     title: "Csorba-tó (Štrbské Pleso) Téli Séta",
+    region: "strbske-pleso",
     category: "outdoor",
     categoryLabel: "Havas Panoráma",
     badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
@@ -71,6 +153,7 @@ const programs: Program[] = [
   {
     id: "lomnic-csucs",
     title: "Lomnici-csúcs (2634 m) & Skalnaté Pleso",
+    region: "lomnica",
     category: "outdoor",
     categoryLabel: "A Felhők Felett",
     badgeColor: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30",
@@ -82,21 +165,9 @@ const programs: Program[] = [
     linkText: "Online jegyelővétel & kirándulás útmutató"
   },
   {
-    id: "tricklandia",
-    title: "Tricklandia – Optikai Illúziók Palotája",
-    category: "family",
-    categoryLabel: "Gyerek- & Családi kedvenc",
-    badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-    location: "Ótátrafüred (Starý Smokovec)",
-    duration: "1 - 1,5 óra",
-    description: "Beltéri varázsvilág optikai illúziókkal, tükörlabirintussal, fejjel lefelé fordított szobákkal és szlovák népmesék ihlette 3D festményekkel.",
-    tips: "Tökéletes választás havas vagy hideg időjárás esetén. Előzetes online időpontfoglalás nagyon ajánlott!",
-    link: "https://www.tripadvisor.com/Attraction_Review-g274943-d11629671-Reviews-Tricklandia-Stary_Smokovec_Presov_Region.html",
-    linkText: "TripAdvisor vélemények & infók"
-  },
-  {
     id: "bachledka",
     title: "Bachledka Lombkorona Tanösvény",
+    region: "other",
     category: "outdoor",
     categoryLabel: "Panoráma Séta",
     badgeColor: "bg-teal-500/20 text-teal-300 border-teal-500/30",
@@ -110,6 +181,7 @@ const programs: Program[] = [
   {
     id: "tez-villamos",
     title: "Tátrai Elektromos Vasút (TEŽ Villamos)",
+    region: "other",
     category: "family",
     categoryLabel: "Családi Élményutazás",
     badgeColor: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
@@ -123,6 +195,7 @@ const programs: Program[] = [
   {
     id: "termy-bukovina",
     title: "Termy BUKOVINA – Alpesi Termálfürdő",
+    region: "other",
     category: "family",
     categoryLabel: "Prémium Tátrai Wellness",
     badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
@@ -247,7 +320,7 @@ export default function ProgramsSection() {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6">
         <button
           onClick={() => setActiveTab("all")}
           className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
@@ -290,63 +363,129 @@ export default function ProgramsSection() {
         </button>
       </div>
 
-      {/* Program Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-        {filteredPrograms.map((program) => (
-          <div
-            key={program.id}
-            className="glass-panel p-6 rounded-2xl border border-sky-500/15 hover:border-sky-400/40 transition-all flex flex-col justify-between group hover:-translate-y-1 hover:shadow-xl hover:shadow-sky-950/40"
-          >
-            <div>
-              <div className="flex items-center justify-between gap-3 mb-3">
-                <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${program.badgeColor}`}>
-                  {program.categoryLabel}
-                </span>
-                <div className="flex items-center gap-1.5 text-xs text-slate-400">
-                  <Clock className="w-3.5 h-3.5 text-sky-400" />
-                  <span>{program.duration}</span>
+      {/* Quick Jump by Region */}
+      <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-10">
+        <span className="text-xs text-slate-400 font-medium mr-1 flex items-center gap-1">
+          <MapPin className="w-3.5 h-3.5 text-sky-400" />
+          <span>Térségek:</span>
+        </span>
+        {REGIONS.map((reg) => {
+          const count = filteredPrograms.filter((p) => p.region === reg.id).length;
+          if (count === 0) return null;
+          return (
+            <a
+              key={reg.id}
+              href={`#${reg.anchorId}`}
+              className="px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 hover:border-slate-700 text-xs transition-all flex items-center gap-1.5"
+            >
+              <span>{reg.shortName}</span>
+              <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-slate-800 text-slate-400 font-mono">
+                {count}
+              </span>
+            </a>
+          );
+        })}
+      </div>
+
+      {/* Program Groups by Region */}
+      <div className="space-y-12">
+        {REGIONS.map((region) => {
+          const regionPrograms = filteredPrograms.filter((p) => p.region === region.id);
+          if (regionPrograms.length === 0) return null;
+
+          return (
+            <div
+              key={region.id}
+              id={region.anchorId}
+              className={`rounded-3xl border-2 ${region.borderColor} ${region.bgGradient} p-5 sm:p-7 shadow-xl transition-all duration-300 scroll-mt-28`}
+            >
+              {/* Region Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-white/10">
+                <div className="flex items-start sm:items-center gap-3">
+                  <div className={`p-2.5 rounded-2xl border shrink-0 ${region.iconBg}`}>
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                      <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                        {region.name}
+                      </h3>
+                      <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border ${region.badgeClass} font-mono`}>
+                        {regionPrograms.length} program
+                      </span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      {region.subtitle}
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 group-hover:text-sky-300 transition-colors">
-                {program.title}
-              </h3>
+              {/* Region Cards Grid */}
+              <div
+                className={`grid grid-cols-1 ${
+                  regionPrograms.length >= 3 ? "md:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-2"
+                } gap-6`}
+              >
+                {regionPrograms.map((program) => (
+                  <div
+                    key={program.id}
+                    className="glass-panel p-5 sm:p-6 rounded-2xl border border-white/10 hover:border-white/25 transition-all flex flex-col justify-between group hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40 bg-slate-950/70"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-3 mb-3">
+                        <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${program.badgeColor}`}>
+                          {program.categoryLabel}
+                        </span>
+                        <div className="flex items-center gap-1.5 text-xs text-slate-400">
+                          <Clock className="w-3.5 h-3.5 text-sky-400" />
+                          <span>{program.duration}</span>
+                        </div>
+                      </div>
 
-              <div className="flex items-center gap-1.5 text-xs font-medium text-amber-400/90 mb-3">
-                <MapPin className="w-3.5 h-3.5" />
-                <span>{program.location}</span>
-              </div>
+                      <h4 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-sky-300 transition-colors">
+                        {program.title}
+                      </h4>
 
-              <p className="text-sm text-slate-300 leading-relaxed mb-4">
-                {program.description}
-              </p>
+                      <div className="flex items-center gap-1.5 text-xs font-medium text-amber-400/90 mb-3">
+                        <MapPin className="w-3.5 h-3.5" />
+                        <span>{program.location}</span>
+                      </div>
 
-              {/* Tip Box */}
-              <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800/80 text-xs text-slate-300 mb-4 flex items-start gap-2.5">
-                <Sparkles className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                <div>
-                  <strong className="text-amber-300 font-semibold">Tipp: </strong>
-                  <span>{program.tips}</span>
-                </div>
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                        {program.description}
+                      </p>
+
+                      {/* Tip Box */}
+                      <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800/80 text-xs text-slate-300 mb-4 flex items-start gap-2.5">
+                        <Sparkles className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                        <div>
+                          <strong className="text-amber-300 font-semibold">Tipp: </strong>
+                          <span>{program.tips}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Actions */}
+                    {program.link && (
+                      <div className="pt-2 border-t border-slate-800/80">
+                        <a
+                          href={program.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-sky-200 transition-colors"
+                        >
+                          <span>{program.linkText || "Részletek és hivatalos oldal"}</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
-
-            {/* Bottom Actions */}
-            {program.link && (
-              <div className="pt-2 border-t border-slate-850">
-                <a
-                  href={program.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-sky-400 hover:text-sky-200 transition-colors"
-                >
-                  <span>{program.linkText || "Részletek és hivatalos oldal"}</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            )}
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

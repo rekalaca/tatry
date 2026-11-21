@@ -31,7 +31,8 @@ import {
   ExternalLink,
   Copy,
   Check,
-  Waves
+  Waves,
+  Snowflake
 } from "lucide-react";
 
 const apartmentImages = [
@@ -116,7 +117,11 @@ export default function ApartmentSection() {
   const [copiedAddress, setCopiedAddress] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [tezModalOpen, setTezModalOpen] = useState(false);
+  const [dividerActive, setDividerActive] = useState(false);
+  const [animKey, setAnimKey] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const dividerRef = useRef<HTMLDivElement>(null);
+  const hasTriggeredRef = useRef(false);
 
   const addressText = "Zakladateľov 387, 059 86 Nová Lesná, Szlovákia";
 
@@ -203,6 +208,48 @@ export default function ApartmentSection() {
     return () => observer.disconnect();
   }, []);
 
+  // Robust scroll & intersection detector for the winter reindeer-sled track divider
+  useEffect(() => {
+    const el = dividerRef.current;
+    if (!el) return;
+
+    const checkVisibility = () => {
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      // Trigger when the divider is clearly approaching/inside the visible area (top < 85% of screen height)
+      const inView = rect.top < windowHeight * 0.88 && rect.bottom > 40;
+
+      if (inView) {
+        if (!hasTriggeredRef.current) {
+          hasTriggeredRef.current = true;
+          setDividerActive(true);
+          setAnimKey((prev) => prev + 1);
+        }
+      } else {
+        // Reset when user scrolls sufficiently far away (e.g., back up to top) so it re-plays next time
+        if (rect.top > windowHeight + 150 || rect.bottom < -150) {
+          if (hasTriggeredRef.current) {
+            hasTriggeredRef.current = false;
+            setDividerActive(false);
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", checkVisibility, { passive: true });
+    window.addEventListener("resize", checkVisibility, { passive: true });
+
+    // Initial check with a tiny delay to ensure proper layout computation
+    const timer = setTimeout(checkVisibility, 250);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", checkVisibility);
+      window.removeEventListener("resize", checkVisibility);
+    };
+  }, []);
+
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(addressText);
     setCopiedAddress(true);
@@ -244,10 +291,12 @@ export default function ApartmentSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-4 leading-tight">
-            Villa Greystone{" "}
-            <span className="bg-gradient-to-r from-sky-400 via-amber-200 to-amber-400 bg-clip-text text-transparent">
-              Apartman
+          <h2 className="font-extrabold tracking-tight mb-4 leading-tight">
+            <span className="block text-4xl sm:text-6xl lg:text-7xl font-black text-white drop-shadow-[0_6px_25px_rgba(0,0,0,0.85)]">
+              Villa Greystone
+            </span>
+            <span className="block text-xl sm:text-2xl lg:text-3xl font-bold tracking-wide mt-1.5 sm:mt-2 bg-gradient-to-r from-sky-400 via-amber-200 to-amber-400 bg-clip-text text-transparent">
+              apartman
             </span>
           </h2>
           <p className="text-slate-300 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mb-6">
@@ -323,7 +372,7 @@ export default function ApartmentSection() {
         <button
           type="button"
           onClick={(e) => openCardImage("638071432.jpg", e)}
-          className="glass-panel p-4 rounded-2xl border border-amber-400/30 bg-amber-500/5 hover:bg-amber-500/15 hover:border-amber-400/60 hover:scale-[1.03] hover:-translate-y-1 transition-all duration-200 text-center cursor-pointer group shadow-lg hover:shadow-amber-500/20 block w-full"
+          className="glass-panel p-4 rounded-2xl border border-amber-400/30 bg-amber-500/5 hover:bg-amber-500/15 hover:border-amber-400/60 hover:scale-[1.03] hover:-translate-y-1 transition-all duration-200 text-center cursor-pointer group shadow-[0_12px_30px_rgba(0,0,0,0.7),0_0_20px_rgba(245,158,11,0.15)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.85),0_0_30px_rgba(245,158,11,0.3)] block w-full"
         >
           <div className="flex items-center justify-center gap-1 text-amber-400 mb-1 group-hover:scale-105 transition-transform">
             <Star className="w-5 h-5 fill-amber-400" />
@@ -340,7 +389,7 @@ export default function ApartmentSection() {
         <button
           type="button"
           onClick={(e) => openCardImage("464126513.jpg", e)}
-          className="glass-panel p-4 rounded-2xl border border-sky-400/30 bg-sky-500/5 hover:bg-sky-500/15 hover:border-sky-400/60 hover:scale-[1.03] hover:-translate-y-1 transition-all duration-200 text-center cursor-pointer group shadow-lg hover:shadow-sky-500/20 block w-full"
+          className="glass-panel p-4 rounded-2xl border border-sky-400/30 bg-sky-500/5 hover:bg-sky-500/15 hover:border-sky-400/60 hover:scale-[1.03] hover:-translate-y-1 transition-all duration-200 text-center cursor-pointer group shadow-[0_12px_30px_rgba(0,0,0,0.7),0_0_20px_rgba(56,189,248,0.15)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.85),0_0_30px_rgba(56,189,248,0.3)] block w-full"
         >
           <div className="text-2xl sm:text-3xl font-black text-white mb-1 group-hover:scale-105 transition-transform">60 m²</div>
           <p className="text-xs font-bold text-sky-300 uppercase tracking-wide flex items-center justify-center gap-1">
@@ -353,7 +402,7 @@ export default function ApartmentSection() {
         <button
           type="button"
           onClick={(e) => openCardImage("459766368.jpg", e)}
-          className="glass-panel p-4 rounded-2xl border border-cyan-400/30 bg-cyan-500/5 hover:bg-cyan-500/15 hover:border-cyan-400/60 hover:scale-[1.03] hover:-translate-y-1 transition-all duration-200 text-center cursor-pointer group shadow-lg hover:shadow-cyan-500/20 block w-full"
+          className="glass-panel p-4 rounded-2xl border border-cyan-400/30 bg-cyan-500/5 hover:bg-cyan-500/15 hover:border-cyan-400/60 hover:scale-[1.03] hover:-translate-y-1 transition-all duration-200 text-center cursor-pointer group shadow-[0_12px_30px_rgba(0,0,0,0.7),0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.85),0_0_30px_rgba(6,182,212,0.3)] block w-full"
         >
           <div className="flex items-center justify-center gap-1.5 text-cyan-400 mb-1 group-hover:scale-105 transition-transform">
             <Waves className="w-5 h-5" />
@@ -369,7 +418,7 @@ export default function ApartmentSection() {
         <button
           type="button"
           onClick={() => setTezModalOpen(true)}
-          className="glass-panel p-4 rounded-2xl border border-emerald-400/30 bg-emerald-500/5 hover:bg-emerald-500/15 hover:border-emerald-400/60 hover:scale-[1.03] hover:-translate-y-1 transition-all duration-200 text-center cursor-pointer group shadow-lg hover:shadow-emerald-500/20 block w-full"
+          className="glass-panel p-4 rounded-2xl border border-emerald-400/30 bg-emerald-500/5 hover:bg-emerald-500/15 hover:border-emerald-400/60 hover:scale-[1.03] hover:-translate-y-1 transition-all duration-200 text-center cursor-pointer group shadow-[0_12px_30px_rgba(0,0,0,0.7),0_0_20px_rgba(16,185,129,0.15)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.85),0_0_30px_rgba(16,185,129,0.3)] block w-full"
         >
           <div className="flex items-center justify-center gap-1.5 text-emerald-400 mb-1 group-hover:scale-105 transition-transform">
             <Train className="w-5 h-5" />
@@ -384,7 +433,7 @@ export default function ApartmentSection() {
       </div>
 
       {/* Main Info Dossier Box: Host, Address, Contact & PDF Download */}
-      <div id="apartman-info" className="scroll-mt-24 sm:scroll-mt-28 glass-panel-warm p-6 sm:p-8 rounded-3xl border border-amber-500/30 mb-12 shadow-2xl relative overflow-hidden">
+      <div id="apartman-info" className="scroll-mt-24 sm:scroll-mt-28 glass-panel-warm p-6 sm:p-8 rounded-3xl border border-amber-500/30 mb-12 shadow-[0_25px_60px_-10px_rgba(0,0,0,0.85),0_0_35px_rgba(245,158,11,0.15)] relative overflow-hidden">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold">
@@ -496,7 +545,7 @@ export default function ApartmentSection() {
             return (
               <div
                 key={idx}
-                className="glass-panel p-5 rounded-2xl border border-sky-500/15 hover:border-sky-400/40 transition-all flex flex-col justify-between"
+                className="glass-panel p-5 rounded-2xl border border-sky-500/20 hover:border-sky-400/50 shadow-[0_12px_32px_rgba(0,0,0,0.7),0_2px_8px_rgba(0,0,0,0.4)] hover:shadow-[0_18px_45px_rgba(0,0,0,0.85),0_0_25px_rgba(56,189,248,0.2)] hover:-translate-y-0.5 transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center gap-2.5 mb-2.5">
@@ -512,7 +561,7 @@ export default function ApartmentSection() {
                     {room.features}
                   </p>
                 </div>
-                <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-amber-200/90 flex items-start gap-1.5">
+                <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-amber-200/90 flex items-start gap-1.5 shadow-sm">
                   <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
                   <span><strong>Családi szempont:</strong> {room.benefit}</span>
                 </div>
@@ -521,7 +570,7 @@ export default function ApartmentSection() {
           })}
 
           {/* Quick Summary Card */}
-          <div className="glass-panel p-5 rounded-2xl border border-amber-500/20 bg-amber-500/5 flex flex-col justify-between">
+          <div className="glass-panel p-5 rounded-2xl border border-amber-500/30 bg-amber-500/5 shadow-[0_12px_32px_rgba(0,0,0,0.7),0_0_25px_rgba(245,158,11,0.18)] flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <CheckCircle2 className="w-5 h-5 text-amber-400" />
@@ -561,7 +610,7 @@ export default function ApartmentSection() {
           {kitchenTech.map((item, idx) => (
             <div
               key={idx}
-              className="glass-panel p-4 rounded-xl border border-slate-800 hover:border-amber-400/30 transition-all"
+              className="glass-panel p-4 rounded-xl border border-slate-800 hover:border-amber-400/40 shadow-[0_8px_24px_rgba(0,0,0,0.65)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.85),0_0_15px_rgba(245,158,11,0.2)] hover:-translate-y-0.5 transition-all"
             >
               <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mb-2" />
               <h4 className="text-xs sm:text-sm font-bold text-white mb-1 font-sans">{item.title}</h4>
@@ -574,7 +623,7 @@ export default function ApartmentSection() {
       {/* Breakfast, Café & In-House Wellness Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
         {/* Breakfast & On-site Café */}
-        <div className="glass-panel p-6 rounded-3xl border border-amber-500/20">
+        <div className="glass-panel p-6 rounded-3xl border border-amber-500/30 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(245,158,11,0.15)]">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2.5 rounded-xl bg-amber-500/15 text-amber-400">
               <Coffee className="w-5 h-5" />
@@ -587,14 +636,14 @@ export default function ApartmentSection() {
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
             A vendégértékelések kiemelkedően magasra értékelték a helyszíni reggeli színvonalát! Svédasztalos büfé, à la carte és kontinentális választék: friss pékáru, felvágottak, prémium sajtok, zöldségek, meleg ételek, kérésre készített kávék (pl. caffe latte) és gyümölcslevek.
           </p>
-          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300">
+          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 shadow-sm">
             <span className="text-amber-400 font-semibold">Földszinti Kávézó & Bár: </span>
             A kirándulásból visszatérve forró italokat vagy hűsítő frissítőket fogyaszthattok a hangulatos bárban.
           </div>
         </div>
 
         {/* In-House Wellness & Relaxation */}
-        <div className="glass-panel p-6 rounded-3xl border border-cyan-500/20">
+        <div className="glass-panel p-6 rounded-3xl border border-cyan-500/30 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(6,182,212,0.15)]">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2.5 rounded-xl bg-cyan-500/15 text-cyan-400">
               <Waves className="w-5 h-5" />
@@ -615,7 +664,7 @@ export default function ApartmentSection() {
               <strong className="text-white">Pihenőkert & Napozóterasz:</strong> Gondozott hegyi kert kerti bútorokkal és panorámával (ingyenes).
             </li>
           </ul>
-          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300">
+          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 shadow-sm">
             <span className="text-cyan-400 font-semibold">Gyakorlati tudnivaló: </span>
             A wellness felár ellenében vehető igénybe; a pontos idősávot és díjat a házigazdával (Radóval) érkezéskor érdemes egyeztetni!
           </div>
@@ -623,26 +672,26 @@ export default function ApartmentSection() {
       </div>
 
       {/* House Rules & Policies */}
-      <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 mb-14">
+      <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 mb-14 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
         <h3 className="text-xl sm:text-2xl font-bold text-white mb-6 flex items-center gap-2">
           <Clock className="w-5 h-5 text-sky-400" />
           <span>Házirend, Bejelentkezés & Szabályzat</span>
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+          <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800 shadow-[0_6px_20px_rgba(0,0,0,0.6)]">
             <div className="text-sky-400 text-xs font-semibold uppercase mb-1">Bejelentkezés (Check-in)</div>
             <div className="text-lg font-bold text-white mb-1">14:00 – 22:00</div>
             <p className="text-xs text-slate-400">Az érkezési időt előre jelezni kell a házigazdának.</p>
           </div>
 
-          <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+          <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800 shadow-[0_6px_20px_rgba(0,0,0,0.6)]">
             <div className="text-sky-400 text-xs font-semibold uppercase mb-1">Kijelentkezés (Check-out)</div>
             <div className="text-lg font-bold text-white mb-1">08:00 – 10:00</div>
             <p className="text-xs text-slate-400">Kényelmes reggeli utáni távozás.</p>
           </div>
 
-          <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+          <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800 shadow-[0_6px_20px_rgba(0,0,0,0.6)]">
             <div className="text-amber-400 text-xs font-semibold uppercase mb-1">Fizetési mód</div>
             <div className="text-lg font-bold text-white mb-1">Csak Bankkártya</div>
             <p className="text-xs text-slate-400 font-medium text-amber-300/90">
@@ -650,7 +699,7 @@ export default function ApartmentSection() {
             </p>
           </div>
 
-          <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
+          <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-800 shadow-[0_6px_20px_rgba(0,0,0,0.6)]">
             <div className="text-emerald-400 text-xs font-semibold uppercase mb-1">Parkolás</div>
             <div className="text-lg font-bold text-white mb-1">Ingyenes privát</div>
             <p className="text-xs text-slate-400">Közvetlenül az épület előtti kijelölt parkolóban.</p>
@@ -674,7 +723,7 @@ export default function ApartmentSection() {
       </div>
 
       {/* Transit & Distances Table */}
-      <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-sky-500/20 mb-14">
+      <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-sky-500/20 mb-14 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(56,189,248,0.12)]">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-400">
             <Train className="w-6 h-6" />
@@ -725,32 +774,124 @@ export default function ApartmentSection() {
         </div>
       </div>
 
-      {/* 3 Golden Family Tips for Villa Greystone */}
-      <div className="glass-panel-warm p-6 sm:p-8 rounded-3xl border border-amber-500/30 mb-14 glow-warm">
-        <h4 className="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
-          <Sparkles className="w-5 h-5 text-amber-400" />
-          <span>Összefoglaló Tanácsok a Családnak a Villa Greystone-ban Való Tartózkodáshoz</span>
-        </h4>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-slate-950/80 p-4 rounded-xl border border-amber-500/20">
-            <div className="text-amber-400 font-bold text-sm mb-1.5">1. Autómentes hegyi napok</div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Használjátok ki a <strong>Pod lesom</strong> vasúti megálló közelségét (10-12 perc séta)! A TEŽ 24 órás hálózati jeggyel (felnőtt: 6 €, diák/gyerek: 4 €) Ótátrafüred és a Csorba-tó is kényelmesen, drága hegyi parkolási díjak nélkül elérhető.
-            </p>
-          </div>
+      {/* Winter Animated Divider separating Apartment Info from Gallery */}
+      <div
+        ref={dividerRef}
+        onClick={() => {
+          hasTriggeredRef.current = true;
+          setDividerActive(true);
+          setAnimKey((prev) => prev + 1);
+        }}
+        title="Kattints az animáció újrajátszásához!"
+        className="relative w-full h-16 my-10 sm:my-14 overflow-hidden flex items-center select-none cursor-pointer group"
+      >
+        {/* Subtle base track line that spans full width */}
+        <div className="absolute inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-slate-700/60 to-transparent group-hover:via-slate-500 transition-colors" />
+        <div className="absolute inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-sky-500/15 to-transparent blur-[1px]" />
 
-          <div className="bg-slate-950/80 p-4 rounded-xl border border-amber-500/20">
-            <div className="text-amber-400 font-bold text-sm mb-1.5">2. Wellness-egyeztetés</div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Érkezéskor érdemes rögtön egyeztetni Radóval a kívánt szauna- és pezsgőfürdő-idősávról, hogy a hideg téli túra vagy síelés után privátban, zavartalanul lazíthassatok.
-            </p>
-          </div>
+        {/* Drawn Line with Sled & Reindeer - triggered on scroll into view or on click */}
+        <div
+          key={animKey}
+          style={{
+            animation: dividerActive
+              ? "drawSledLineTrack 3.8s cubic-bezier(0.22, 1, 0.36, 1) forwards"
+              : "none",
+            width: dividerActive ? undefined : "0%",
+          }}
+          className={`absolute inset-y-0 left-0 flex items-center ${
+            dividerActive ? "animate-draw-sled-line" : "w-0 opacity-0"
+          }`}
+        >
+          {/* Glowing white drawn line */}
+          <div className="w-full h-[2.5px] bg-gradient-to-r from-sky-400/30 via-sky-100 via-white to-white shadow-[0_0_12px_rgba(255,255,255,1),0_0_24px_rgba(56,189,248,0.7)]" />
 
-          <div className="bg-slate-950/80 p-4 rounded-xl border border-amber-500/20">
-            <div className="text-amber-400 font-bold text-sm mb-1.5">3. Vacsora a szomszédban</div>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              A <strong>Koliba Tatry</strong> tradicionális étterem csupán néhány lépésre fekszik. Ha fáradtak lennétek kimozdulni, 15 € feletti rendelés esetén ingyenesen házhoz szállítják az ételt közvetlenül az apartmanba!
-            </p>
+          {/* Sled with Snowflake + Golden Reins + Leaping Reindeer (Szarvas) at the advancing tip */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[92%] flex items-center select-none pointer-events-none">
+            {/* Wooden Sled with Snowflake */}
+            <div className="relative flex items-center text-white">
+              {/* Ice Sparkles halo glow around sled */}
+              <div className="absolute -inset-2 bg-sky-400/25 rounded-full blur-md" />
+
+              {/* Sled SVG */}
+              <svg
+                viewBox="0 0 38 22"
+                className="w-7 h-5 sm:w-8 sm:h-5.5 text-slate-100 drop-shadow-[0_0_10px_rgba(255,255,255,0.95)] relative z-10"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                {/* Sled curved runners skimming the line */}
+                <path
+                  d="M2 18h25c3.5 0 6.5-2 7-6 .2-1.5-.8-2-1.8-2-.8 0-1.2.6-1.5 1.5-.6 2-2 3.5-4.5 3.5H3"
+                  fill="currentColor"
+                  stroke="none"
+                />
+                {/* Wooden seat */}
+                <path d="M7 10h18" strokeWidth="2.2" stroke="white" />
+                {/* Vertical strut supports */}
+                <path d="M11 10v7M21 10v7" strokeWidth="1.8" stroke="white" />
+              </svg>
+
+              {/* Glowing rotating Snowflake sitting on the sled */}
+              <div className="absolute -top-3.5 left-2 z-20">
+                <Snowflake
+                  className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-sky-200 animate-spin drop-shadow-[0_0_10px_rgba(255,255,255,1)]"
+                  style={{ animationDuration: "6s" }}
+                />
+              </div>
+            </div>
+
+            {/* Golden Reins connecting Sled to Reindeer */}
+            <div className="w-4 sm:w-6 h-[1.8px] bg-gradient-to-r from-amber-300/80 via-amber-200 to-amber-300/90 relative -mx-0.5 shadow-[0_0_6px_rgba(245,158,11,0.8)]" />
+
+            {/* Leaping Reindeer (Szarvas) in front */}
+            <div className="relative flex items-center">
+              {/* Warm Golden Winter Aura around Reindeer */}
+              <div className="absolute -inset-2 bg-amber-400/25 rounded-full blur-md" />
+
+              <svg
+                viewBox="0 0 54 40"
+                className="w-9 h-7 sm:w-11 sm:h-8 text-amber-200 drop-shadow-[0_0_12px_rgba(251,191,36,0.9)] relative z-10"
+                fill="currentColor"
+              >
+                {/* Branching Antlers (Agancsok) */}
+                <path
+                  d="M36 14 C35 10 33 6 30 4 M33 8 C31 8 29 9 28 11 M36 13 C38 9 41 5 46 3 M40 7 C43 7 45 8 47 10 M44 5 C47 5 49 7 50 9"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                {/* Head and muzzle */}
+                <path
+                  d="M34 14 C36 13 38 13.5 42 16 C44 17 46 17.5 46 19 C46 20 44 20.5 41 20 C38 19.5 36 18.5 34 19 L32 23"
+                />
+                {/* Graceful leaping body & tail */}
+                <path
+                  d="M34 18 C31 22 28 24 23 25 C18 26 13 25 9 23 C7 22 6 21 5 21.5 C4 22 4.5 24 6 25.5 C8 27.5 12 29 17 28.5 C22 28 27 26 31 24 C33 23 35 20.5 35 18 Z"
+                />
+                {/* Front leaping legs */}
+                <path
+                  d="M28 25 L34 31 L42 34 M26 25 L31 31 L37 35"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                {/* Hind galloping legs */}
+                <path
+                  d="M14 27 L9 32 L3 35 M11 26 L7 31 L1 33"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                {/* Gentle sparkling nose */}
+                <circle cx="45" cy="18" r="1.4" fill="#f87171" className="animate-pulse" />
+              </svg>
+            </div>
           </div>
         </div>
       </div>

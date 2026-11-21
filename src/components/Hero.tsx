@@ -69,7 +69,7 @@ export default function Hero() {
         <div className="mt-6 sm:mt-8 md:mt-10 inline-flex items-center gap-2 sm:gap-4 p-2.5 sm:p-4 md:p-5 rounded-2xl sm:rounded-3xl bg-slate-950/45 backdrop-blur-xl border border-sky-400/25 shadow-[0_12px_40px_rgba(0,0,0,0.6),0_0_25px_rgba(56,189,248,0.15)] ring-1 ring-white/10">
           {/* Nap */}
           <div className="flex flex-col items-center justify-center min-w-[70px] sm:min-w-[96px] md:min-w-[110px] px-3 sm:px-5 py-2 sm:py-3.5 rounded-xl sm:rounded-2xl bg-gradient-to-b from-sky-500/15 via-slate-900/50 to-slate-950/70 border border-sky-400/20 shadow-inner">
-            <span className="font-mono text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-[0_2px_12px_rgba(56,189,248,0.5)]">
+            <span className="font-sans tabular-nums text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-[0_2px_12px_rgba(56,189,248,0.5)]">
               {mounted ? String(timeLeft.days).padStart(2, "0") : "00"}
             </span>
             <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-sky-200/80 mt-1">
@@ -81,7 +81,7 @@ export default function Hero() {
 
           {/* Óra */}
           <div className="flex flex-col items-center justify-center min-w-[70px] sm:min-w-[96px] md:min-w-[110px] px-3 sm:px-5 py-2 sm:py-3.5 rounded-xl sm:rounded-2xl bg-gradient-to-b from-sky-500/15 via-slate-900/50 to-slate-950/70 border border-sky-400/20 shadow-inner">
-            <span className="font-mono text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-[0_2px_12px_rgba(56,189,248,0.5)]">
+            <span className="font-sans tabular-nums text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-[0_2px_12px_rgba(56,189,248,0.5)]">
               {mounted ? String(timeLeft.hours).padStart(2, "0") : "00"}
             </span>
             <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-sky-200/80 mt-1">
@@ -93,7 +93,7 @@ export default function Hero() {
 
           {/* Perc */}
           <div className="flex flex-col items-center justify-center min-w-[70px] sm:min-w-[96px] md:min-w-[110px] px-3 sm:px-5 py-2 sm:py-3.5 rounded-xl sm:rounded-2xl bg-gradient-to-b from-sky-500/15 via-slate-900/50 to-slate-950/70 border border-sky-400/20 shadow-inner">
-            <span className="font-mono text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-[0_2px_12px_rgba(56,189,248,0.5)]">
+            <span className="font-sans tabular-nums text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-[0_2px_12px_rgba(56,189,248,0.5)]">
               {mounted ? String(timeLeft.minutes).padStart(2, "0") : "00"}
             </span>
             <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-sky-200/80 mt-1">

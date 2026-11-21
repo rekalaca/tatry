@@ -100,6 +100,7 @@ h1, h2, h3, h4, h5, h6 {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(56, 189, 248, 0.14);
+  box-shadow: 0 14px 35px -5px rgba(0, 0, 0, 0.65), 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .glass-panel-warm {
@@ -107,6 +108,7 @@ h1, h2, h3, h4, h5, h6 {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(245, 158, 11, 0.2);
+  box-shadow: 0 16px 40px -5px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(0, 0, 0, 0.45);
 }
 
 .glow-ice {
@@ -115,6 +117,26 @@ h1, h2, h3, h4, h5, h6 {
 
 .glow-warm {
   box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.25);
+}
+
+/* Winter Scroll-Triggered Sled & Reindeer Drawing Line Animation */
+@keyframes drawSledLineTrack {
+  0% {
+    width: 0%;
+    opacity: 0.9;
+  }
+  1% {
+    opacity: 1;
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.animate-draw-sled-line {
+  animation: drawSledLineTrack 3.8s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
 }
 
 /* Smooth cinematic modal expand animation */
