@@ -116,3 +116,38 @@ h1, h2, h3, h4, h5, h6 {
 .glow-warm {
   box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.25);
 }
+
+/* Smooth cinematic modal expand animation */
+@keyframes modalBackdropIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(16px);
+  }
+}
+
+@keyframes modalExpandSlow {
+  0% {
+    transform: scale(0.35) translateY(30px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-modal-backdrop {
+  animation: modalBackdropIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-modal-expand {
+  animation: modalExpandSlow 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: center center;
+}

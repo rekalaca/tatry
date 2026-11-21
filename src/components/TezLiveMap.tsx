@@ -179,24 +179,30 @@ export default function TezLiveMap() {
   }, [currentTimeMinutes, currentWeekday, trains, stationCoords, stationNames, destinations]);
 
   // Find next departure from a specific station
-  const getNextDeparture = (stationName: string, destinationFilter?: string): string => {
+  const getNextDeparture = (stationName: string, towardsStation?: string): string => {
     let nextTime: number | null = null;
     const now = currentTimeMinutes;
 
     for (const tr of trains) {
       if ((tr.m & (1 << currentWeekday)) === 0) continue;
 
-      const lastIdx = tr.s.length - 1;
-      const finalDest = getStationName(tr.s[lastIdx]);
-      if (destinationFilter && !finalDest.includes(destinationFilter)) continue;
+      const stNames = tr.s.map((idx) => getStationName(idx));
+      const originIdx = stNames.findIndex((name) =>
+        name.toLowerCase().includes(stationName.toLowerCase())
+      );
+      if (originIdx === -1 || originIdx >= tr.s.length - 1) continue;
 
-      for (let i = 0; i < lastIdx; i++) {
-        if (getStationName(tr.s[i]) === stationName) {
-          const dep = getDepTime(tr.t, i);
-          if (dep > now && (nextTime === null || dep < nextTime)) {
-            nextTime = dep;
-          }
-        }
+      if (towardsStation) {
+        const towardsIdx = stNames.findIndex((name) =>
+          name.toLowerCase().includes(towardsStation.toLowerCase())
+        );
+        // Must visit towardsStation AFTER the origin station
+        if (towardsIdx === -1 || towardsIdx <= originIdx) continue;
+      }
+
+      const dep = getDepTime(tr.t, originIdx);
+      if (dep > now && (nextTime === null || dep < nextTime)) {
+        nextTime = dep;
       }
     }
 
@@ -322,20 +328,20 @@ export default function TezLiveMap() {
         <div className="bg-gradient-to-br from-sky-950/60 to-slate-950/90 p-3.5 rounded-2xl border border-sky-400/40 flex flex-col justify-between relative shadow-lg shadow-sky-500/10">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-bold text-sky-300 uppercase tracking-wider flex items-center gap-1">
-              <MapPin className="w-3 h-3 text-amber-400" />
+              <MapPin className="w-3.5 h-3.5 text-amber-400" />
               Pod lesom (900m)
             </span>
             <span className="text-[9px] bg-sky-500/20 text-sky-200 px-1.5 py-0.5 rounded font-semibold">
-              Szállásunk
+              Szállásunk mellett
             </span>
           </div>
           <div className="mt-1 flex items-center justify-between text-xs font-mono">
             <div>
-              <span className="text-slate-300 text-[10px] block">➔ Smokovec:</span>
+              <span className="text-slate-300 text-[10px] block font-sans">➔ Hegyek / Smokovec:</span>
               <span className="text-sm font-bold text-emerald-400">{nextFromPodLesomSmokovec}</span>
             </div>
             <div className="text-right">
-              <span className="text-slate-300 text-[10px] block">➔ Poprad:</span>
+              <span className="text-slate-300 text-[10px] block font-sans">➔ Völgy / Poprad:</span>
               <span className="text-sm font-bold text-amber-400">{nextFromPodLesomPoprad}</span>
             </div>
           </div>

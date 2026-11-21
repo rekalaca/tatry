@@ -16,6 +16,7 @@ import {
   ShieldAlert,
   PhoneCall,
   Smartphone,
+  ChevronDown,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -168,35 +169,86 @@ export default function KozlekedesPage() {
           </div>
         </div>
 
-        {/* Quick Jump Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto">
+        {/* Quick Jump Buttons: Larger, rectangular glassmorphism buttons with subtle border & clear click affordance */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-5xl mx-auto">
           <a
             href="#elo-terkep"
-            className="px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-sky-500/20 border border-slate-800 hover:border-sky-400/40 text-xs text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
+            className="group relative p-4 sm:p-5 rounded-2xl backdrop-blur-xl bg-slate-900/70 hover:bg-slate-800/80 border border-sky-500/20 hover:border-sky-400/60 shadow-lg shadow-black/40 hover:shadow-sky-500/15 transition-all duration-300 hover:-translate-y-1 text-left flex items-center justify-between"
           >
-            <Compass className="w-3.5 h-3.5 text-sky-400" />
-            <span>Élő Vonattérkép</span>
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-sky-500/15 text-sky-300 border border-sky-400/30 group-hover:bg-sky-500/25 transition-colors shrink-0">
+                <Compass className="w-5 h-5 text-sky-400" />
+              </div>
+              <div>
+                <span className="text-sm sm:text-base font-bold text-white group-hover:text-sky-300 transition-colors block">
+                  Élő Vonattérkép
+                </span>
+                <span className="text-[11px] text-slate-400 block mt-0.5">Mozgó járatok & idővonal</span>
+              </div>
+            </div>
+            <div className="w-7 h-7 rounded-lg bg-slate-800/80 border border-slate-700/80 group-hover:border-sky-400/50 group-hover:bg-sky-500/20 flex items-center justify-center text-slate-400 group-hover:text-sky-300 transition-all shrink-0 ml-2">
+              <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+            </div>
           </a>
+
           <a
             href="#menetrendek"
-            className="px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-sky-500/20 border border-slate-800 hover:border-sky-400/40 text-xs text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
+            className="group relative p-4 sm:p-5 rounded-2xl backdrop-blur-xl bg-slate-900/70 hover:bg-slate-800/80 border border-amber-500/20 hover:border-amber-400/60 shadow-lg shadow-black/40 hover:shadow-amber-500/15 transition-all duration-300 hover:-translate-y-1 text-left flex items-center justify-between"
           >
-            <Clock className="w-3.5 h-3.5 text-amber-400" />
-            <span>183 & 184 Menetrendek</span>
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-amber-500/15 text-amber-300 border border-amber-400/30 group-hover:bg-amber-500/25 transition-colors shrink-0">
+                <Clock className="w-5 h-5 text-amber-400" />
+              </div>
+              <div>
+                <span className="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors block">
+                  183 & 184 Menetrend
+                </span>
+                <span className="text-[11px] text-slate-400 block mt-0.5">Poprád, Smokovec, Csorba-tó</span>
+              </div>
+            </div>
+            <div className="w-7 h-7 rounded-lg bg-slate-800/80 border border-slate-700/80 group-hover:border-amber-400/50 group-hover:bg-amber-500/20 flex items-center justify-center text-slate-400 group-hover:text-amber-300 transition-all shrink-0 ml-2">
+              <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+            </div>
           </a>
+
           <a
             href="#jegyarak"
-            className="px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-sky-500/20 border border-slate-800 hover:border-sky-400/40 text-xs text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
+            className="group relative p-4 sm:p-5 rounded-2xl backdrop-blur-xl bg-slate-900/70 hover:bg-slate-800/80 border border-emerald-500/20 hover:border-emerald-400/60 shadow-lg shadow-black/40 hover:shadow-emerald-500/15 transition-all duration-300 hover:-translate-y-1 text-left flex items-center justify-between"
           >
-            <Ticket className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Jegyárak & Vásárlás</span>
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 group-hover:bg-emerald-500/25 transition-colors shrink-0">
+                <Ticket className="w-5 h-5 text-emerald-400" />
+              </div>
+              <div>
+                <span className="text-sm sm:text-base font-bold text-white group-hover:text-emerald-300 transition-colors block">
+                  Jegyárak & Vásárlás
+                </span>
+                <span className="text-[11px] text-slate-400 block mt-0.5">24h bérlet & mobilapp</span>
+              </div>
+            </div>
+            <div className="w-7 h-7 rounded-lg bg-slate-800/80 border border-slate-700/80 group-hover:border-emerald-400/50 group-hover:bg-emerald-500/20 flex items-center justify-center text-slate-400 group-hover:text-emerald-300 transition-all shrink-0 ml-2">
+              <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+            </div>
           </a>
+
           <a
             href="#autos-kisokos"
-            className="px-3 py-1.5 rounded-xl bg-slate-900/80 hover:bg-sky-500/20 border border-slate-800 hover:border-sky-400/40 text-xs text-slate-300 hover:text-white transition-all flex items-center gap-1.5"
+            className="group relative p-4 sm:p-5 rounded-2xl backdrop-blur-xl bg-slate-900/70 hover:bg-slate-800/80 border border-rose-500/20 hover:border-rose-400/60 shadow-lg shadow-black/40 hover:shadow-rose-500/15 transition-all duration-300 hover:-translate-y-1 text-left flex items-center justify-between"
           >
-            <Car className="w-3.5 h-3.5 text-rose-400" />
-            <span>Autós Szabályok & Matrica</span>
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-rose-500/15 text-rose-300 border border-rose-400/30 group-hover:bg-rose-500/25 transition-colors shrink-0">
+                <Car className="w-5 h-5 text-rose-400" />
+              </div>
+              <div>
+                <span className="text-sm sm:text-base font-bold text-white group-hover:text-rose-300 transition-colors block">
+                  Autós Szabályok
+                </span>
+                <span className="text-[11px] text-slate-400 block mt-0.5">e-Matrica & KRESZ</span>
+              </div>
+            </div>
+            <div className="w-7 h-7 rounded-lg bg-slate-800/80 border border-slate-700/80 group-hover:border-rose-400/50 group-hover:bg-rose-500/20 flex items-center justify-center text-slate-400 group-hover:text-rose-300 transition-all shrink-0 ml-2">
+              <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+            </div>
           </a>
         </div>
       </section>

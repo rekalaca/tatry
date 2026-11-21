@@ -1,11 +1,28 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Info, ZoomIn, X } from "lucide-react";
 
 export default function TezOverviewSection() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  // Close on Escape key press and prevent body scroll
+  useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [lightboxOpen]);
 
   return (
     <section className="glass-panel rounded-3xl p-6 sm:p-8 border border-sky-500/20">
@@ -81,25 +98,25 @@ export default function TezOverviewSection() {
         </div>
       </div>
 
-      {/* Fullscreen Lightbox Modal */}
+      {/* Fullscreen Lightbox Modal with slow rising zoom effect */}
       {lightboxOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          className="fixed inset-0 z-50 bg-black/92 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6 animate-modal-backdrop"
           onClick={() => setLightboxOpen(false)}
         >
           <button
             onClick={() => setLightboxOpen(false)}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 p-3 rounded-full bg-slate-900/80 text-white hover:bg-sky-500/20 border border-slate-700 hover:border-sky-400 transition-all z-10"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 p-3 rounded-full bg-slate-900/80 text-white hover:bg-sky-500/20 border border-slate-700 hover:border-sky-400 transition-all z-20 shadow-xl"
             aria-label="Bezárás"
           >
             <X className="w-6 h-6" />
           </button>
 
           <div
-            className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center"
+            className="relative max-w-6xl w-full max-h-[92vh] flex flex-col items-center animate-modal-expand"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full h-[60vh] sm:h-[75vh] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-2xl">
+            <div className="relative w-full h-[65vh] sm:h-[80vh] rounded-2xl overflow-hidden bg-slate-950 border border-sky-400/30 shadow-2xl shadow-sky-500/20">
               <Image
                 src="/pictures/tez/tez_tatry_magyar.jpg"
                 alt="Tátrai villamos hegyi háttérrel nagy méretben"
@@ -109,12 +126,12 @@ export default function TezOverviewSection() {
               />
             </div>
 
-            <div className="mt-4 p-4 rounded-xl bg-slate-950/80 border border-slate-800 text-center max-w-xl w-full">
-              <h4 className="text-base font-bold text-white mb-0.5">
+            <div className="mt-3 p-3.5 sm:p-4 rounded-xl bg-slate-950/85 border border-slate-800 text-center max-w-2xl w-full backdrop-blur-md">
+              <h4 className="text-sm sm:text-base font-bold text-white mb-0.5">
                 A Tátrai Elektromos Vasút (TEŽ) a havas csúcsok lábánál
               </h4>
               <p className="text-xs text-slate-300">
-                Modern, fűtött Stadler GTW panorámavonat a Magas-Tátra hegyei között.
+                Modern, fűtött Stadler GTW panorámavonat a Magas-Tátra hegyei között. Kattints a háttérre vagy nyomd meg az ESC billentyűt a bezáráshoz.
               </p>
             </div>
           </div>
