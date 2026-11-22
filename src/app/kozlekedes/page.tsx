@@ -395,13 +395,22 @@ export default function KozlekedesPage() {
               </div>
             </div>
 
-            {/* Cog Railway Note */}
-            <div className="mt-5 p-3.5 rounded-xl bg-sky-500/10 border border-sky-400/25 flex items-start gap-3">
-              <Train className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-              <div className="text-xs text-slate-300 leading-relaxed">
-                <strong className="text-white">Tátrai Fogaskerekű Vasút (OŽ 182-es vonal):</strong> Štrba (fővonali állomás) és Štrbské Pleso között modern svájci Stadler fogaskerekű szerelvények járnak.
-                A TEŽ 24 órás, 3 napos és heti hálózati jegyei erre a fogaskerekű vonalra is teljes mértékben érvényesek!
+            {/* Cog Railway Note: Icon & title in one row, full width justified text in new row */}
+            <div className="mt-5 p-4 sm:p-5 rounded-xl bg-sky-500/10 border border-sky-400/25">
+              <div className="flex items-center gap-2.5 mb-2.5">
+                <div className="p-2 rounded-lg bg-sky-500/20 text-sky-400 shrink-0">
+                  <Train className="w-4 h-4" />
+                </div>
+                <h4 className="font-bold text-white text-sm sm:text-base">
+                  Tátrai Fogaskerekű Vasút (OŽ 182-es vonal)
+                </h4>
               </div>
+              <p
+                lang="hu"
+                className="text-xs text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+              >
+                Štrba (fővonali állomás) és Štrbské Pleso között modern svájci Stadler fogaskerekű szerelvények járnak. A TEŽ 24 órás, 3 napos és heti hálózati jegyei erre a fogaskerekű vonalra is teljes mértékben érvényesek!
+              </p>
             </div>
           </div>
         </section>
@@ -480,24 +489,25 @@ export default function KozlekedesPage() {
             </div>
           </div>
 
-          {/* Mountain Rescue & Insurance warning */}
+          {/* Mountain Rescue & Insurance warning: Icon & title in one row, full width justified text in new row */}
           <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-amber-500/15 via-rose-500/15 to-slate-950 border border-amber-500/30 mb-8">
-            <div className="flex items-start gap-3.5">
+            <div className="flex items-center gap-3 mb-3">
               <div className="p-2.5 rounded-xl bg-amber-500/20 text-amber-400 shrink-0">
-                <ShieldAlert className="w-6 h-6" />
+                <ShieldAlert className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <div className="text-xs sm:text-sm">
-                <h4 className="font-bold text-white text-base mb-1">
-                  Külön Hegyi Mentőbiztosítás (HZS) — Kötelező jellegű jótanács!
-                </h4>
-                <p className="text-slate-300 leading-relaxed">
-                  Szlovákiában a <strong>Horská záchranná služba (HZS)</strong> hegyi mentése és keresése
-                  díjköteles, és nem fedezi az Európai Egészségbiztosítási Kártya (EHIC / kék kártya)!
-                  Egy hegyi mentés helikopterrel vagy szánnal akár több ezer euróba is kerülhet.
-                  Győződjetek meg róla, hogy az utasbiztosításotok kifejezetten tartalmazza a hegyimentést és a téli sportokat.
-                </p>
-              </div>
+              <h4 className="font-bold text-white text-base sm:text-lg">
+                Külön Hegyi Mentőbiztosítás (HZS) — Kötelező jellegű jótanács!
+              </h4>
             </div>
+            <p
+              lang="hu"
+              className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+            >
+              Szlovákiában a <strong>Horská záchranná služba (HZS)</strong> hegyi mentése és keresése
+              díjköteles, és nem fedezi az Európai Egészségbiztosítási Kártya (EHIC / kék kártya)!
+              Egy hegyi mentés helikopterrel vagy szánnal akár több ezer euróba is kerülhet.
+              Győződjetek meg róla, hogy az utasbiztosításotok kifejezetten tartalmazza a hegyimentést és a téli sportokat.
+            </p>
           </div>
 
           {/* Emergency Telephone Numbers */}

@@ -108,12 +108,21 @@ export default function ShoppingSection() {
           ))}
         </div>
 
-        <div className="p-4 rounded-xl bg-slate-950/70 border border-amber-500/20 flex items-start gap-3 text-xs text-slate-300">
-          <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-          <div>
-            <strong className="text-white font-semibold">Tudtad? </strong>
-            Szlovákiában a legtöbb szupermarket vasárnap is nyitva tart, így nem gond, ha a hétvégi érkezés után kell megvenni a vacsorának valót. A boltokban természetesen működik a magyar bankkártya (Mastercard, Visa, Revolut) érintéses fizetéssel.
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-950/70 border border-amber-500/20">
+          <div className="flex items-center gap-2.5 mb-2.5">
+            <div className="p-2 rounded-lg bg-amber-500/20 text-amber-400 shrink-0">
+              <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+            </div>
+            <h4 className="font-bold text-white text-sm sm:text-base">
+              Tudtad? Nyitvatartás & Fizetés
+            </h4>
           </div>
+          <p
+            lang="hu"
+            className="text-xs text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+          >
+            Szlovákiában a legtöbb szupermarket vasárnap is nyitva tart, így nem gond, ha a hétvégi érkezés után kell megvenni a vacsorának valót. A boltokban természetesen működik a magyar bankkártya (Mastercard, Visa, Revolut) érintéses fizetéssel.
+          </p>
         </div>
       </div>
     </section>

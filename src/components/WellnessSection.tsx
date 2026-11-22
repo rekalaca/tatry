@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Waves, Sparkles, ExternalLink, MapPin, Thermometer, ShieldCheck } from "lucide-react";
 
-export default function WellnessSection() {
+export default function WellnessSection({ isSubpage = false }: { isSubpage?: boolean } = {}) {
   const baths = [
     {
       title: "AquaCity Poprad",
@@ -57,13 +57,9 @@ export default function WellnessSection() {
   ];
 
   return (
-    <section id="wellness" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="wellness" className={`${isSubpage ? "pt-2 pb-16" : "py-20"} px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto`}>
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold mb-3">
-          <Waves className="w-3.5 h-3.5" />
-          <span>Forró Termálvíz a Hófödte Tájban</span>
-        </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
           Fürdők &{" "}
           <span className="bg-gradient-to-r from-cyan-300 via-sky-300 to-blue-400 bg-clip-text text-transparent">
@@ -179,23 +175,28 @@ export default function WellnessSection() {
         ))}
       </div>
 
-      {/* Wellness Checklist Box */}
-      <div className="glass-panel p-6 rounded-2xl border border-sky-500/20 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div className="flex items-start gap-4">
-          <div className="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 shrink-0">
-            <ShieldCheck className="w-6 h-6" />
+      {/* Wellness Checklist Box: Icon & title in one row, full width justified text in new row */}
+      <div className="glass-panel p-6 rounded-2xl border border-sky-500/20 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="flex-1">
+          <div className="flex items-center gap-3 mb-2.5">
+            <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 shrink-0">
+              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
+            </div>
+            <h4 className="text-base sm:text-lg font-bold text-white">
+              Fürdőzéshez készített praktikus tanácsok
+            </h4>
           </div>
-          <div>
-            <h4 className="text-base font-bold text-white mb-1">Fürdőzéshez készített praktikus tanácsok</h4>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Mindenképp legyen a kocsiban fejenként legalább egy fürdőruha, fürdőlepedő/törölköző és vízálló strandpapucs. Vrbovban a kénes gyógyvíz miatt az ezüst ékszereket érdemes előre levenni!
-            </p>
-          </div>
+          <p
+            lang="hu"
+            className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+          >
+            Mindenképp legyen a kocsiban fejenként legalább egy fürdőruha, fürdőlepedő/törölköző és vízálló strandpapucs. Vrbovban a kénes gyógyvíz miatt az ezüst ékszereket érdemes előre levenni!
+          </p>
         </div>
 
         <Link
           href="/csomagolas"
-          className="shrink-0 px-4 py-2.5 rounded-xl text-xs font-semibold bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-200 border border-cyan-400/30 transition-all"
+          className="shrink-0 px-4 py-2.5 rounded-xl text-xs font-semibold bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-200 border border-cyan-400/30 transition-all text-center"
         >
           Fürdős holmik a csomagolási listában
         </Link>

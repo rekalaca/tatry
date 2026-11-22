@@ -1,9 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ApartmentSection from "@/components/ApartmentSection";
-import ProgramsSection from "@/components/ProgramsSection";
-import DiningSection from "@/components/DiningSection";
-import WellnessSection from "@/components/WellnessSection";
+import GuidesHubSection from "@/components/GuidesHubSection";
 import ShoppingSection from "@/components/ShoppingSection";
 import WebcamsSection from "@/components/WebcamsSection";
 import TravelGuideSection from "@/components/TravelGuideSection";
@@ -25,14 +23,8 @@ export default function Home() {
       {/* Apartment section featuring 49 photos with fullscreen lightbox */}
       <ApartmentSection />
 
-      {/* Winter activities, Hrebienok ice dome, sledding, cable cars */}
-      <ProgramsSection />
-
-      {/* Dining & Koliba Tatry PDF menu viewer */}
-      <DiningSection />
-
-      {/* Thermal baths & spas (Poprad, Vrbov, Tatralandia) */}
-      <WellnessSection />
+      {/* Central Guides Hub: Clean preview cards linking to dedicated subpages (Programok, Gasztro, Fürdők, Közlekedés, Csomagolás) */}
+      <GuidesHubSection />
 
       {/* Supermarkets & local souvenirs */}
       <ShoppingSection />

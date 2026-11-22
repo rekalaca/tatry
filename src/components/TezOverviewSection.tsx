@@ -7,19 +7,21 @@ import { Info, ZoomIn, X } from "lucide-react";
 export default function TezOverviewSection() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  // Close on Escape key press and prevent body scroll
+  // Close on Escape key press and safely handle body scroll lock
   useEffect(() => {
     if (!lightboxOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setLightboxOpen(false);
     };
 
-    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = originalOverflow || "";
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [lightboxOpen]);
@@ -98,42 +100,41 @@ export default function TezOverviewSection() {
         </div>
       </div>
 
-      {/* Fullscreen Lightbox Modal with slow rising zoom effect */}
+      {/* Fullscreen Centered Lightbox Modal (Optimized for mobile & desktop) */}
       {lightboxOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/92 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6 animate-modal-backdrop"
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-[100] bg-black/92 flex items-center justify-center p-3 sm:p-6"
           onClick={() => setLightboxOpen(false)}
         >
+          {/* Always visible Close Button at top-right with icon & text */}
           <button
-            onClick={() => setLightboxOpen(false)}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 p-3 rounded-full bg-slate-900/80 text-white hover:bg-sky-500/20 border border-slate-700 hover:border-sky-400 transition-all z-20 shadow-xl"
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxOpen(false);
+            }}
+            className="fixed top-3 right-3 sm:top-6 sm:right-6 z-[110] flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-slate-900/95 text-white hover:bg-sky-600 border border-slate-600 hover:border-sky-400 shadow-2xl transition-all active:scale-95 text-xs font-semibold cursor-pointer"
             aria-label="Bezárás"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5 text-sky-400" />
+            <span>Bezárás</span>
           </button>
 
+          {/* Centered Image Container - strictly within screen bounds, no bottom text */}
           <div
-            className="relative max-w-6xl w-full max-h-[92vh] flex flex-col items-center animate-modal-expand"
+            className="relative w-full max-w-5xl h-[72vh] sm:h-[82vh] max-h-[84dvh] rounded-2xl overflow-hidden bg-slate-950/90 border border-sky-400/30 shadow-2xl shadow-sky-500/20 flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full h-[65vh] sm:h-[80vh] rounded-2xl overflow-hidden bg-slate-950 border border-sky-400/30 shadow-2xl shadow-sky-500/20">
-              <Image
-                src="/pictures/tez/tez_tatry_magyar.jpg"
-                alt="Tátrai villamos hegyi háttérrel nagy méretben"
-                fill
-                priority
-                className="object-contain"
-              />
-            </div>
-
-            <div className="mt-3 p-3.5 sm:p-4 rounded-xl bg-slate-950/85 border border-slate-800 text-center max-w-2xl w-full backdrop-blur-md">
-              <h4 className="text-sm sm:text-base font-bold text-white mb-0.5">
-                A Tátrai Elektromos Vasút (TEŽ) a havas csúcsok lábánál
-              </h4>
-              <p className="text-xs text-slate-300">
-                Modern, fűtött Stadler GTW panorámavonat a Magas-Tátra hegyei között. Kattints a háttérre vagy nyomd meg az ESC billentyűt a bezáráshoz.
-              </p>
-            </div>
+            <Image
+              src="/pictures/tez/tez_tatry_magyar.jpg"
+              alt="Környezetbarát hegyi utazás - Tátrai villamos hegyi háttérrel nagy méretben"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 85vw"
+              className="object-contain select-none p-1 sm:p-2"
+            />
           </div>
         </div>
       )}

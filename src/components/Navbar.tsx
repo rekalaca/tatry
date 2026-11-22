@@ -20,9 +20,9 @@ import {
 
 const navItems = [
   { name: "Apartman", href: "#apartman", icon: Home },
-  { name: "Programok", href: "#programok", icon: Compass },
-  { name: "Gasztro", href: "#gasztro", icon: Utensils },
-  { name: "Fürdők", href: "#wellness", icon: Waves },
+  { name: "Programok", href: "/programok", icon: Compass },
+  { name: "Gasztro", href: "/gasztro", icon: Utensils },
+  { name: "Fürdők", href: "/furdo", icon: Waves },
   { name: "Boltok", href: "#boltok", icon: ShoppingBag },
   { name: "Webkamerák", href: "#webkamerak", icon: Video },
   { name: "Közlekedés", href: "/kozlekedes", icon: Train },
@@ -34,9 +34,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isKozlekedes = pathname?.startsWith("/kozlekedes");
-  const isCsomagolas = pathname?.startsWith("/csomagolas");
-  const isSubpage = isKozlekedes || isCsomagolas;
+  const isSubpage = pathname !== "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,6 +49,13 @@ export default function Navbar() {
       return `/${href}`;
     }
     return href;
+  };
+
+  const checkIsCurrent = (href: string) => {
+    if (href.startsWith("/")) {
+      return pathname === href || (href !== "/" && pathname?.startsWith(href));
+    }
+    return false;
   };
 
   const handleLogoClick = (e: React.MouseEvent) => {
@@ -100,7 +105,7 @@ export default function Navbar() {
           <nav className="hidden lg:flex items-center justify-center flex-1 mx-2 xl:mx-4 gap-0.5 xl:gap-1.5">
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isCurrent = item.href === pathname;
+              const isCurrent = checkIsCurrent(item.href);
               const linkUrl = resolveHref(item.href);
 
               return (
@@ -154,7 +159,7 @@ export default function Navbar() {
           <div className="grid grid-cols-2 gap-2 mt-1">
             {navItems.map((item, idx) => {
               const Icon = item.icon;
-              const isCurrent = item.href === "/kozlekedes" ? isKozlekedes : false;
+              const isCurrent = checkIsCurrent(item.href);
               const linkUrl = resolveHref(item.href);
 
               return (

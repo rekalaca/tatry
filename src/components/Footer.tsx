@@ -8,14 +8,14 @@ import { ArrowUp, Heart, Snowflake, Train } from "lucide-react";
 
 export default function Footer() {
   const pathname = usePathname();
-  const isTransportPage = pathname?.startsWith("/kozlekedes");
+  const isSubpage = pathname !== "/";
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const getHref = (hash: string) => {
-    return isTransportPage ? `/${hash}` : hash;
+    return isSubpage ? `/${hash}` : hash;
   };
 
   return (
@@ -25,7 +25,7 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         {/* Logo */}
-        <Link href={isTransportPage ? "/" : "#hero"} className="flex items-center gap-2.5 mb-2 hover:opacity-90 transition-opacity">
+        <Link href={isSubpage ? "/" : "#hero"} className="flex items-center gap-2.5 mb-2 hover:opacity-90 transition-opacity">
           <div className="relative w-9 h-9 rounded-xl overflow-hidden shadow-md">
             <Image
               src="/pictures/logo.png"
@@ -48,11 +48,11 @@ export default function Footer() {
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs font-medium text-slate-400 mb-8">
           <Link href={getHref("#apartman")} className="hover:text-sky-300 transition-colors">Villa Greystone</Link>
           <span>•</span>
-          <Link href={getHref("#programok")} className="hover:text-sky-300 transition-colors">Programok</Link>
+          <Link href="/programok" className="hover:text-sky-300 transition-colors">Programok</Link>
           <span>•</span>
-          <Link href={getHref("#gasztro")} className="hover:text-sky-300 transition-colors">Koliba & Gasztro</Link>
+          <Link href="/gasztro" className="hover:text-sky-300 transition-colors">Koliba & Gasztro</Link>
           <span>•</span>
-          <Link href={getHref("#wellness")} className="hover:text-sky-300 transition-colors">Fürdők & Szauna</Link>
+          <Link href="/furdo" className="hover:text-sky-300 transition-colors">Fürdők & Szauna</Link>
           <span>•</span>
           <Link href={getHref("#boltok")} className="hover:text-sky-300 transition-colors">Boltok</Link>
           <span>•</span>

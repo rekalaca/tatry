@@ -208,7 +208,7 @@ const programs: Program[] = [
   }
 ];
 
-export default function ProgramsSection() {
+export default function ProgramsSection({ isSubpage = false }: { isSubpage?: boolean } = {}) {
   const [activeTab, setActiveTab] = useState<"all" | "outdoor" | "family" | "ski">("all");
 
   const filteredPrograms = activeTab === "all" 
@@ -216,13 +216,9 @@ export default function ProgramsSection() {
     : programs.filter(p => p.category === activeTab);
 
   return (
-    <section id="programok" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="programok" className={`${isSubpage ? "pt-2 pb-16" : "py-20"} px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto`}>
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-sky-300 text-xs font-semibold mb-3">
-          <Compass className="w-3.5 h-3.5" />
-          <span>Téli Élmények & Felfedezés</span>
-        </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
           Téli Programok &{" "}
           <span className="bg-gradient-to-r from-sky-400 to-amber-300 bg-clip-text text-transparent">
@@ -254,7 +250,10 @@ export default function ProgramsSection() {
               Kényelmes utazás a Csorba-tóhoz és a Tátra csodáihoz
             </h3>
 
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
+            <p
+              lang="hu"
+              className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4 text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+            >
               A piros hegyi vasúttal (TEŽ) fűtött, panorámás vagonokban kirándulhatunk a hegyekbe. Közvetlen összeköttetést biztosít <strong>Poprád, Ótátrafüred (Starý Smokovec), Tátralomnic és a Csorba-tó (Štrbské Pleso)</strong> között, így nem kell a téli hegyi utakon vezetni vagy parkolóhelyet vadászni a fagyban.
             </p>
 
@@ -456,13 +455,18 @@ export default function ProgramsSection() {
                         {program.description}
                       </p>
 
-                      {/* Tip Box */}
-                      <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800/80 text-xs text-slate-300 mb-4 flex items-start gap-2.5">
-                        <Sparkles className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                        <div>
-                          <strong className="text-amber-300 font-semibold">Tipp: </strong>
-                          <span>{program.tips}</span>
+                      {/* Tip Box: Icon & title in one row, full width justified text in new row */}
+                      <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800/80 mb-4">
+                        <div className="flex items-center gap-2 mb-2 text-amber-300 font-bold text-xs">
+                          <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                          <span>Tipp & jótanács:</span>
                         </div>
+                        <p
+                          lang="hu"
+                          className="text-xs text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+                        >
+                          {program.tips}
+                        </p>
                       </div>
                     </div>
 

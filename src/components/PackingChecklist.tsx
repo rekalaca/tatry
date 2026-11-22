@@ -124,10 +124,6 @@ export default function PackingChecklist({ isSubpage = false }: { isSubpage?: bo
     <section id="csomagolas" className={`${isSubpage ? "pt-4 pb-20" : "py-20"} px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto`}>
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs font-semibold mb-3">
-          <CheckSquare className="w-3.5 h-3.5" />
-          <span>Interaktív Családi Csomagoló Notesz</span>
-        </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
           Mit ne felejtsünk{" "}
           <span className="bg-gradient-to-r from-amber-300 to-orange-400 bg-clip-text text-transparent">

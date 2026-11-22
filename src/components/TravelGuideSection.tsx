@@ -96,22 +96,27 @@ export default function TravelGuideSection() {
         <div className="absolute top-0 right-0 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
-          <div className="flex items-start gap-4">
-            <div className="p-3.5 rounded-2xl bg-sky-500/20 text-sky-300 border border-sky-400/30 shadow-lg shrink-0">
-              <Train className="w-8 h-8 text-sky-400" />
-            </div>
-            <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-200 text-[11px] font-bold uppercase tracking-wider mb-1.5 border border-sky-400/30">
-                <span>Különálló Aloldal</span>
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-2.5">
+              <div className="p-2.5 rounded-xl bg-sky-500/20 text-sky-300 border border-sky-400/30 shadow-lg shrink-0">
+                <Train className="w-6 h-6 sm:w-7 sm:h-7 text-sky-400" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5">
-                Tátrai Villamos (TEŽ) & Teljes Közlekedési Kalauz
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
-                Interaktív élő vonattérkép valós idejű szerelvénykövetéssel, teljes 183 és 184-es menetrend táblázatokkal,
-                jegyárakkal, a <strong>Pod lesom állomás (900m)</strong> sétaútvonalával és parkolási kalauzzal!
-              </p>
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-200 text-[10px] font-bold uppercase tracking-wider mb-0.5 border border-sky-400/30">
+                  Különálló Aloldal
+                </span>
+                <h3 className="text-lg sm:text-2xl font-bold text-white">
+                  Tátrai Villamos (TEŽ) & Teljes Közlekedési Kalauz
+                </h3>
+              </div>
             </div>
+            <p
+              lang="hu"
+              className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+            >
+              Interaktív élő vonattérkép valós idejű szerelvénykövetéssel, teljes 183 és 184-es menetrend táblázatokkal,
+              jegyárakkal, a <strong>Pod lesom állomás (900m)</strong> sétaútvonalával és parkolási kalauzzal!
+            </p>
           </div>
 
           <Link

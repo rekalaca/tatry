@@ -3,7 +3,7 @@
 import React from "react";
 import { Utensils, FileText, Download, Flame, Star, Coffee, Heart, MapPin, ExternalLink } from "lucide-react";
 
-export default function DiningSection() {
+export default function DiningSection({ isSubpage = false }: { isSubpage?: boolean } = {}) {
   const dishes = [
     {
       name: "Bryndzové halušky",
@@ -36,13 +36,9 @@ export default function DiningSection() {
   ];
 
   return (
-    <section id="gasztro" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="gasztro" className={`${isSubpage ? "pt-2 pb-16" : "py-20"} px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto`}>
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs font-semibold mb-3">
-          <Utensils className="w-3.5 h-3.5" />
-          <span>Hagyományos Tátrai Ízek</span>
-        </div>
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
           Gasztronómia &{" "}
           <span className="bg-gradient-to-r from-amber-300 to-orange-400 bg-clip-text text-transparent">
@@ -71,9 +67,18 @@ export default function DiningSection() {
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
               Különleges kényelem, hogy az autentikus tátrai rönkfa étterem <strong>mindössze néhány lépésre fekszik a Villa Greystone apartmanunktól</strong>. Fatüzelésű kandalló, juhtúrós finomságok, ropogós csülök és forró ételek várnak.
             </p>
-            <p className="text-xs sm:text-sm text-amber-300/90 leading-relaxed mb-6 font-medium bg-amber-500/10 p-3 rounded-xl border border-amber-500/20">
-              🛵 <strong>Családi tipp:</strong> 15 € feletti rendelés esetén <strong>ingyenesen házhoz szállítják</strong> az ételeket közvetlenül a Villa Greystone apartmanunkba! Ha egy fárasztó túra vagy esti wellness után nincs kedvetek kimozdulni, csak hívjátok fel őket.
-            </p>
+            <div className="p-3.5 sm:p-4 rounded-xl border border-amber-500/20 bg-amber-500/10 mb-6">
+              <div className="flex items-center gap-2 mb-1.5 text-amber-300 font-bold text-xs sm:text-sm">
+                <span className="text-base select-none">🛵</span>
+                <span>Családi tipp: Ingyenes házhoz szállítás</span>
+              </div>
+              <p
+                lang="hu"
+                className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+              >
+                15 € feletti rendelés esetén <strong>ingyenesen házhoz szállítják</strong> az ételeket közvetlenül a Villa Greystone apartmanunkba! Ha egy fárasztó túra vagy esti wellness után nincs kedvetek kimozdulni, csak hívjátok fel őket.
+              </p>
+            </div>
 
             <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
               {/* Magyar étlap */}
@@ -283,37 +288,52 @@ export default function DiningSection() {
 
       {/* Traditional Drinks & Breakfast Note */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="glass-panel p-5 rounded-2xl flex items-start gap-4 border border-amber-500/20">
-          <div className="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0">
-            <Coffee className="w-5 h-5" />
-          </div>
+        <div className="glass-panel p-5 rounded-2xl border border-amber-500/20 flex flex-col justify-between">
           <div>
-            <h4 className="text-base font-bold text-white mb-1">Villa Greystone Reggeli</h4>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <div className="flex items-center gap-3 mb-2.5">
+              <div className="w-9 h-9 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0">
+                <Coffee className="w-5 h-5" />
+              </div>
+              <h4 className="text-base font-bold text-white">Villa Greystone Reggeli</h4>
+            </div>
+            <p
+              lang="hu"
+              className="text-xs text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+            >
               Bőséges svédasztalos, à la carte és kontinentális reggeli helyben a villa étkezőjében: friss pékáru, felvágottak, prémium sajtok, zöldségek, meleg ételek és kérésre főzött barista kávék (pl. caffe latte).
             </p>
           </div>
         </div>
 
-        <div className="glass-panel p-5 rounded-2xl flex items-start gap-4">
-          <div className="w-10 h-10 rounded-xl bg-orange-500/15 text-orange-400 flex items-center justify-center shrink-0">
-            <Coffee className="w-5 h-5" />
-          </div>
+        <div className="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
           <div>
-            <h4 className="text-base font-bold text-white mb-1">Csapolt Kofola</h4>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <div className="flex items-center gap-3 mb-2.5">
+              <div className="w-9 h-9 rounded-xl bg-orange-500/15 text-orange-400 flex items-center justify-center shrink-0">
+                <Coffee className="w-5 h-5" />
+              </div>
+              <h4 className="text-base font-bold text-white">Csapolt Kofola</h4>
+            </div>
+            <p
+              lang="hu"
+              className="text-xs text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+            >
               Szlovákia legendás üdítője, 14-féle gyógynövény és gyümölcskivonattal, harmadannyi cukorral mint a kóla. Éttermekben szinte mindig csapolva kérik – a gyerekek és felnőttek közös kedvence!
             </p>
           </div>
         </div>
 
-        <div className="glass-panel p-5 rounded-2xl flex items-start gap-4">
-          <div className="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0">
-            <Flame className="w-5 h-5" />
-          </div>
+        <div className="glass-panel p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
           <div>
-            <h4 className="text-base font-bold text-white mb-1">Tatratea (Tátrai Tea Likőr)</h4>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <div className="flex items-center gap-3 mb-2.5">
+              <div className="w-9 h-9 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0">
+                <Flame className="w-5 h-5" />
+              </div>
+              <h4 className="text-base font-bold text-white">Tatratea (Tátrai Tea Likőr)</h4>
+            </div>
+            <p
+              lang="hu"
+              className="text-xs text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+            >
               Késmárkon készülő tátrai specialitás fekete teából, gyógynövényekből és tölgyfahordós érleléssel. A klasszikus 52%-os mellett kapható lágyabb gyümölcsös (32% citrus, 42% őszibarack) változat is.
             </p>
           </div>
