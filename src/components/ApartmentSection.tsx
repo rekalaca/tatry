@@ -112,11 +112,12 @@ const distances = [
 export default function ApartmentSection() {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
   const [isLightboxActive, setIsLightboxActive] = useState(false);
-  const [clickOrigin, setClickOrigin] = useState<{ x: number; y: number } | null>(null);
+  const [imageLoading, setImageLoading] = useState(false);
   const [visibleCount, setVisibleCount] = useState<number>(12);
   const [copiedAddress, setCopiedAddress] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [tezModalOpen, setTezModalOpen] = useState(false);
+  const [tezImageLoading, setTezImageLoading] = useState(false);
   const [dividerActive, setDividerActive] = useState(false);
   const [animKey, setAnimKey] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
@@ -124,6 +125,20 @@ export default function ApartmentSection() {
   const hasTriggeredRef = useRef(false);
 
   const addressText = "Zakladateľov 387, 059 86 Nová Lesná, Szlovákia";
+
+  // Preload the 4 highlight card images immediately on mount so opening them is instantaneous
+  useEffect(() => {
+    const preloadUrls = [
+      "/pictures/apartment/638071432.webp",
+      "/pictures/apartment/464126513.webp",
+      "/pictures/apartment/459766368.webp",
+      "/pictures/tez/tez_tatry_magyar.webp",
+    ];
+    preloadUrls.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   const getImageLabel = (filename: string) => {
     if (filename === "459766368.jpg") {
@@ -147,32 +162,26 @@ export default function ApartmentSection() {
     return null;
   };
 
-  const openLightbox = (index: number, e?: React.MouseEvent) => {
-    if (e && e.currentTarget) {
-      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-      setClickOrigin({
-        x: rect.left + rect.width / 2,
-        y: rect.top + rect.height / 2,
-      });
-    } else {
-      setClickOrigin({
-        x: typeof window !== "undefined" ? window.innerWidth / 2 : 0,
-        y: typeof window !== "undefined" ? window.innerHeight / 2 : 0,
-      });
-    }
+  const openLightbox = (index: number) => {
+    setImageLoading(true);
     setSelectedImageIndex(index);
   };
 
-  const openCardImage = (filename: string, e: React.MouseEvent) => {
+  const openCardImage = (filename: string) => {
     const idx = apartmentImages.indexOf(filename);
-    openLightbox(idx !== -1 ? idx : 0, e);
+    openLightbox(idx !== -1 ? idx : 0);
   };
 
   const closeLightbox = () => {
     setIsLightboxActive(false);
     setTimeout(() => {
       setSelectedImageIndex(null);
-    }, 320);
+    }, 250);
+  };
+
+  const openTezModal = () => {
+    setTezImageLoading(true);
+    setTezModalOpen(true);
   };
 
   useEffect(() => {
@@ -291,15 +300,20 @@ export default function ApartmentSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
-          <h2 className="font-extrabold tracking-tight mb-4 leading-tight">
+          <h2 className="font-extrabold tracking-tight mb-4 leading-tight px-3 sm:px-6">
             <span className="block text-4xl sm:text-6xl lg:text-7xl font-black text-white drop-shadow-[0_6px_25px_rgba(0,0,0,0.85)]">
               Villa Greystone
             </span>
-            <span className="block text-xl sm:text-2xl lg:text-3xl font-bold tracking-wide mt-1.5 sm:mt-2 bg-gradient-to-r from-sky-400 via-amber-200 to-amber-400 bg-clip-text text-transparent">
-              apartman
+            <span className="block text-right">
+              <span className="inline-block text-xl sm:text-2xl lg:text-3xl font-bold tracking-wide mt-1.5 sm:mt-2 bg-gradient-to-r from-sky-400 via-amber-200 to-amber-400 bg-clip-text text-transparent">
+                apartman
+              </span>
             </span>
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mb-6">
+          <p
+            className="text-slate-300 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mb-6 px-3 sm:px-6 text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+            lang="hu"
+          >
             Alsóerdőfalva (Nová Lesná / Starý Smokovec) • Modern 2 szobás prémium hegyi apartman, bőséges reggeli, privát wellness és lélegzetelállító tátrai panoráma közvetlenül a szobákból és az erkélyről.
           </p>
 
@@ -327,9 +341,9 @@ export default function ApartmentSection() {
           }`}
         >
           <div
-            onClick={(e) => {
+            onClick={() => {
               const idx = apartmentImages.indexOf("459766346.jpg");
-              openLightbox(idx !== -1 ? idx : 0, e);
+              openLightbox(idx !== -1 ? idx : 0);
             }}
             title="Kattints a nagyításhoz!"
             className="group relative cursor-pointer select-none transform -rotate-2 sm:-rotate-3 hover:rotate-0 hover:scale-[1.03] transition-all duration-500 ease-out"
@@ -340,12 +354,16 @@ export default function ApartmentSection() {
             {/* Thin Elegant White Photo Frame with Crisp Contrast */}
             <div className="relative p-1 sm:p-1.5 rounded-2xl sm:rounded-3xl bg-white border border-white shadow-[0_25px_60px_-10px_rgba(0,0,0,0.98),0_12px_28px_rgba(0,0,0,0.9)] group-hover:shadow-[0_35px_80px_-10px_rgba(0,0,0,1),0_18px_36px_rgba(0,0,0,0.95)] transition-all duration-500">
               <div className="relative aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden bg-slate-900 shadow-inner">
-                <img
-                  src="/pictures/apartment/459766346.jpg"
-                  alt="Villa Greystone Apartman"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcSet="/pictures/apartment/459766346.webp" type="image/webp" />
+                  <img
+                    src="/pictures/apartment/459766346.jpg"
+                    alt="Villa Greystone Apartman"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
 
                 {/* Corner Alpine Glass Badge */}
                 <div className="absolute bottom-3 left-3 px-3 py-1.5 rounded-xl bg-slate-950/85 backdrop-blur-md border border-white/20 text-white flex items-center gap-2 shadow-xl">
@@ -371,7 +389,7 @@ export default function ApartmentSection() {
       >
         <button
           type="button"
-          onClick={(e) => openCardImage("638071432.jpg", e)}
+          onClick={() => openCardImage("638071432.jpg")}
           className="glass-panel p-4 rounded-2xl border border-amber-400/30 bg-amber-500/5 hover:bg-amber-500/15 hover:border-amber-400/60 hover:scale-[1.03] hover:-translate-y-1 transition-all duration-200 text-center cursor-pointer group shadow-[0_12px_30px_rgba(0,0,0,0.7),0_0_20px_rgba(245,158,11,0.15)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.85),0_0_30px_rgba(245,158,11,0.3)] block w-full"
         >
           <div className="flex items-center justify-center gap-1 text-amber-400 mb-1 group-hover:scale-105 transition-transform">
@@ -388,7 +406,7 @@ export default function ApartmentSection() {
 
         <button
           type="button"
-          onClick={(e) => openCardImage("464126513.jpg", e)}
+          onClick={() => openCardImage("464126513.jpg")}
           className="glass-panel p-4 rounded-2xl border border-sky-400/30 bg-sky-500/5 hover:bg-sky-500/15 hover:border-sky-400/60 hover:scale-[1.03] hover:-translate-y-1 transition-all duration-200 text-center cursor-pointer group shadow-[0_12px_30px_rgba(0,0,0,0.7),0_0_20px_rgba(56,189,248,0.15)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.85),0_0_30px_rgba(56,189,248,0.3)] block w-full"
         >
           <div className="text-2xl sm:text-3xl font-black text-white mb-1 group-hover:scale-105 transition-transform">60 m²</div>
@@ -401,7 +419,7 @@ export default function ApartmentSection() {
 
         <button
           type="button"
-          onClick={(e) => openCardImage("459766368.jpg", e)}
+          onClick={() => openCardImage("459766368.jpg")}
           className="glass-panel p-4 rounded-2xl border border-cyan-400/30 bg-cyan-500/5 hover:bg-cyan-500/15 hover:border-cyan-400/60 hover:scale-[1.03] hover:-translate-y-1 transition-all duration-200 text-center cursor-pointer group shadow-[0_12px_30px_rgba(0,0,0,0.7),0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.85),0_0_30px_rgba(6,182,212,0.3)] block w-full"
         >
           <div className="flex items-center justify-center gap-1.5 text-cyan-400 mb-1 group-hover:scale-105 transition-transform">
@@ -417,7 +435,7 @@ export default function ApartmentSection() {
 
         <button
           type="button"
-          onClick={() => setTezModalOpen(true)}
+          onClick={openTezModal}
           className="glass-panel p-4 rounded-2xl border border-emerald-400/30 bg-emerald-500/5 hover:bg-emerald-500/15 hover:border-emerald-400/60 hover:scale-[1.03] hover:-translate-y-1 transition-all duration-200 text-center cursor-pointer group shadow-[0_12px_30px_rgba(0,0,0,0.7),0_0_20px_rgba(16,185,129,0.15)] hover:shadow-[0_18px_40px_rgba(0,0,0,0.85),0_0_30px_rgba(16,185,129,0.3)] block w-full"
         >
           <div className="flex items-center justify-center gap-1.5 text-emerald-400 mb-1 group-hover:scale-105 transition-transform">
@@ -557,13 +575,15 @@ export default function ApartmentSection() {
                       <span className="text-[11px] font-medium text-sky-400">{room.type}</span>
                     </div>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed mb-3">
+                  <p className="text-xs text-slate-300 leading-relaxed mb-3 text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full" lang="hu">
                     {room.features}
                   </p>
                 </div>
                 <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-[11px] text-amber-200/90 flex items-start gap-1.5 shadow-sm">
                   <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-                  <span><strong>Családi szempont:</strong> {room.benefit}</span>
+                  <span className="text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full" lang="hu">
+                    <strong>Családi szempont:</strong> {room.benefit}
+                  </span>
                 </div>
               </div>
             );
@@ -633,10 +653,10 @@ export default function ApartmentSection() {
               <span className="text-xs text-amber-400 font-medium">A villa saját reggelizője és bárja</span>
             </div>
           </div>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full" lang="hu">
             A vendégértékelések kiemelkedően magasra értékelték a helyszíni reggeli színvonalát! Svédasztalos büfé, à la carte és kontinentális választék: friss pékáru, felvágottak, prémium sajtok, zöldségek, meleg ételek, kérésre készített kávék (pl. caffe latte) és gyümölcslevek.
           </p>
-          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 shadow-sm">
+          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 shadow-sm text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full" lang="hu">
             <span className="text-amber-400 font-semibold">Földszinti Kávézó & Bár: </span>
             A kirándulásból visszatérve forró italokat vagy hűsítő frissítőket fogyaszthattok a hangulatos bárban.
           </div>
@@ -664,7 +684,7 @@ export default function ApartmentSection() {
               <strong className="text-white">Pihenőkert & Napozóterasz:</strong> Gondozott hegyi kert kerti bútorokkal és panorámával (ingyenes).
             </li>
           </ul>
-          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 shadow-sm">
+          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 shadow-sm text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full" lang="hu">
             <span className="text-cyan-400 font-semibold">Gyakorlati tudnivaló: </span>
             A wellness felár ellenében vehető igénybe; a pontos idősávot és díjat a házigazdával (Radóval) érkezéskor érdemes egyeztetni!
           </div>
@@ -934,15 +954,19 @@ export default function ApartmentSection() {
         {apartmentImages.slice(0, visibleCount).map((imgName, index) => (
           <div
             key={imgName}
-            onClick={(e) => openLightbox(index, e)}
+            onClick={() => openLightbox(index)}
             className="group relative aspect-4/3 rounded-xl overflow-hidden cursor-pointer bg-slate-900 border border-slate-800 hover:border-sky-400/50 shadow-md transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-sky-950/50"
           >
-            <img
-              src={`/pictures/apartment/${imgName}`}
-              alt={`Villa Greystone fotó ${index + 1}`}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
-              loading="lazy"
-            />
+            <picture>
+              <source srcSet={`/pictures/apartment/${imgName.replace('.jpg', '.webp')}`} type="image/webp" />
+              <img
+                src={`/pictures/apartment/${imgName}`}
+                alt={`Villa Greystone fotó ${index + 1}`}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             {/* Hover Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-between p-3">
               <span className="text-xs font-medium text-white drop-shadow">
@@ -968,22 +992,19 @@ export default function ApartmentSection() {
         </div>
       )}
 
-      {/* Fullscreen Lightbox Modal with Card-origin Growth Animation */}
+      {/* Fullscreen Lightbox Modal with Instant GPU-accelerated Transition */}
       {selectedImageIndex !== null && (
         <div
-          className={`fixed inset-0 z-50 transition-opacity duration-300 ease-out flex items-center justify-center overflow-hidden ${
+          className={`fixed inset-0 z-50 transition-opacity duration-200 ease-out flex items-center justify-center overflow-hidden ${
             isLightboxActive ? "bg-black/95 backdrop-blur-md opacity-100 pointer-events-auto" : "bg-black/0 opacity-0 pointer-events-none"
           }`}
           onClick={closeLightbox}
         >
           <div
-            style={{
-              transformOrigin: clickOrigin ? `${clickOrigin.x}px ${clickOrigin.y}px` : "center center",
-            }}
-            className={`w-full h-full flex flex-col justify-between p-3 sm:p-6 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`w-full h-full flex flex-col justify-between p-3 sm:p-6 transition-all duration-200 ease-out transform ${
               isLightboxActive
                 ? "scale-100 opacity-100"
-                : "scale-[0.06] opacity-0"
+                : "scale-95 opacity-0"
             }`}
             onClick={(e) => e.stopPropagation()}
           >
@@ -1024,6 +1045,7 @@ export default function ApartmentSection() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
+                  setImageLoading(true);
                   setSelectedImageIndex((prev) =>
                     prev !== null ? (prev - 1 + apartmentImages.length) % apartmentImages.length : 0
                   );
@@ -1034,16 +1056,34 @@ export default function ApartmentSection() {
                 <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
 
-              {/* Main Picture */}
+              {/* Main Picture with Spinner & WebP Picture element */}
               <div
-                className="relative max-h-[72vh] sm:max-h-[76vh] max-w-[92vw] flex flex-col items-center justify-center"
+                className="relative max-h-[76vh] sm:max-h-[76vh] max-w-[95vw] sm:max-w-[92vw] flex flex-col items-center justify-center min-h-[220px]"
                 onClick={(e) => e.stopPropagation()}
               >
-                <img
-                  src={`/pictures/apartment/${apartmentImages[selectedImageIndex]}`}
-                  alt={`Villa Greystone teljes kép ${selectedImageIndex + 1}`}
-                  className="max-h-[68vh] sm:max-h-[74vh] max-w-[92vw] object-contain rounded-xl shadow-2xl border border-slate-800 transition-opacity duration-200"
-                />
+                {imageLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                    <div className="w-10 h-10 border-3 border-sky-400/20 border-t-sky-400 rounded-full animate-spin shadow-lg" />
+                  </div>
+                )}
+
+                <picture>
+                  <source
+                    srcSet={`/pictures/apartment/${apartmentImages[selectedImageIndex].replace(".jpg", ".webp")}`}
+                    type="image/webp"
+                  />
+                  <img
+                    src={`/pictures/apartment/${apartmentImages[selectedImageIndex]}`}
+                    alt={`Villa Greystone teljes kép ${selectedImageIndex + 1}`}
+                    onLoad={() => setImageLoading(false)}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                    className={`max-h-[70vh] sm:max-h-[74vh] max-w-[95vw] sm:max-w-[92vw] object-contain rounded-xl shadow-2xl border border-slate-800 transition-opacity duration-200 ${
+                      imageLoading ? "opacity-30" : "opacity-100"
+                    }`}
+                  />
+                </picture>
                 {getImageLabel(apartmentImages[selectedImageIndex])?.subtitle && (
                   <div className="mt-2 text-center text-xs sm:text-sm text-slate-300 bg-slate-900/90 px-4 py-1.5 rounded-full border border-slate-800 shadow-md">
                     {getImageLabel(apartmentImages[selectedImageIndex])?.subtitle}
@@ -1055,6 +1095,7 @@ export default function ApartmentSection() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
+                  setImageLoading(true);
                   setSelectedImageIndex((prev) =>
                     prev !== null ? (prev + 1) % apartmentImages.length : 0
                   );
@@ -1066,26 +1107,36 @@ export default function ApartmentSection() {
               </button>
             </div>
 
-            {/* Bottom Thumbnails */}
+            {/* Bottom Thumbnails: hidden on mobile (<sm) to prevent downloading 49 photos at once and stealing bandwidth! Lightweight 3KB webp on desktop */}
             <div
-              className="w-full max-w-4xl mx-auto overflow-x-auto flex items-center gap-2 py-2 px-1 no-scrollbar z-10 shrink-0"
+              className="hidden sm:flex w-full max-w-4xl mx-auto overflow-x-auto items-center gap-2 py-2 px-1 no-scrollbar z-10 shrink-0"
               onClick={(e) => e.stopPropagation()}
             >
               {apartmentImages.map((thumb, idx) => (
                 <button
                   key={thumb}
-                  onClick={() => setSelectedImageIndex(idx)}
+                  onClick={() => {
+                    setImageLoading(true);
+                    setSelectedImageIndex(idx);
+                  }}
                   className={`relative shrink-0 w-12 sm:w-14 h-9 sm:h-11 rounded-lg overflow-hidden border-2 transition-all ${
                     idx === selectedImageIndex
                       ? "border-sky-400 scale-105 shadow-md shadow-sky-500/50"
                       : "border-transparent opacity-60 hover:opacity-100"
                   }`}
                 >
-                  <img
-                    src={`/pictures/apartment/${thumb}`}
-                    alt={`Bélyegkép ${idx + 1}`}
-                    className="w-full h-full object-cover"
-                  />
+                  <picture>
+                    <source
+                      srcSet={`/pictures/apartment/thumbs/${thumb.replace(".jpg", ".webp")}`}
+                      type="image/webp"
+                    />
+                    <img
+                      src={`/pictures/apartment/thumbs/${thumb.replace(".jpg", ".webp")}`}
+                      alt={`Bélyegkép ${idx + 1}`}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                  </picture>
                 </button>
               ))}
             </div>
@@ -1093,7 +1144,7 @@ export default function ApartmentSection() {
         </div>
       )}
 
-      {/* TEŽ Vasúti Hálózat Modal (tez_tatry_magyar.jpg) */}
+      {/* TEŽ Vasúti Hálózat Modal (tez_tatry_magyar.webp - Optimized 118 KB) */}
       {tezModalOpen && (
         <div
           role="dialog"
@@ -1133,13 +1184,27 @@ export default function ApartmentSection() {
               </button>
             </div>
 
-            {/* Modal Image Area */}
-            <div className="p-3 sm:p-4 overflow-auto flex-1 flex items-center justify-center bg-slate-950/60">
-              <img
-                src="/pictures/tez/tez_tatry_magyar.jpg"
-                alt="Tátrai Elektromos Vasút TEŽ magyar nyelvű térkép"
-                className="max-h-[72vh] w-auto max-w-full rounded-xl object-contain shadow-2xl border border-slate-800"
-              />
+            {/* Modal Image Area with Spinner */}
+            <div className="p-3 sm:p-4 overflow-auto flex-1 flex items-center justify-center bg-slate-950/60 relative min-h-[240px]">
+              {tezImageLoading && (
+                <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                  <div className="w-10 h-10 border-3 border-emerald-400/20 border-t-emerald-400 rounded-full animate-spin shadow-lg" />
+                </div>
+              )}
+              <picture>
+                <source srcSet="/pictures/tez/tez_tatry_magyar.webp" type="image/webp" />
+                <img
+                  src="/pictures/tez/tez_tatry_magyar.jpg"
+                  alt="Tátrai Elektromos Vasút TEŽ magyar nyelvű térkép"
+                  onLoad={() => setTezImageLoading(false)}
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
+                  className={`max-h-[72vh] w-auto max-w-full rounded-xl object-contain shadow-2xl border border-slate-800 transition-opacity duration-200 ${
+                    tezImageLoading ? "opacity-30" : "opacity-100"
+                  }`}
+                />
+              </picture>
             </div>
 
             {/* Modal Footer Actions */}

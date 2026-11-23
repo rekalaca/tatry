@@ -117,7 +117,7 @@ export default function KozlekedesPage() {
 
   return (
     <main className="min-h-screen relative selection:bg-sky-500 selection:text-white pb-16">
-      {/* Intro YouTube Shorts video (muted, auto-plays on navigation, auto-closes on end or via X) */}
+      {/* Intro Tatranská Električka Reel video (muted, auto-plays on navigation, auto-closes on end or via X) */}
       <KozlekedesVideoModal />
 
       {/* Falling snow particles */}

@@ -1,10 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ApartmentSection from "@/components/ApartmentSection";
-import GuidesHubSection from "@/components/GuidesHubSection";
 import ShoppingSection from "@/components/ShoppingSection";
 import WebcamsSection from "@/components/WebcamsSection";
-import TravelGuideSection from "@/components/TravelGuideSection";
 import Footer from "@/components/Footer";
 import SnowEffect from "@/components/SnowEffect";
 
@@ -23,17 +21,11 @@ export default function Home() {
       {/* Apartment section featuring 49 photos with fullscreen lightbox */}
       <ApartmentSection />
 
-      {/* Central Guides Hub: Clean preview cards linking to dedicated subpages (Programok, Gasztro, Fürdők, Közlekedés, Csomagolás) */}
-      <GuidesHubSection />
-
       {/* Supermarkets & local souvenirs */}
       <ShoppingSection />
 
       {/* Live webcams & meteorological radar */}
       <WebcamsSection />
-
-      {/* Driving rules, vignettes, mountain rescue & FAQs */}
-      <TravelGuideSection />
 
       {/* Atmospheric footer */}
       <Footer />

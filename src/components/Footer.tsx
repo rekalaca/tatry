@@ -63,8 +63,6 @@ export default function Footer() {
             <span>Közlekedés & TEŽ</span>
           </Link>
           <span>•</span>
-          <Link href={getHref("#hasznos")} className="hover:text-sky-300 transition-colors">Autós infók</Link>
-          <span>•</span>
           <Link href="/csomagolas" className="hover:text-sky-300 transition-colors">Csomagolás</Link>
         </div>
 
