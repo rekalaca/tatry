@@ -232,7 +232,7 @@ export default function WebcamsSection() {
         {webcams.map((cam, idx) => (
           <div
             key={idx}
-            className="glass-panel p-5 rounded-2xl border-2 border-sky-500/35 hover:border-sky-400/80 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5 shadow-[0_12px_30px_rgba(0,0,0,0.7),0_0_20px_rgba(56,189,248,0.12)] hover:shadow-[0_24px_55px_rgba(0,0,0,0.95),0_0_35px_rgba(56,189,248,0.3)] ring-1 ring-white/5 hover:ring-sky-400/30"
+            className="p-5 rounded-2xl bg-slate-900/85 backdrop-blur-xl border-2 border-cyan-400 hover:border-cyan-200 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5 shadow-[0_0_20px_rgba(255,255,255,0.22),0_12px_30px_rgba(0,0,0,0.85)] hover:shadow-[0_0_35px_rgba(255,255,255,0.55),0_18px_42px_rgba(0,0,0,0.95)]"
           >
             <div>
               {/* Category & Status Bar */}
