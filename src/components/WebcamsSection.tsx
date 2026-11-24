@@ -35,7 +35,7 @@ export default function WebcamsSection() {
 
   const webcams: WebcamData[] = [
     {
-      title: "Lomnici-csúcs (2634 m)",
+      title: "Lomnici-csúcs",
       location: "Lomnický štít",
       desc: "A Magas-Tátra második legmagasabb pontja és a legendás csillagvizsgáló. Lélegzetelállító 360 fokos panoráma a felhők felett, amely tiszta időben egészen a Szepességig és Lengyelországig ellát.",
       altitude: "2 634 m",
@@ -46,7 +46,7 @@ export default function WebcamsSection() {
       gopassUrl: "https://gopass.travel/HU/resort/tatranska-lomnica/webcams?cam=4",
     },
     {
-      title: "Lomnici-nyereg (2190 m)",
+      title: "Lomnici-nyereg",
       location: "Lomnické sedlo",
       desc: "Szlovákia legmagasabban fekvő és legmeredekebb sípályájának rajthelye a Kő-pataki-tó felett. Kiváló rálátás a sziklás gerincekre, a hóviszonyokra és a fekete pályán száguldó síelőkre.",
       altitude: "2 190 m",
@@ -57,7 +57,7 @@ export default function WebcamsSection() {
       gopassUrl: "https://gopass.travel/HU/resort/tatranska-lomnica/webcams?cam=1",
     },
     {
-      title: "Kő-pataki-tó (1751 m)",
+      title: "Kő-pataki-tó",
       location: "Skalnaté pleso II.",
       desc: "A modern nagykabinos felvonó átszállóállomása a Lomnici-csúcs felé, csillagászati obszervatórium és népszerű kilátópont. A tátrai kirándulók és síelők központi hegyi csomópontja.",
       altitude: "1 751 m",
@@ -68,7 +68,7 @@ export default function WebcamsSection() {
       gopassUrl: "https://gopass.travel/HU/resort/tatranska-lomnica/webcams?cam=3",
     },
     {
-      title: "Štart Középállomás (1173 m)",
+      title: "Štart Középállomás",
       location: "Štart – Tatranská Lomnica",
       desc: "A Tátralomnicról induló kabinos felvonó első szakasza és a sípályák találkozási pontja. Innen jól megfigyelhető a síelők forgalma, a pálya minősége és a fenyvesek fölé magasodó hegyvonulat.",
       altitude: "1 173 m",
@@ -79,7 +79,7 @@ export default function WebcamsSection() {
       gopassUrl: "https://gopass.travel/HU/resort/tatranska-lomnica/webcams?cam=5",
     },
     {
-      title: "Tátralomnic Völgyállomás (904 m)",
+      title: "Tátralomnic Völgyállomás",
       location: "Tatranská Lomnica – Údolná stanica",
       desc: "A síközpont völgyi kiindulópontja, felvonó pénztárak, síbérlés és parkolók környéke. Indulás előtt érdemes ellenőrizni az aktuális völgyi időjárást, ködösséget és a reggeli sorban állást.",
       altitude: "904 m",
@@ -90,7 +90,7 @@ export default function WebcamsSection() {
       gopassUrl: "https://gopass.travel/HU/resort/tatranska-lomnica/webcams?cam=2",
     },
     {
-      title: "Tarajka (1285 m)",
+      title: "Tarajka (Hrebienok)",
       location: "Hrebienok – Starý Smokovec",
       desc: "A sikló felső végállomása, a híres Tátrai Jégdóm helyszíne és a 2,5 km-es éjszakai szánkópálya rajtja. Innen indulnak a legszebb téli túrák a Tarpataki-vízesésekhez és a hegyi menedékházakhoz.",
       altitude: "1 285 m",
@@ -220,10 +220,7 @@ export default function WebcamsSection() {
       {/* Section Header: Clean title without pill badge as per UI rules */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-          Élő Webkamerák &{" "}
-          <span className="bg-gradient-to-r from-blue-300 via-sky-300 to-teal-300 bg-clip-text text-transparent">
-            Hójelentés
-          </span>
+          Élő Webkamerák
         </h2>
         <p className="text-slate-300 text-base sm:text-lg">
           Nézz rá a hegyekre indulás előtt! Tiszta az idő a csúcson, vagy köd ül a völgyben? Van elég hó a szánkózáshoz?
@@ -235,7 +232,7 @@ export default function WebcamsSection() {
         {webcams.map((cam, idx) => (
           <div
             key={idx}
-            className="glass-panel p-5 rounded-2xl border border-sky-500/15 hover:border-sky-400/50 transition-all flex flex-col justify-between group hover:-translate-y-1 hover:shadow-2xl hover:shadow-sky-950/50"
+            className="glass-panel p-5 rounded-2xl border-2 border-sky-500/35 hover:border-sky-400/80 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5 shadow-[0_12px_30px_rgba(0,0,0,0.7),0_0_20px_rgba(56,189,248,0.12)] hover:shadow-[0_24px_55px_rgba(0,0,0,0.95),0_0_35px_rgba(56,189,248,0.3)] ring-1 ring-white/5 hover:ring-sky-400/30"
           >
             <div>
               {/* Category & Status Bar */}
@@ -249,9 +246,9 @@ export default function WebcamsSection() {
                 </span>
               </div>
 
-              {/* Title row with icon & dual-language name */}
-              <div className="flex items-center gap-3 mb-2.5">
-                <div className="w-10 h-10 rounded-xl bg-sky-500/15 text-sky-400 flex items-center justify-center shrink-0 border border-sky-500/25 shadow-md">
+              {/* Title row with icon & dual-language name & altitude in new line */}
+              <div className="flex items-start gap-3 mb-2.5">
+                <div className="w-10 h-10 rounded-xl bg-sky-500/15 text-sky-400 flex items-center justify-center shrink-0 border border-sky-500/30 shadow-md mt-0.5">
                   <Video className="w-5 h-5" />
                 </div>
                 <div className="min-w-0 flex-1">
@@ -260,6 +257,10 @@ export default function WebcamsSection() {
                   </h3>
                   <p className="text-xs font-semibold text-amber-400/90 mt-0.5 truncate">
                     {cam.location}
+                  </p>
+                  <p className="text-xs font-semibold text-sky-300 flex items-center gap-1.5 mt-1">
+                    <ThermometerSnowflake className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                    <span>{cam.altitude}</span>
                   </p>
                 </div>
               </div>
