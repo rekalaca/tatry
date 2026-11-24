@@ -47,7 +47,7 @@ export default function ShoppingSection() {
       highlights: "A legnagyobb helyi sajtválaszték: eredeti juhtúró (bryndza), fonott korbáčik, parenica, valamint prémium élelmiszerek és tátrai finomságok.",
     },
     {
-      name: "Kaufland Poprad",
+      name: "Kaufland",
       type: "Hatalmas hipermarket",
       address: "Jiřího Wolkera, 058 01 Poprad, Szlovákia",
       mapsUrl: "https://www.google.com/maps/search/?api=1&query=Kaufland,+Ji%C5%99%C3%ADho+Wolkera,+058+01+Poprad",

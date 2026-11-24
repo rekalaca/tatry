@@ -197,6 +197,16 @@ export default function ApartmentSection() {
 
   // IntersectionObserver for scroll-triggered entrance animation on desktop & mobile
   useEffect(() => {
+    // Check if section is already in or near viewport immediately
+    if (sectionRef.current) {
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      if (rect.top <= windowHeight + 300) {
+        setIsVisible(true);
+        return;
+      }
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -205,8 +215,8 @@ export default function ApartmentSection() {
         }
       },
       {
-        threshold: 0.08,
-        rootMargin: "0px 0px -40px 0px",
+        threshold: 0,
+        rootMargin: "300px 0px 300px 0px",
       }
     );
 
@@ -290,14 +300,14 @@ export default function ApartmentSection() {
     <section
       id="apartman"
       ref={sectionRef}
-      className="scroll-mt-0 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+      className="scroll-mt-16 pt-8 sm:pt-16 md:pt-24 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >
       {/* Section Header with Tilted 3D Showcase Photo (459766346.jpg) */}
       <div className="flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12 mb-12 sm:mb-16">
         {/* Left: Headline & Description */}
         <div
-          className={`flex-1 text-center lg:text-left transition-all duration-1000 ease-out transform ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          className={`flex-1 text-center lg:text-left transition-all duration-700 ease-out transform ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6 sm:translate-y-10"
           }`}
         >
           <h2 className="font-extrabold tracking-tight mb-4 leading-tight px-3 sm:px-6">
@@ -334,10 +344,10 @@ export default function ApartmentSection() {
 
         {/* Right: Tilted 3D Photo Card (459766346.jpg) */}
         <div
-          className={`shrink-0 w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[460px] transition-all duration-1000 delay-200 ease-out transform ${
+          className={`shrink-0 w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[460px] transition-all duration-700 delay-100 ease-out transform ${
             isVisible
               ? "opacity-100 translate-y-0 scale-100"
-              : "opacity-0 translate-y-16 scale-90"
+              : "opacity-0 translate-y-6 sm:translate-y-10 scale-95"
           }`}
         >
           <div
@@ -383,8 +393,8 @@ export default function ApartmentSection() {
 
       {/* Top Highlight Cards Strip with Interactive Links */}
       <div
-        className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-12 transition-all duration-1000 delay-300 ease-out transform ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+        className={`grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-12 transition-all duration-700 delay-150 ease-out transform ${
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6 sm:translate-y-10"
         }`}
       >
         <button
