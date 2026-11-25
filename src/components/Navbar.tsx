@@ -42,6 +42,28 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleHashScroll = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetId = hash.replace("#", "");
+        const elem = document.getElementById(targetId);
+        if (elem) {
+          setTimeout(() => {
+            elem.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 120);
+        }
+      }
+    };
+
+    if (window.location.hash) {
+      handleHashScroll();
+    }
+
+    window.addEventListener("hashchange", handleHashScroll);
+    return () => window.removeEventListener("hashchange", handleHashScroll);
+  }, [pathname]);
+
   const resolveHref = (href: string) => {
     if (isSubpage && href.startsWith("#")) {
       return `/${href}`;
@@ -54,6 +76,20 @@ export default function Navbar() {
       return pathname === href || (href !== "/" && pathname?.startsWith(href));
     }
     return false;
+  };
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      if (pathname === "/") {
+        e.preventDefault();
+        const targetId = href.replace("#", "");
+        const elem = document.getElementById(targetId);
+        if (elem) {
+          elem.scrollIntoView({ behavior: "smooth", block: "start" });
+          window.history.pushState(null, "", href);
+        }
+      }
+    }
   };
 
   const handleLogoClick = (e: React.MouseEvent) => {
@@ -110,6 +146,7 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={linkUrl}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className={`group flex items-center gap-1 xl:gap-1.5 px-2 xl:px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-medium border transition-all duration-200 ease-out transform will-change-transform whitespace-nowrap shrink-0 ${
                     isCurrent
                       ? "bg-sky-500/25 text-white border-sky-400/50 shadow-md shadow-sky-500/20 scale-105"
@@ -164,7 +201,10 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={linkUrl}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    handleNavClick(e, item.href);
+                    setMobileMenuOpen(false);
+                  }}
                   style={{
                     transitionDelay: mobileMenuOpen ? `${idx * 25}ms` : "0ms",
                   }}

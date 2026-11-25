@@ -109,6 +109,20 @@ const programs: Program[] = [
     linkText: "Hivatalos jégdóm infók"
   },
   {
+    id: "hrebienok-lanovka",
+    title: "Tarajkai sikló (Ótátrafüred – Tarajka siklóvasút)",
+    region: "smokovec",
+    category: "outdoor",
+    categoryLabel: "Panorámás Siklóvasút",
+    badgeColor: "bg-sky-500/20 text-sky-300 border-sky-500/30",
+    location: "Ótátrafüred (1025 m) ➡️ Tarajka (1285 m)",
+    duration: "kb. 5 - 7 perc menetidő",
+    description: "A Magas-Tátra ikonikus, sínen futó zárt panorámakocsija (szlovákul: Pozemná lanovka Starý Smokovec – Hrebienok, vagy egyszerűen Lanovka na Hrebienok / funicular). Ótátrafüredről (Starý Smokovec, 1025 m) kapaszkodik fel a Tarajkára (Hrebienok, 1285 m), leküzdve a 247 méteres szintkülönbséget alig 5-7 perc alatt, kényelmes és akadálymentes hegyi utazást nyújtva.",
+    tips: "Fent található a téli Tátrai Jégdóm, a Tarpataki-vízesések felé induló túraútvonal, valamint a 2,5 km-es szánkópálya rajtja (a sikló a bérelt szánkókat is kényelmesen felviszi). A menetjegyeket érdemes online a Gopass rendszerben vagy az állomási automatából előre megváltani az olcsóbb ár és a pénztári sorban állás elkerülése végett.",
+    link: "https://gopass.travel/HU/resort/stary-smokovec",
+    linkText: "Gopass Starý Smokovec sikló infók & jegyek"
+  },
+  {
     id: "hrebienok-sanko",
     title: "2,5 km-es Tarajka Szánkópálya",
     region: "smokovec",
@@ -152,17 +166,31 @@ const programs: Program[] = [
   },
   {
     id: "lomnic-csucs",
-    title: "Lomnici-csúcs (2634 m) & Skalnaté Pleso",
+    title: "Lomnici-csúcs felvonó (Lanovka na Lomnický štít)",
     region: "lomnica",
     category: "outdoor",
-    categoryLabel: "A Felhők Felett",
+    categoryLabel: "Zárt Kabinos Csúcsfelvonó",
     badgeColor: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30",
-    location: "Tátralomnic (Tatranská Lomnica)",
-    duration: "3 - 5 óra",
-    description: "Modern kabinos felvonóval elérhető a Kő-pataki tó (Skalnaté Pleso), ahonnan a híres piros függővasút visz fel Szlovákia második legmagasabb csúcsára.",
-    tips: "A Lomnici-csúcsra szóló jegyeket a Gopass rendszerben jó előre meg kell váltani, a Kő-pataki tóig pedig aznap is könnyű feljutni.",
-    link: "https://www.magas-tatra.info/turazas/2019/01/on-line-jegyelovetel-es-kirandulas.html",
-    linkText: "Online jegyelővétel & kirándulás útmutató"
+    location: "Tátralomnic ➡️ Kő-pataki-tó (1761 m) ➡️ Lomnici-csúcs (2634 m)",
+    duration: "3 - 5 óra (csúcstartózkodás: 50 perc)",
+    description: "A kötélen lebegő, zárt kabinos tátrai kötélpálya (szlovákul és a jegyrendszerben: Kabínková lanovka Tatranská Lomnica – Skalnaté pleso – Lomnický štít). Két szakaszból áll: először Tátralomnicról (Tatranská Lomnica) modern, zárt kabinokkal jutunk fel a Kő-pataki-tóhoz (Skalnaté pleso, 1761 m), onnan pedig a legendás lebegő piros nagykabin repít fel a Magas-Tátra második legmagasabb pontjára, a 2634 méteres Lomnici-csúcsra.",
+    tips: "A Lomnici-csúcsra a nagykabin szigorúan korlátozott létszáma miatt a jegyet kötelező jó előre megváltani a Gopass rendszerében fix idősávra! A csúcson 50 perc tölthető el a kilátóteraszon, a csillagvizsgálónál és a kávézóban. A Kő-pataki-tóig (1761 m) tartó első szakaszra aznap is könnyen váltható jegy.",
+    link: "https://gopass.travel/HU/resort/tatranska-lomnica",
+    linkText: "Gopass Lomnici-csúcs menetrend & jegyek"
+  },
+  {
+    id: "lomnic-sedlo-libego",
+    title: "Lomnici-nyereg libegő (Sedačková lanovka Lomnické sedlo)",
+    region: "lomnica",
+    category: "outdoor",
+    categoryLabel: "Nyitott Ülőlift (Libegő)",
+    badgeColor: "bg-sky-500/20 text-sky-300 border-sky-500/30",
+    location: "Kő-pataki-tó (1761 m) ➡️ Lomnici-nyereg (2190 m)",
+    duration: "1 - 2 óra (menetidő kb. 8 perc)",
+    description: "A csúcsfelvonó népszerű, alpesi hangulatú libegős alternatívája (szlovákul: Sedačková lanovka Lomnické sedlo). Ez a nyitott kétüléses ülőlift a Kő-pataki-tó (Skalnaté pleso, 1761 m) partjáról repít fel a 2190 méter magasan fekvő sziklás Lomnici-nyeregbe, amely Szlovákia legmagasabb síterepe és az egyik legdrámaibb magashegyi kilátópontja.",
+    tips: "Ideális választás akkor is, ha a legfelső csúcsra már elfogytak a jegyek: a nyeregből fantasztikus panoráma tárul a Kis-Tarpataki-völgy sziklafalaira. Mivel teljesen nyitott ülőliftről van szó, szélálló, meleg téli réteges öltözet, sapka és kesztyű erősen ajánlott! A felvonójegyek Gopass kártyával a völgyi kabinnal kombinálva válthatók.",
+    link: "https://gopass.travel/HU/resort/tatranska-lomnica",
+    linkText: "Gopass Lomnici-nyereg felvonó infók"
   },
   {
     id: "bachledka",
@@ -451,7 +479,10 @@ export default function ProgramsSection({ isSubpage = false }: { isSubpage?: boo
                         <span>{program.location}</span>
                       </div>
 
-                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                      <p
+                        lang="hu"
+                        className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4 text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+                      >
                         {program.description}
                       </p>
 

@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { 
   Video, 
-  CloudSnow, 
   ExternalLink, 
   ThermometerSnowflake, 
   Play, 
@@ -124,29 +123,6 @@ export default function WebcamsSection() {
     },
   ];
 
-  const weatherLinks = [
-    {
-      name: "SHMÚ Szlovák Meteorológia",
-      desc: "A legpontosabb helyi hivatalos szlovák előrejelzés és magashegyi figyelmeztetések.",
-      url: "https://www.shmu.sk/sk/?page=1",
-    },
-    {
-      name: "Ventusky Élő Időjárás Radar",
-      desc: "Interaktív szél-, csapadék- és valós idejű hóréteg-térkép a Magas-Tátra felett.",
-      url: "https://www.ventusky.com/hu/49.138;20.219",
-    },
-    {
-      name: "Bergfex Hójelentés & Síinfó",
-      desc: "Friss hóvastagság adatok, nyitott sípályák és üzemelő felvonók hivatalos listája.",
-      url: "https://hu.bergfex.com/vysoke-tatry-tatranska-lomnica/",
-    },
-    {
-      name: "HZS Hegyi Mentőszolgálat",
-      desc: "Hivatalos lavina-előrejelzés és téli magashegyi túraútvonalak járhatósági jelentése.",
-      url: "https://hzs.sk/",
-    },
-  ];
-
   const handleOpenModal = (cam: WebcamData) => {
     setStreamError(false);
     setSelectedCam(cam);
@@ -216,7 +192,7 @@ export default function WebcamsSection() {
   }, [selectedCam]);
 
   return (
-    <section id="webkamerak" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="webkamerak" className="scroll-mt-24 sm:scroll-mt-28 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header: Clean title without pill badge as per UI rules */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
@@ -440,42 +416,6 @@ export default function WebcamsSection() {
           </div>
         </div>
       )}
-
-      {/* Weather Radar Links Hub */}
-      <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-sky-500/20">
-        <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 flex items-center gap-2">
-          <CloudSnow className="w-5 h-5 text-sky-400" />
-          <span>Megbízható Időjárás és Hóelőrejelzés Források</span>
-        </h3>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {weatherLinks.map((wl, idx) => (
-            <a
-              key={idx}
-              href={wl.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-slate-900/80 hover:bg-slate-800 p-4 rounded-xl border border-slate-800 hover:border-sky-500/40 transition-all flex flex-col justify-between group"
-            >
-              <div>
-                <h4 className="text-sm font-bold text-white group-hover:text-sky-300 transition-colors flex items-center justify-between mb-1.5">
-                  <span>{wl.name}</span>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-sky-400" />
-                </h4>
-                <p
-                  lang="hu"
-                  className="text-xs text-slate-400 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
-                >
-                  {wl.desc}
-                </p>
-              </div>
-              <span className="text-[11px] font-semibold text-sky-400 mt-3 block">
-                Megnyitás böngészőben →
-              </span>
-            </a>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

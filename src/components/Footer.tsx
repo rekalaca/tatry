@@ -18,6 +18,18 @@ export default function Footer() {
     return isSubpage ? `/${hash}` : hash;
   };
 
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    if (!isSubpage) {
+      e.preventDefault();
+      const targetId = hash.replace("#", "");
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        elem.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.history.pushState(null, "", hash);
+      }
+    }
+  };
+
   return (
     <footer className="mt-20 border-t border-slate-800/80 bg-slate-950/80 py-12 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
       {/* Soft glow */}
@@ -46,7 +58,7 @@ export default function Footer() {
 
         {/* Quick Nav Links */}
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs font-medium text-slate-400 mb-8">
-          <Link href={getHref("#apartman")} className="hover:text-sky-300 transition-colors">Villa Greystone</Link>
+          <Link href={getHref("#apartman")} onClick={(e) => handleAnchorClick(e, "#apartman")} className="hover:text-sky-300 transition-colors">Villa Greystone</Link>
           <span>•</span>
           <Link href="/programok" className="hover:text-sky-300 transition-colors">Programok</Link>
           <span>•</span>
@@ -54,9 +66,9 @@ export default function Footer() {
           <span>•</span>
           <Link href="/furdo" className="hover:text-sky-300 transition-colors">Fürdők & Szauna</Link>
           <span>•</span>
-          <Link href={getHref("#boltok")} className="hover:text-sky-300 transition-colors">Boltok</Link>
+          <Link href={getHref("#boltok")} onClick={(e) => handleAnchorClick(e, "#boltok")} className="hover:text-sky-300 transition-colors">Boltok</Link>
           <span>•</span>
-          <Link href={getHref("#webkamerak")} className="hover:text-sky-300 transition-colors">Webkamerák</Link>
+          <Link href={getHref("#webkamerak")} onClick={(e) => handleAnchorClick(e, "#webkamerak")} className="hover:text-sky-300 transition-colors">Webkamerák</Link>
           <span>•</span>
           <Link href="/kozlekedes" className="text-sky-400 hover:text-white font-semibold transition-colors flex items-center gap-1">
             <Train className="w-3 h-3" />

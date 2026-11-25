@@ -26,7 +26,6 @@ import {
   FileText,
   Download,
   Train,
-  Bus,
   CheckCircle2,
   ExternalLink,
   Copy,
@@ -98,15 +97,6 @@ const kitchenTech = [
   { title: "Étkészlet 4 főre", desc: "Tányérok, evőeszközök, bögrék és borospoharak" },
   { title: "Optikai Szupergyors Wi-Fi", desc: "Ingyenes, vendégek által 9,5-re értékelt stabil hálózat" },
   { title: "Szabályozható fűtés", desc: "Helyiségenként külön állítható hőmérséklet, 24h felügyelet" },
-];
-
-const distances = [
-  { dest: "Helyi buszmegálló", dist: "10 m", time: "1 percen belül gyalog", desc: "Közvetlen buszjárat Ótátrafüredre és Tátralomnicra", icon: Bus },
-  { dest: "Pod lesom vasútállomás", dist: "kb. 900 m", time: "10-12 perc kényelmes séta", desc: "Tátrai Villamos (TEŽ): Csorba-tó, Ótátrafüred és Poprád felé", icon: Train },
-  { dest: "Ótátrafüred (Starý Smokovec)", dist: "2,9 km", time: "4 perc autó / 9 perc villamos", desc: "Sikló Hrebienokra, Jégdóm, Tricklandia szórakoztató központ", icon: MapPin },
-  { dest: "Tátralomnic (Tatranská Lomnica)", dist: "6,0 km", time: "8 perc autó / 14 perc vonat", desc: "Sípályák, kabinos felvonó a Kő-pataki-tóhoz és Lomnici-csúcsra", icon: MapPin },
-  { dest: "AquaCity Poprad Élményfürdő", dist: "10,0 km", time: "12 perc autó / 16 perc villamos", desc: "13 beltéri-kültéri termálmedence, lézershow és wellness", icon: Waves },
-  { dest: "Csorba-tó (Štrbské Pleso)", dist: "21,0 km", time: "22 perc autó / 50 perc villamos", desc: "Híres alpesi tókerülő téli séta, sípályák, lenyűgöző panoráma", icon: MapPin },
 ];
 
 export default function ApartmentSection() {
@@ -300,7 +290,7 @@ export default function ApartmentSection() {
     <section
       id="apartman"
       ref={sectionRef}
-      className="scroll-mt-16 pt-8 sm:pt-16 md:pt-24 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+      className="scroll-mt-24 sm:scroll-mt-28 pt-8 sm:pt-16 md:pt-24 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >
       {/* Section Header with Tilted 3D Showcase Photo (459766346.jpg) */}
       <div className="flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12 mb-12 sm:mb-16">
@@ -749,58 +739,6 @@ export default function ApartmentSection() {
             <Ban className="w-4 h-4 text-rose-400 shrink-0" />
             <span><strong>Kisállatok:</strong> Házi kedvencek nem hozhatók be az épületbe.</span>
           </div>
-        </div>
-      </div>
-
-      {/* Transit & Distances Table */}
-      <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-sky-500/20 mb-14 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(56,189,248,0.12)]">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-400">
-            <Train className="w-6 h-6" />
-          </div>
-          <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white">
-              Közlekedési & Megközelíthetőségi Mutatók
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-400">
-              Menetidők és eljutási lehetőségek közvetlenül a Villa Greystone-tól.
-            </p>
-          </div>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse text-xs sm:text-sm">
-            <thead>
-              <tr className="border-b border-slate-800 text-slate-400 uppercase text-[11px]">
-                <th className="py-3 px-3 font-semibold">Úti cél / Megálló</th>
-                <th className="py-3 px-3 font-semibold">Távolság</th>
-                <th className="py-3 px-3 font-semibold">Elérési Mód & Menetidő</th>
-                <th className="py-3 px-3 font-semibold">Tudnivaló a Családnak</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800/60">
-              {distances.map((row, idx) => {
-                const Icon = row.icon;
-                return (
-                  <tr key={idx} className="hover:bg-sky-500/5 transition-colors">
-                    <td className="py-3 px-3 font-bold text-white flex items-center gap-2">
-                      <Icon className="w-4 h-4 text-sky-400 shrink-0" />
-                      <span>{row.dest}</span>
-                    </td>
-                    <td className="py-3 px-3 font-semibold text-amber-300 whitespace-nowrap">
-                      {row.dist}
-                    </td>
-                    <td className="py-3 px-3 text-slate-300 font-medium whitespace-nowrap">
-                      {row.time}
-                    </td>
-                    <td className="py-3 px-3 text-slate-400 leading-relaxed">
-                      {row.desc}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
         </div>
       </div>
 

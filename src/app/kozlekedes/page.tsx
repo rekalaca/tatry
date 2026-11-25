@@ -18,6 +18,8 @@ import {
   PhoneCall,
   Smartphone,
   ChevronDown,
+  Bus,
+  Waves,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -27,6 +29,51 @@ export const metadata: Metadata = {
 };
 
 export default function KozlekedesPage() {
+  const distances = [
+    {
+      dest: "Helyi buszmegálló",
+      dist: "10 m",
+      time: "1 percen belül gyalog",
+      desc: "Közvetlen buszjárat Ótátrafüredre és Tátralomnicra",
+      icon: Bus,
+    },
+    {
+      dest: "Pod lesom vasútállomás",
+      dist: "kb. 900 m",
+      time: "10-12 perc kényelmes séta",
+      desc: "Tátrai Villamos (TEŽ): Csorba-tó, Ótátrafüred és Poprád felé",
+      icon: Train,
+    },
+    {
+      dest: "Ótátrafüred (Starý Smokovec)",
+      dist: "2,9 km",
+      time: "4 perc autó / 9 perc villamos",
+      desc: "Sikló Hrebienokra, Jégdóm, Tricklandia szórakoztató központ",
+      icon: MapPin,
+    },
+    {
+      dest: "Tátralomnic (Tatranská Lomnica)",
+      dist: "6,0 km",
+      time: "8 perc autó / 14 perc vonat",
+      desc: "Sípályák, kabinos felvonó a Kő-pataki-tóhoz és Lomnici-csúcsra",
+      icon: MapPin,
+    },
+    {
+      dest: "AquaCity Poprad Élményfürdő",
+      dist: "10,0 km",
+      time: "12 perc autó / 16 perc villamos",
+      desc: "13 beltéri-kültéri termálmedence, lézershow és wellness",
+      icon: Waves,
+    },
+    {
+      dest: "Csorba-tó (Štrbské Pleso)",
+      dist: "21,0 km",
+      time: "22 perc autó / 50 perc villamos",
+      desc: "Híres alpesi tókerülő téli séta, sípályák, lenyűgöző panoráma",
+      icon: MapPin,
+    },
+  ];
+
   const ticketTypes = [
     {
       title: "Egyszeri Vonaljegy",
@@ -164,6 +211,12 @@ export default function KozlekedesPage() {
             >
               Sétaútvonal (Google Maps)
             </a>
+            <a
+              href="#megkozelithetoseg"
+              className="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 border border-sky-400/40 text-sky-200 text-xs font-bold transition-all"
+            >
+              Menetidők & mutatók ↓
+            </a>
           </div>
         </div>
 
@@ -253,7 +306,67 @@ export default function KozlekedesPage() {
 
       {/* Main Content Sections */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Section 1: About TEŽ Overview with Click-to-Enlarge Lightbox */}
+        {/* Section 1: Megközelíthetőségi mutatók & menetidők */}
+        <section
+          id="megkozelithetoseg"
+          className="glass-panel p-6 sm:p-8 rounded-3xl border border-sky-500/20 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(56,189,248,0.12)] scroll-mt-28"
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-2.5 rounded-xl bg-sky-500/15 text-sky-400 border border-sky-400/30 shrink-0">
+              <Train className="w-6 h-6" />
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              Közlekedési & Megközelíthetőségi Mutatók
+            </h2>
+          </div>
+          <p
+            lang="hu"
+            className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full mb-6"
+          >
+            Menetidők és eljutási lehetőségek közvetlenül a Villa Greystone-tól.
+          </p>
+
+          <div className="overflow-x-auto -mx-2 sm:mx-0">
+            <table className="w-full min-w-[640px] text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr className="border-b border-slate-800 text-slate-400 uppercase text-[11px] tracking-wider">
+                  <th className="py-3 px-3.5 font-semibold">Úti cél / Megálló</th>
+                  <th className="py-3 px-3.5 font-semibold">Távolság</th>
+                  <th className="py-3 px-3.5 font-semibold">Elérési Mód & Menetidő</th>
+                  <th className="py-3 px-3.5 font-semibold">Tudnivaló a Családnak</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-800/60">
+                {distances.map((row, idx) => {
+                  const Icon = row.icon;
+                  return (
+                    <tr key={idx} className="hover:bg-sky-500/5 transition-colors">
+                      <td className="py-3.5 px-3.5 font-bold text-white flex items-center gap-2.5">
+                        <span className="p-1.5 rounded-lg bg-sky-500/10 text-sky-400 shrink-0">
+                          <Icon className="w-4 h-4" />
+                        </span>
+                        <span>{row.dest}</span>
+                      </td>
+                      <td className="py-3.5 px-3.5 font-semibold text-amber-300 whitespace-nowrap">
+                        <span className="px-2 py-0.5 rounded-md bg-amber-400/10 border border-amber-400/20">
+                          {row.dist}
+                        </span>
+                      </td>
+                      <td className="py-3.5 px-3.5 text-sky-200 font-medium whitespace-nowrap">
+                        {row.time}
+                      </td>
+                      <td className="py-3.5 px-3.5 text-slate-300 leading-relaxed">
+                        {row.desc}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* Section 2: About TEŽ Overview with Click-to-Enlarge Lightbox */}
         <TezOverviewSection />
 
         {/* Section 2: Live Animated SVG Route Map & Train Tracker */}

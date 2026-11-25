@@ -1,7 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import WeatherSection from "@/components/WeatherSection";
 import ApartmentSection from "@/components/ApartmentSection";
 import ShoppingSection from "@/components/ShoppingSection";
+import WinterTrackDivider from "@/components/WinterTrackDivider";
 import WebcamsSection from "@/components/WebcamsSection";
 import Footer from "@/components/Footer";
 import SnowEffect from "@/components/SnowEffect";
@@ -18,11 +20,19 @@ export default function Home() {
       {/* Hero section with mountain vibes, countdown & quick links */}
       <Hero />
 
+      {/* Weather and Snow Report section */}
+      <WeatherSection />
+
       {/* Apartment section featuring 49 photos with fullscreen lightbox */}
       <ApartmentSection />
 
-      {/* Supermarkets & local souvenirs */}
+      {/* Supermarkets & local shopping */}
       <ShoppingSection />
+
+      {/* Winter Animated Divider separating Shopping from Webcams */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <WinterTrackDivider />
+      </div>
 
       {/* Live webcams & meteorological radar */}
       <WebcamsSection />

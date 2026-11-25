@@ -3,10 +3,7 @@
 import React from "react";
 import { 
   ShoppingBag, 
-  ShoppingCart, 
   Clock, 
-  Check, 
-  AlertCircle, 
   MapPin, 
   Globe, 
   ExternalLink 
@@ -63,38 +60,40 @@ export default function ShoppingSection() {
       highlights: "Minden egyetlen helyen a nagy bevásárláshoz: üdítők, pékáruk, húsfélék, játékok és tisztálkodási szerek rendkívül bőséges választékban.",
     },
     {
-      name: "Tátrai Helyi Kisboltok",
-      type: "Potraviny csemegeboltok",
-      address: "Ótátrafüred, Tátralomnic, hegyi falvak",
-      open: "Jellemzően 07:30 - 18:00",
-      highlights: "Közeli gyors megoldás, ha a hegyek lábánál hirtelen elfogyna a friss kenyér, a tej vagy egy üveg ásványvíz, és nem mennénk be Poprádra.",
+      name: "COOP Jednota",
+      type: "Helyi szupermarket",
+      address: "Školská 170, 059 86 Nová Lesná, Szlovákia",
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=COOP+Jednota,+%C5%A0kolsk%C3%A1+170,+059+86+Nov%C3%A1+Lesn%C3%A1",
+      websiteUrl: "https://www.coop.sk/",
+      websiteText: "coop.sk",
+      logo: "/pictures/stores/coop.jpg",
+      schedule: [
+        { day: "csütörtök", hours: "7:00 – 18:00" },
+        { day: "péntek", hours: "7:00 – 18:00" },
+        { day: "szombat", hours: "7:00 – 12:00" },
+        { day: "vasárnap", hours: "Zárva" },
+      ],
+      highlights: "Közvetlenül a faluban (Nová Lesná), a szállástól alig pár percre található szupermarket. Ideális a reggeli friss pékáruhoz, tejtermékekhez, hűsítőkhöz és a legfontosabb alapélelmiszerekhez.",
     },
   ];
 
-  const souvenirs = [
-    { name: "Korbáčik & Parenica", desc: "Hagyományos szlovák kézműves sajtok (füstölt és sós lében eltett)" },
-    { name: "Tatratea gyógynövénylikőr", desc: "52%-os Original, 62% Forest Fruit vagy 32% Citrus díszüvegben" },
-    { name: "Horalky és Mila ostyák", desc: "A kötelező tátrai mogyorókrémes túra-csoki" },
-    { name: "Bryndza (Juhtúró)", desc: "Friss, krémes fa dézsás juhtúró az otthoni sztrapacskához" },
-  ];
-
   return (
-    <section id="boltok" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section id="boltok" className="scroll-mt-24 sm:scroll-mt-28 py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
           Szupermarketek &{" "}
           <span className="bg-gradient-to-r from-emerald-300 to-teal-400 bg-clip-text text-transparent">
-            Helyi Finomságok
+            Helyi Boltok
           </span>
         </h2>
         <p className="text-slate-300 text-base sm:text-lg">
-          Hol intézzük a reggelinek valót, hol találjuk a legjobb sajtokat, és mit érdemes hazahozni ajándékba.
+          Hol intézzük a reggelinek valót, és hol találjuk a legfontosabb élelmiszereket a tátrai pihenés alatt.
         </p>
       </div>
 
       {/* Stores Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stores.map((store, idx) => (
           <div
             key={idx}
@@ -204,71 +203,22 @@ export default function ShoppingSection() {
             </div>
 
             {/* Opening Hours Footer - vertically stacked days so hours fit cleanly */}
-            {store.schedule ? (
-              <div className="pt-3 border-t border-slate-800/80 text-xs">
-                <div className="flex items-center gap-1.5 text-emerald-300 font-semibold mb-2">
-                  <Clock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>Nyitvatartás:</span>
-                </div>
-                <div className="flex flex-col space-y-1.5 text-xs bg-slate-900/80 p-2.5 rounded-xl border border-slate-800/80">
-                  {store.schedule.map((s, sIdx) => (
-                    <div key={sIdx} className="flex items-center justify-between gap-2">
-                      <span className="text-slate-400 capitalize">{s.day}:</span>
-                      <span className="text-white font-mono font-medium">{s.hours}</span>
-                    </div>
-                  ))}
-                </div>
+            <div className="pt-3 border-t border-slate-800/80 text-xs">
+              <div className="flex items-center gap-1.5 text-emerald-300 font-semibold mb-2">
+                <Clock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                <span>Nyitvatartás:</span>
               </div>
-            ) : (
-              <div className="pt-3 border-t border-slate-800/80 text-xs">
-                <div className="flex items-center gap-1.5 text-emerald-300 font-semibold mb-2">
-                  <Clock className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <span>Nyitvatartás:</span>
-                </div>
-                <div className="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800/80 text-xs text-slate-300">
-                  <span>{store.open}</span>
-                </div>
+              <div className="flex flex-col space-y-1.5 text-xs bg-slate-900/80 p-2.5 rounded-xl border border-slate-800/80">
+                {store.schedule.map((s, sIdx) => (
+                  <div key={sIdx} className="flex items-center justify-between gap-2">
+                    <span className="text-slate-400 capitalize">{s.day}:</span>
+                    <span className="text-white font-mono font-medium">{s.hours}</span>
+                  </div>
+                ))}
               </div>
-            )}
+            </div>
           </div>
         ))}
-      </div>
-
-      {/* Souvenirs & Treats Highlight */}
-      <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-emerald-500/20">
-        <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 flex items-center gap-2">
-          <ShoppingCart className="w-5 h-5 text-emerald-400" />
-          <span>Mit hozzunk haza a tátrai bevásárlásból?</span>
-        </h3>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-          {souvenirs.map((item, idx) => (
-            <div key={idx} className="bg-slate-900/80 p-4 rounded-xl border border-slate-800">
-              <div className="flex items-center gap-2 text-emerald-400 text-sm font-semibold mb-1">
-                <Check className="w-4 h-4" />
-                <span>{item.name}</span>
-              </div>
-              <p className="text-xs text-slate-300">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="p-4 sm:p-5 rounded-2xl bg-slate-950/70 border border-amber-500/20">
-          <div className="flex items-center gap-2.5 mb-2.5">
-            <div className="p-2 rounded-lg bg-amber-500/20 text-amber-400 shrink-0">
-              <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-            </div>
-            <h4 className="font-bold text-white text-sm sm:text-base">
-              Tudtad? Nyitvatartás & Fizetés
-            </h4>
-          </div>
-          <p
-            lang="hu"
-            className="text-xs text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
-          >
-            Szlovákiában a legtöbb szupermarket vasárnap is nyitva tart, így nem gond, ha a hétvégi érkezés után kell megvenni a reggelinek valót vagy a finomságokat. A boltokban természetesen működik a magyar bankkártya (Mastercard, Visa, Revolut) érintéses fizetéssel.
-          </p>
-        </div>
       </div>
     </section>
   );
