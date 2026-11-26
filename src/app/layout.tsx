@@ -11,6 +11,19 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Villa Greystone • Magas-Tátra Családi Utazási Notesz",
   description: "Családi utazási notesz a szlovákiai Magas-Tátra téli utazáshoz: Villa Greystone apartman 49 fotóval, szobabeosztással és PDF dossziéval, Koliba Tatry étlap, wellness, sípályák és autós kisokos.",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "none",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: "/favicon.ico",
   },
