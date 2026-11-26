@@ -199,3 +199,28 @@ h1, h2, h3, h4, h5, h6 {
 .animate-progress-19s {
   animation: progress19s 19s linear forwards;
 }
+
+/* Smooth Subpage Entrance Animation */
+@keyframes subpageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(26px) scale(0.99);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.animate-subpage-fade-in {
+  animation: subpageFadeIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: opacity, transform, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-subpage-fade-in {
+    animation: none !important;
+  }
+}

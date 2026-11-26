@@ -27,6 +27,7 @@ interface Program {
   tips: string;
   link?: string;
   linkText?: string;
+  logo?: string;
 }
 
 interface RegionConfig {
@@ -84,8 +85,8 @@ const REGIONS: RegionConfig[] = [
     anchorId: "regio-kirandulasok",
     name: "További Tátrai Kirándulások & Különleges Élmények",
     shortName: "Egyéb élmények",
-    tag: "Bélai-Tátra, Lengyelország & Hálózat",
-    subtitle: "A Bélai-Tátra lenyűgöző lombkorona tanösvénye, gőzölgő alpesi élményfürdő a lengyel oldalon és a teljes hegyi vasúthálózat élménye.",
+    tag: "Poprád, Bélai-Tátra & Hálózat",
+    subtitle: "AquaCity Poprad élményfürdője, a Bélai-Tátra lombkorona tanösvénye, alpesi termálfürdő és a hegyi vasúthálózat élménye.",
     borderColor: "border-emerald-500/50 hover:border-emerald-400/80",
     bgGradient: "bg-gradient-to-b from-emerald-500/10 via-slate-900/60 to-slate-950/80 shadow-emerald-500/5",
     badgeClass: "bg-emerald-400/20 text-emerald-300 border-emerald-400/40",
@@ -227,12 +228,58 @@ const programs: Program[] = [
     category: "family",
     categoryLabel: "Prémium Tátrai Wellness",
     badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
-    location: "Bukowina Tatrzańska (Lengyelország, kb. 35 perc)",
+    location: "ul. Sportowa 22, 34-530 Bukowina Tatrzańska (Lengyelország, kb. 35 perc)",
     duration: "Félnapos / 3 - 4 óra",
     description: "Közép-Európa egyik legmodernebb tátrai élményfürdője: 20 beltéri és kültéri termálmedence (30-38 °C), pezsgőfürdők, sodrófolyosók és fenséges hegyi panoráma a havas tátrai fenyvesekre.",
     tips: "A téli hóesésben a gőzölgő szabadtéri medencékben fürdőzni felejthetetlen élmény! Érdemes online előre megváltani a belépőjegyeket a hivatalos weboldalon.",
     link: "https://www.termybukovina.pl/en/",
-    linkText: "Termy BUKOVINA hivatalos oldal"
+    linkText: "Termy BUKOVINA hivatalos oldal",
+    logo: "https://babygo.pl/upload/firm/termy-bukovina/Termy%20BUKOVINA.jpg",
+  },
+  {
+    id: "terma-bania",
+    title: "Terma Bania – Élmény- és Termálfürdő",
+    region: "other",
+    category: "family",
+    categoryLabel: "Sípálya & Termálfürdő",
+    badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+    location: "Środkowa 181, 34-405 Białka Tatrzańska, Lengyelország",
+    duration: "Félnapos / Egész napos",
+    description: "Białka Tatrzańska népszerű élményfürdője a Kotelnica sípályák tövében. Családi vízi csúszdapark, hullámmedence, valamint csendes relaxációs termálzónák fenséges hegyi panorámával.",
+    tips: "Közvetlenül a sípályák mellett helyezkedik el, ideális síelés utáni forró fürdőzéshez. Jegyeket érdemes online előre lefoglalni a hivatalos oldalon.",
+    link: "https://www.termabania.pl/en/",
+    linkText: "Terma Bania hivatalos weboldal & jegyek",
+    logo: "https://www.nadwodospadem.info/files/200/logo_277_x_200_px1_4x3.png",
+  },
+  {
+    id: "termy-zakopianskie",
+    title: "Termy Zakopiańskie – Panoráma Aquapark",
+    region: "other",
+    category: "family",
+    categoryLabel: "Zakopane Termálfürdője",
+    badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-400/30",
+    location: "Jagiellońska utca 31, 34-500 Zakopane, Lengyelország",
+    duration: "2 - 4 óra",
+    description: "Zakopane központi termál- és élményfürdője, kilátással a havas Giewont csúcsra. Kénes termálmedencék, vadvízi sodrófolyosó, csúszdák és wellness szaunavilág a város szívében.",
+    tips: "A zakopanei vasútállomástól és a Krupówki sétálóutcától is pár perc sétával megközelíthető, remek program városnézés vagy túrázás után.",
+    link: "https://www.termy-zakopianskie.pl/",
+    linkText: "Termy Zakopiańskie hivatalos oldal",
+    logo: "https://www.termy-zakopianskie.pl/images/termy-logo-300x107.webp",
+  },
+  {
+    id: "aquacity-poprad",
+    title: "AquaCity Poprad",
+    region: "other",
+    category: "family",
+    categoryLabel: "Élményfürdő & Családi Lazítás",
+    badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+    location: "Športová 1397/1, Spišská Sobota, 058 01 Poprad, Szlovákia",
+    duration: "Félnapos / Egész napos",
+    description: "A Magas-Tátra lábánál fekvő, nemzetközileg elismert élmény- és wellnessközpont: 13 fedett és szabadtéri termálmedence (30–38 °C), pezsgőfürdők, szórakoztató csúszdatornyok és Blue Sapphire medencék esti 3D lézershow-val. Kétszintes Fire & Water Wellness & Spa szaunavilága tökéletes feltöltődést kínál egy havas tátrai túra után a család minden tagjának.",
+    tips: "A belépőjegyeket érdemes előre online megváltani a hivatalos webshopban, elkerülve a kasszáknál való sorban állást és kedvezőbb áron hozzájutva a jegyekhez. Poprád belvárosából és a vasútállomásról percek alatt elérhető autóval vagy helyi közlekedéssel.",
+    link: "https://shop.aquacity.sk/en/",
+    linkText: "AquaCity Poprad hivatalos webshop & jegyek",
+    logo: "https://shop.aquacity.sk/wp-content/uploads/2020/03/logo-aquacity.svg",
   }
 ];
 
@@ -470,13 +517,24 @@ export default function ProgramsSection({ isSubpage = false }: { isSubpage?: boo
                         </div>
                       </div>
 
-                      <h4 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-sky-300 transition-colors">
-                        {program.title}
-                      </h4>
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <h4 className="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
+                          {program.title}
+                        </h4>
+                        {program.logo && (
+                          <div className="bg-white p-2 rounded-xl shadow-md border border-slate-200 shrink-0 flex items-center justify-center min-w-[90px] sm:min-w-[105px] h-12">
+                            <img
+                              src={program.logo}
+                              alt={`${program.title} Logo`}
+                              className="h-8 sm:h-9 w-auto max-w-[95px] sm:max-w-[110px] object-contain"
+                            />
+                          </div>
+                        )}
+                      </div>
 
-                      <div className="flex items-center gap-1.5 text-xs font-medium text-amber-400/90 mb-3">
-                        <MapPin className="w-3.5 h-3.5" />
-                        <span>{program.location}</span>
+                      <div className="flex items-start gap-1.5 text-xs font-medium text-amber-400/90 mb-3">
+                        <MapPin className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+                        <span className="leading-tight">{program.location}</span>
                       </div>
 
                       <p

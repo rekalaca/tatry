@@ -1,29 +1,82 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SnowEffect from "@/components/SnowEffect";
 import PackingChecklist from "@/components/PackingChecklist";
+import { Compass, Utensils, Waves, Train, HeartPulse } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Mit ne felejtsünk otthon? • Csomagolási Notesz | Villa Greystone",
   description:
-    "Interaktív családi csomagolólista a téli tátrai utazáshoz: téli ruházat, sífelszerelés, autó, okmányok, egészség és wellness kellékek menthető állapotban.",
+    "Interaktív családi csomagolólista a téli tátrai utazáshoz: személyes öltözet, szánkózás, autó, okmányok, egészség, wellness, elektronika és konyhai kiegészítők menthető állapotban.",
 };
 
 export default function CsomagolasPage() {
   return (
-    <main className="min-h-screen relative selection:bg-sky-500 selection:text-white pt-24 sm:pt-28">
+    <main className="min-h-screen relative selection:bg-sky-500 selection:text-white pt-24 sm:pt-28 pb-16">
       {/* Falling snow particles */}
       <SnowEffect />
 
       {/* Sticky frosted glass navbar */}
       <Navbar />
 
-      {/* Packing checklist component */}
-      <PackingChecklist isSubpage={true} />
+      <div className="animate-subpage-fade-in">
+        {/* Packing checklist component */}
+        <PackingChecklist isSubpage={true} />
 
-      {/* Atmospheric footer */}
-      <Footer />
+        {/* Quick Navigation to Other Guides */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+          <div className="p-6 sm:p-8 rounded-3xl bg-slate-950/70 border border-slate-800 shadow-xl text-center">
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
+              További Tátrai Kalauzaink
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto mb-6">
+              A bőröndök bepakolása után böngészd át a programokat, az éttermeket, a melegvizes fürdőket, vagy az orvosi ügyeleteket!
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Link
+                href="/programok"
+                className="px-4 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-bold flex items-center gap-2 transition-all hover:scale-105"
+              >
+                <Compass className="w-4 h-4" />
+                <span>Téli Programok</span>
+              </Link>
+              <Link
+                href="/gasztro"
+                className="px-4 py-2.5 rounded-xl bg-orange-500/20 hover:bg-orange-500/30 text-orange-300 border border-orange-500/30 text-xs font-bold flex items-center gap-2 transition-all hover:scale-105"
+              >
+                <Utensils className="w-4 h-4" />
+                <span>Gasztronómia & Koliba</span>
+              </Link>
+              <Link
+                href="/furdo"
+                className="px-4 py-2.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/30 text-xs font-bold flex items-center gap-2 transition-all hover:scale-105"
+              >
+                <Waves className="w-4 h-4" />
+                <span>Fürdők & Wellness</span>
+              </Link>
+              <Link
+                href="/kozlekedes"
+                className="px-4 py-2.5 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/30 text-xs font-bold flex items-center gap-2 transition-all hover:scale-105"
+              >
+                <Train className="w-4 h-4" />
+                <span>Közlekedés & TEŽ</span>
+              </Link>
+              <Link
+                href="/ugyelet"
+                className="px-4 py-2.5 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 text-xs font-bold flex items-center gap-2 transition-all hover:scale-105"
+              >
+                <HeartPulse className="w-4 h-4" />
+                <span>Ügyelet & Patikák</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Atmospheric footer */}
+        <Footer />
+      </div>
     </main>
   );
 }

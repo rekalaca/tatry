@@ -13,6 +13,7 @@ import {
   Mountain,
   Flame,
   Thermometer,
+  HeartPulse,
 } from "lucide-react";
 
 export default function GuidesHubSection() {
@@ -46,10 +47,10 @@ export default function GuidesHubSection() {
     {
       title: "Fürdők & Wellness Pihenés",
       badge: "38 °C Forró Víz",
-      desc: "AquaCity Poprad panorámás medencékkel és esti 3D lézershow-val, gőzölgő Vrbov gyógyfürdő a hóesésben, Tatralandia és privát szaunánk.",
+      desc: "AquaCity Poprad panorámás medencékkel és esti lézershow-val, Termy BUKOVINA, Terma Bania, Termy Zakopiańskie és privát szaunánk.",
       href: "/furdo",
       icon: Waves,
-      tag: "AquaCity • Vrbov • Termy Bukovina",
+      tag: "AquaCity • Bukovina • Terma Bania • Zakopane",
       gradient: "from-cyan-500/20 via-slate-900/80 to-slate-950",
       borderHover: "hover:border-cyan-400/60 hover:shadow-cyan-500/15",
       badgeClass: "bg-cyan-500/20 text-cyan-300 border-cyan-400/30",
@@ -72,7 +73,7 @@ export default function GuidesHubSection() {
     {
       title: "Csomagolási Notesz",
       badge: "Interaktív Csekklista",
-      desc: "Téli ruházat, sífelszerelés, kötelező autós tartozékok, okmányok és gyógyszerek – pipálható, eszközön menthető családi ellenőrzőlista.",
+      desc: "Személyes öltözet, szánkózás, kötelező autós tartozékok, okmányok, elektronika és konyha – pipálható, eszközön menthető családi ellenőrzőlista.",
       href: "/csomagolas",
       icon: CheckSquare,
       tag: "Menthető csekklista • Téli felszerelés",
@@ -81,6 +82,19 @@ export default function GuidesHubSection() {
       badgeClass: "bg-emerald-500/20 text-emerald-300 border-emerald-400/30",
       iconBg: "bg-emerald-500/15 text-emerald-300 border-emerald-400/30",
       cta: "Csomagolólista megnyitása",
+    },
+    {
+      title: "Orvosi Ügyeletek & Patikák",
+      badge: "0–24 Sürgősségi",
+      desc: "Poprádi Kórház 0–24 sürgősségi és háziorvosi ügyelete, ótátrafüredi rendelő, hétvégén is nyitva tartó gyógyszertárak és HZS hegyi mentési tudnivalók.",
+      href: "/ugyelet",
+      icon: HeartPulse,
+      tag: "0–24 Sürgősségi • Dr. Max Ótátrafüred • HZS 18 300",
+      gradient: "from-rose-500/20 via-slate-900/80 to-slate-950",
+      borderHover: "hover:border-rose-400/60 hover:shadow-rose-500/15",
+      badgeClass: "bg-rose-500/20 text-rose-300 border-rose-400/30",
+      iconBg: "bg-rose-500/15 text-rose-300 border-rose-400/30",
+      cta: "Ügyeleti kalauz & Segélyhívók",
     },
   ];
 

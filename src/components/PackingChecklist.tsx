@@ -11,62 +11,133 @@ interface ChecklistItem {
 }
 
 const defaultItems: ChecklistItem[] = [
-  // Ruházat
-  { id: "c1", category: "⛷️ Téli Ruházat & Síelés", text: "Vízálló síkabát és sínadrág", checked: false },
-  { id: "c2", category: "⛷️ Téli Ruházat & Síelés", text: "Termo aláöltözet (felső és alsó rétegek)", checked: false },
-  { id: "c3", category: "⛷️ Téli Ruházat & Síelés", text: "Vízálló meleg kesztyűk + tartalék kesztyű", checked: false },
-  { id: "c4", category: "⛷️ Téli Ruházat & Síelés", text: "Meleg téli sapka, sál vagy csősál", checked: false },
-  { id: "c5", category: "⛷️ Téli Ruházat & Síelés", text: "Bélelt, csúszásmentes téli bakancs", checked: false },
-  { id: "c6", category: "⛷️ Téli Ruházat & Síelés", text: "Vastag gyapjú vagy termo sízoknik", checked: false },
-  { id: "c7", category: "⛷️ Téli Ruházat & Síelés", text: "Kényelmes meleg melegítő & papucs az apartmanba", checked: false },
+  // Személyes öltözet & Ruházat
+  { id: "s0", category: "👕 Személyes Öltözet & Ruházat", text: "Vízálló meleg téli kabát / anorák", checked: false },
+  { id: "s1", category: "👕 Személyes Öltözet & Ruházat", text: "Bakancsok (vízálló, meleg téli túrabakancs)", checked: false },
+  { id: "s2", category: "👕 Személyes Öltözet & Ruházat", text: "Papucsok (kényelmes benti papucs az apartmanba)", checked: false },
+  { id: "s3", category: "👕 Személyes Öltözet & Ruházat", text: "Zoknik (hétköznapi pamutzoknik minden napra)", checked: false },
+  { id: "s4", category: "👕 Személyes Öltözet & Ruházat", text: "Túrazoknik (vastag meleg gyapjú vagy termo zokni)", checked: false },
+  { id: "s5", category: "👕 Személyes Öltözet & Ruházat", text: "Jégeralsó (termo aláöltözet nadrág)", checked: false },
+  { id: "s6", category: "👕 Személyes Öltözet & Ruházat", text: "Boxerek, alsóneműk (minden napra + tartalék)", checked: false },
+  { id: "s7", category: "👕 Személyes Öltözet & Ruházat", text: "Atléták (pamut ujjatlan trikók réteges öltözködéshez)", checked: false },
+  { id: "s8", category: "👕 Személyes Öltözet & Ruházat", text: "Pólók (rövid ujjú pamutpólók)", checked: false },
+  { id: "s9", category: "👕 Személyes Öltözet & Ruházat", text: "Hosszú ujjú pólók / felsők", checked: false },
+  { id: "s10", category: "👕 Személyes Öltözet & Ruházat", text: "Pulóverek (meleg kötött vagy polár pulóver)", checked: false },
+  { id: "s11", category: "👕 Személyes Öltözet & Ruházat", text: "Mackófelső (kényelmes cipzáras / kapucnis felső)", checked: false },
+  { id: "s12", category: "👕 Személyes Öltözet & Ruházat", text: "Mackóalsó (melegítő nadrág az apartmanos pihenéshez)", checked: false },
+  { id: "s13", category: "👕 Személyes Öltözet & Ruházat", text: "Farmernadrágok (kényelmes utcai / utazós nadrág)", checked: false },
+  { id: "s14", category: "👕 Személyes Öltözet & Ruházat", text: "Sínadrág (vízálló, meleg bélelt nadrág szánkózáshoz)", checked: false },
+  { id: "s15", category: "👕 Személyes Öltözet & Ruházat", text: "Kesztyűk (vízálló meleg kesztyű + tartalék pár)", checked: false },
+  { id: "s16", category: "👕 Személyes Öltözet & Ruházat", text: "Sapka (meleg téli sapka)", checked: false },
+  { id: "s17", category: "👕 Személyes Öltözet & Ruházat", text: "Sál vagy csősál a hideg szél ellen", checked: false },
+  { id: "s18", category: "👕 Személyes Öltözet & Ruházat", text: "Napszemüveg (erős szikrázó hegyi napfény és hóvakság ellen)", checked: false },
+  { id: "s19", category: "👕 Személyes Öltözet & Ruházat", text: "Derékszíj / nadrágszíj", checked: false },
+  { id: "s20", category: "👕 Személyes Öltözet & Ruházat", text: "Kistáska / övtáska (iratoknak, telefonnak, kulcsoknak)", checked: false },
+  { id: "s21", category: "👕 Személyes Öltözet & Ruházat", text: "Hátizsák (kényelmes hátizsák a napi kirándulásokhoz)", checked: false },
+  { id: "s22", category: "👕 Személyes Öltözet & Ruházat", text: "Pizsama (kényelmes éjszakai alvóruha)", checked: false },
+
+  // Szánkózás & Havas Játékok
+  { id: "sz1", category: "🛷 Szánkózás & Havas Játékok", text: "Szánkó / műanyag csúszka / popsitepsi a havas lejtőkhöz", checked: false },
+  { id: "sz2", category: "🛷 Szánkózás & Havas Játékok", text: "Bukósisak a 2,5 km-es kivilágított tarajkai szánkópályához (gyerekeknek)", checked: false },
+  { id: "sz3", category: "🛷 Szánkózás & Havas Játékok", text: "Védőszemüveg / síszemüveg gyors szánkózáshoz és hóeséshez", checked: false },
 
   // Autó
   { id: "a1", category: "🚗 Autós Téli Felszerelés", text: "Méretpontos hólánc a csomagtartóban", checked: false },
-  { id: "a2", category: "🚗 Autós Téli Felszerelés", text: "Láthatósági mellények minden utasnak az utastérben", checked: false },
-  { id: "a3", category: "🚗 Autós Téli Felszerelés", text: "Jégkaparó, hókefe és jégoldó spray", checked: false },
-  { id: "a4", category: "🚗 Autós Téli Felszerelés", text: "Téli szélvédőmosó folyadék (-25°C flakonban)", checked: false },
-  { id: "a5", category: "🚗 Autós Téli Felszerelés", text: "Meleg pléd és zseblámpa az autóba", checked: false },
-  { id: "a6", category: "🚗 Autós Téli Felszerelés", text: "Szlovák autópálya e-matrica (eznamka.sk) megvéve", checked: false },
+  { id: "a2", category: "🚗 Autós Téli Felszerelés", text: "Nemzetközi gépjármű zöldkártya (felelősségbiztosítási igazolás)", checked: false },
+  { id: "a3", category: "🚗 Autós Téli Felszerelés", text: "Tűzoltó készülék és elsősegélycsomag", checked: false },
+  { id: "a4", category: "🚗 Autós Téli Felszerelés", text: "Gyalogsági ásó vagy összecsukható hólapát (hótorlasz és elakadás esetére)", checked: false },
+  { id: "a5", category: "🚗 Autós Téli Felszerelés", text: "Láthatósági mellények minden utasnak az utastérben", checked: false },
+  { id: "a6", category: "🚗 Autós Téli Felszerelés", text: "Jégkaparó, hókefe és jégoldó spray", checked: false },
+  { id: "a7", category: "🚗 Autós Téli Felszerelés", text: "Téli szélvédőmosó folyadék (-25°C flakonban)", checked: false },
+  { id: "a8", category: "🚗 Autós Téli Felszerelés", text: "Meleg pléd és zseblámpa az autóba", checked: false },
+  { id: "a9", category: "🚗 Autós Téli Felszerelés", text: "Szlovák autópálya e-matrica (eznamka.sk) megvéve", checked: false },
 
   // Okmányok & Pénz
   { id: "d1", category: "📄 Okmányok & Pénz", text: "Személyi igazolványok / útlevelek a gyerekeknek is!", checked: false },
-  { id: "d2", category: "📄 Okmányok & Pénz", text: "Jogosítvány, forgalmi engedély, zöldkártya", checked: false },
-  { id: "d3", category: "📄 Okmányok & Pénz", text: "Utasbiztosítás hegyimentő fedezettel kinyomtatva / mentve", checked: false },
-  { id: "d4", category: "📄 Okmányok & Pénz", text: "Euró (€) készpénz (apró és papírpénz hegyi hüttékhez)", checked: false },
-  { id: "d5", category: "📄 Okmányok & Pénz", text: "Bankkártya külföldi használatra aktiválva", checked: false },
+  { id: "d2", category: "📄 Okmányok & Pénz", text: "Európai Egészségbiztosítási Kártya (EU kék kártya) mindenkinek", checked: false },
+  { id: "d3", category: "📄 Okmányok & Pénz", text: "Jogosítvány, forgalmi engedély, nemzetközi zöldkártya", checked: false },
+  { id: "d4", category: "📄 Okmányok & Pénz", text: "Utasbiztosítás hegyimentő fedezettel kinyomtatva / mentve", checked: false },
+  { id: "d5", category: "📄 Okmányok & Pénz", text: "Euró (€) készpénz (apró és papírpénz hegyi hüttékhez)", checked: false },
+  { id: "d6", category: "📄 Okmányok & Pénz", text: "Bankkártya külföldi használatra aktiválva", checked: false },
 
   // Wellness & Fürdő
   { id: "w1", category: "🏊 Wellness & Fürdőzés", text: "Fürdőruhák / fürdőnadrágok mindenkinek", checked: false },
-  { id: "w2", category: "🏊 Wellness & Fürdőzés", text: "Nagyméretű fürdőlepedők és törölközők", checked: false },
-  { id: "w3", category: "🏊 Wellness & Fürdőzés", text: "Csúszásgátló strandpapucs / gumipapucs", checked: false },
-  { id: "w4", category: "🏊 Wellness & Fürdőzés", text: "Úszósapka / úszószemüveg a sportmedencékhez", checked: false },
+  { id: "w2", category: "🏊 Wellness & Fürdőzés", text: "Kényelmes fürdőköntös a wellnesshez és apartmanos pihenéshez", checked: false },
+  { id: "w3", category: "🏊 Wellness & Fürdőzés", text: "Nagyméretű fürdőlepedők és törölközők", checked: false },
+  { id: "w4", category: "🏊 Wellness & Fürdőzés", text: "Csúszásgátló strandpapucs / gumipapucs", checked: false },
+  { id: "w5", category: "🏊 Wellness & Fürdőzés", text: "Úszósapka / úszószemüveg a sportmedencékhez", checked: false },
 
-  // Patika
-  { id: "p1", category: "💊 Egészség & Téli Ápolás", text: "Zsíros hidratáló krém szél és fagy ellen", checked: false },
-  { id: "p2", category: "💊 Egészség & Téli Ápolás", text: "Fényvédős ajakápoló / stift a hideg ellen", checked: false },
-  { id: "p3", category: "💊 Egészség & Téli Ápolás", text: "Láz- és fájdalomcsillapító, torokfertőtlenítő", checked: false },
-  { id: "p4", category: "💊 Egészség & Téli Ápolás", text: "Sebtapasz, fásli, magnézium izomláz ellen", checked: false },
+  // Patika & Egészség
+  { id: "p1", category: "💊 Egészség & Téli Ápolás", text: "Láz- és fájdalomcsillapító, torokfertőtlenítő", checked: false },
+  { id: "p2", category: "💊 Egészség & Téli Ápolás", text: "Orrcsepp / tengervizes orrspray megfázás ellen", checked: false },
+  { id: "p3", category: "💊 Egészség & Téli Ápolás", text: "Vitaminok (C- és D-vitamin, multivitamin)", checked: false },
+  { id: "p4", category: "💊 Egészség & Téli Ápolás", text: "Sebtapasz, steril gézlap, fásli, magnézium izomláz ellen", checked: false },
+  { id: "p5", category: "💊 Egészség & Téli Ápolás", text: "Papír zsebkendő (több csomag a kabátzsebekbe)", checked: false },
+  { id: "p6", category: "💊 Egészség & Téli Ápolás", text: "Kézfertőtlenítő gél vagy kendő", checked: false },
+  { id: "p7", category: "💊 Egészség & Téli Ápolás", text: "Zsíros hidratáló krém szél és fagy ellen", checked: false },
+  { id: "p8", category: "💊 Egészség & Téli Ápolás", text: "Fényvédős ajakápoló / stift a hideg ellen", checked: false },
 
-  // Elektronika & Szórakozás
+  // Elektronika & Családi Esték
   { id: "e1", category: "📱 Elektronika & Családi Esték", text: "Powerbank (hidegben gyorsabban merülnek a telefonok!)", checked: false },
-  { id: "e2", category: "📱 Elektronika & Családi Esték", text: "Telefontöltők és kábelek", checked: false },
-  { id: "e3", category: "📱 Elektronika & Családi Esték", text: "Társasjátékok & kártya az apartmanos estékre", checked: false },
-  { id: "e4", category: "📱 Elektronika & Családi Esték", text: "Fényképezőgép / sportkamera", checked: false },
+  { id: "e2", category: "📱 Elektronika & Családi Esték", text: "Telefontöltők és töltőkábelek mindenkinek", checked: false },
+  { id: "e3", category: "📱 Elektronika & Családi Esték", text: "Hálózati elosztó / hosszabbító több eszköz töltéséhez", checked: false },
+  { id: "e4", category: "📱 Elektronika & Családi Esték", text: "Laptop és töltője", checked: false },
+  { id: "e5", category: "📱 Elektronika & Családi Esték", text: "HDMI kábel (laptop összekötéséhez a TV-vel)", checked: false },
+  { id: "e6", category: "📱 Elektronika & Családi Esték", text: "Hordozható JBL bluetooth hangszóró a zenékhez", checked: false },
+  { id: "e7", category: "📱 Elektronika & Családi Esték", text: "Társasjátékok & kártya az apartmanos estékre", checked: false },
+
+  // Konyhai Kiegészítők & Útravaló
+  { id: "k1", category: "☕ Konyhai Kiegészítők & Útravaló", text: "Papírtörlő / konyhai törlőkendő guriga", checked: false },
+  { id: "k2", category: "☕ Konyhai Kiegészítők & Útravaló", text: "Instant kávé / kávékapszula", checked: false },
+  { id: "k3", category: "☕ Konyhai Kiegészítők & Útravaló", text: "Teafilterek, cukor / édesítő, citromlé", checked: false },
+  { id: "k4", category: "☕ Konyhai Kiegészítők & Útravaló", text: "Hőtartó termosz a forró teához túrázáskor", checked: false },
+  { id: "k5", category: "☕ Konyhai Kiegészítők & Útravaló", text: "Zárható ételes dobozok / uzsonnás dobozok", checked: false },
+  { id: "k6", category: "☕ Konyhai Kiegészítők & Útravaló", text: "Sós és édes rágcsálnivalók, kekszek, csokoládé", checked: false },
+  { id: "k7", category: "☕ Konyhai Kiegészítők & Útravaló", text: "Ásványvíz / üdítők az útra és az apartmanba", checked: false },
+  { id: "k8", category: "☕ Konyhai Kiegészítők & Útravaló", text: "Bicska / zsebkés vagy multifunkciós bicska", checked: false },
 ];
 
 export default function PackingChecklist({ isSubpage = false }: { isSubpage?: boolean }) {
   const [items, setItems] = useState<ChecklistItem[]>(defaultItems);
   const [isClient, setIsClient] = useState(false);
   const [newItemText, setNewItemText] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("⛷️ Téli Ruházat & Síelés");
+  const [selectedCategory, setSelectedCategory] = useState("👕 Személyes Öltözet & Ruházat");
 
-  // Load from localStorage
+  // Load from localStorage (with auto-migration to v4 so new items appear while keeping user checks)
   useEffect(() => {
     setIsClient(true);
-    const saved = localStorage.getItem("tatry_packing_list");
-    if (saved) {
+    const savedV4 = localStorage.getItem("tatry_packing_list_v4");
+    if (savedV4) {
       try {
-        setItems(JSON.parse(saved));
+        setItems(JSON.parse(savedV4));
+        return;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    // Migrate from previous versions if exist
+    const prevSaved =
+      localStorage.getItem("tatry_packing_list_v3") ||
+      localStorage.getItem("tatry_packing_list_v2") ||
+      localStorage.getItem("tatry_packing_list");
+    if (prevSaved) {
+      try {
+        const oldItems: ChecklistItem[] = JSON.parse(prevSaved);
+        const checkedTexts = new Set(
+          oldItems.filter((i) => i.checked).map((i) => i.text.toLowerCase().trim())
+        );
+        const customItems = oldItems.filter((i) => i.id.startsWith("custom_"));
+        const merged = defaultItems.map((item) => ({
+          ...item,
+          checked:
+            checkedTexts.has(item.text.toLowerCase().trim()) ||
+            oldItems.some((o) => o.id === item.id && o.checked),
+        }));
+        const finalItems = [...merged, ...customItems];
+        setItems(finalItems);
+        localStorage.setItem("tatry_packing_list_v4", JSON.stringify(finalItems));
+        return;
       } catch (e) {
         console.error(e);
       }
@@ -77,7 +148,7 @@ export default function PackingChecklist({ isSubpage = false }: { isSubpage?: bo
   const saveItems = (updated: ChecklistItem[]) => {
     setItems(updated);
     if (typeof window !== "undefined") {
-      localStorage.setItem("tatry_packing_list", JSON.stringify(updated));
+      localStorage.setItem("tatry_packing_list_v4", JSON.stringify(updated));
     }
   };
 

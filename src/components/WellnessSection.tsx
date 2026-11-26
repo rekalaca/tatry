@@ -2,57 +2,62 @@
 
 import React from "react";
 import Link from "next/link";
-import { Waves, Sparkles, ExternalLink, MapPin, Thermometer, ShieldCheck } from "lucide-react";
+import { Waves, Sparkles, ExternalLink, MapPin, Thermometer } from "lucide-react";
+import WellnessMap from "@/components/WellnessMap";
 
 export default function WellnessSection({ isSubpage = false }: { isSubpage?: boolean } = {}) {
   const baths = [
     {
       title: "AquaCity Poprad",
       subtitle: "A Magas-Tátra legnagyobb élmény- és wellness központja",
-      location: "Poprád belváros",
+      location: "Športová 1397/1, Spišská Sobota, 058 01 Poprad, Szlovákia",
       temp: "30 - 38 °C",
       badge: "Közeli & Családi kedvenc",
       badgeColor: "bg-sky-500/20 text-sky-300 border-sky-500/30",
       description: "13 beltéri és szabadtéri termálmedence, ahonnan közvetlenül látni a havas csúcsokat. Esténként 3D lézershow a Blue Sapphire medencében, valamint hatalmas szaunavilág (Fire & Water).",
-      tips: "Online jegyvásárlással vagy délutáni belépővel jelentős összeget lehet spórolni. Gyerekeknek csúszdák és meleg vizű pancsolók.",
-      link: "https://aquacity.sk/hu/",
-      linkText: "AquaCity Poprad honlap",
-    },
-    {
-      title: "Thermal Park Vrbov (Ménhárd)",
-      subtitle: "Autentikus forró gyógyvíz a hóesésben",
-      location: "Vrbov (Poprádtól 15 perc)",
-      temp: "32 - 38 °C",
-      badge: "Kiváló ár-érték & Pihenés",
-      badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-      description: "Természetes kénes-ásványianyagos gyógyforrás. Télen a gőzölgő forró szabadtéri medencékben ülni, miközben körülötted hullik a hó, felejthetetlen relaxáció egy túranap után.",
-      tips: "Sokkal csendesebb és kedvezőbb árú, mint a nagy aquaparkok. Készpénz vagy bankkártya egyaránt működik.",
-      link: "https://www.termalnekupalisko.com/",
-      linkText: "Thermal Park Vrbov infók",
-    },
-    {
-      title: "Tatralandia Aquapark",
-      subtitle: "Trópusi paradicsom igazi pálmafákkal",
-      location: "Liptovský Mikuláš (kb. 45 perc autóval)",
-      temp: "30 - 36 °C",
-      badge: "Trópusi kaland",
-      badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-      description: "Ha egy napra a trópusokra vágynátok: fedett Tropical Paradise valódi tengeri korallokkal és halakkal, beltéri szörfmedence és melegvizes élménymedencék.",
-      tips: "Gopass regisztrációval olcsóbbak a belépőjegyek. Kiváló egész napos program hóvihar vagy túl hideg idő esetén.",
-      link: "https://www.tatralandia.sk/hu/",
-      linkText: "Tatralandia hivatalos oldal",
+      tips: "Online jegyvásárlással vagy előzetes foglalással jelentős összeget lehet spórolni, elkerülve a helyszíni pénztári sorban állást. Gyerekeknek csúszdák és meleg vizű pancsolók állnak rendelkezésre.",
+      link: "https://shop.aquacity.sk/en/",
+      linkText: "AquaCity Poprad hivatalos webshop & jegyek",
+      logo: "https://shop.aquacity.sk/wp-content/uploads/2020/03/logo-aquacity.svg",
     },
     {
       title: "Termy BUKOVINA",
-      subtitle: "Közép-Európa egyik legmodernebb tátrai élményfürdője",
-      location: "Bukowina Tatrzańska (Lengyelország, kb. 35 perc)",
+      subtitle: "Közép-Európa egyik legmodernebb alpesi termálfürdője",
+      location: "ul. Sportowa 22, 34-530 Bukowina Tatrzańska, Lengyelország (kb. 35 perc)",
       temp: "30 - 38 °C",
       badge: "Prémium Tátrai Wellness",
       badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
       description: "20 beltéri és szabadtéri termálmedence (30-38 °C) gyógyvízzel, pezsgőfürdőkkel, hidromasszázzsal, sodrófolyosóval és fenséges kilátással a havas tátrai fenyvesekre a lengyel határon.",
       tips: "A havas téli tájban a kültéri hegyi medencékben fürdőzni felejthetetlen élmény! Érdemes online előre megváltani a belépőjegyeket a hivatalos weboldalon.",
       link: "https://www.termybukovina.pl/en/",
-      linkText: "Termy BUKOVINA hivatalos oldal",
+      linkText: "Termy BUKOVINA hivatalos oldal & jegyek",
+      logo: "https://babygo.pl/upload/firm/termy-bukovina/Termy%20BUKOVINA.jpg",
+    },
+    {
+      title: "Terma Bania",
+      subtitle: "Természetes termálfürdő és aquapark a sípályák lábánál",
+      location: "Środkowa 181, 34-405 Białka Tatrzańska, Lengyelország",
+      temp: "34 - 38 °C",
+      badge: "Élmény & Családi Termálfürdő",
+      badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+      description: "Białka Tatrzańska hegyi termálkomplexuma modern Hangos Zónával (csúszdák, vízi játszóterek, hullámfürdő) és nyugodt Csendes Zónával (természetes ásványianyag-tartalmú forró termálmedencék, hidromasszázs). A szabadtéri medencékből közvetlen rálátás nyílik a havas hegyoldalakra és a sípályákra.",
+      tips: "Közvetlenül a Kotelnica sípályák aljában fekszik, így síelés után azonnal élvezhető a forró gyógyvíz. A belépőjegyeket érdemes előre online megvásárolni a sorban állás elkerülésére.",
+      link: "https://www.termabania.pl/en/",
+      linkText: "Terma Bania hivatalos weboldal & jegyek",
+      logo: "https://www.nadwodospadem.info/files/200/logo_277_x_200_px1_4x3.png",
+    },
+    {
+      title: "Termy Zakopiańskie",
+      subtitle: "Panorámás termál- és élményfürdő Zakopane szívében",
+      location: "Jagiellońska utca 31, 34-500 Zakopane, Lengyelország",
+      temp: "29 - 36 °C",
+      badge: "Zakopane Központjában",
+      badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-400/30",
+      description: "Zakopane legnépszerűbb aquaparkja és termálfürdője, ahonnan lenyűgöző panoráma nyílik a Giewont ikonikus sziklacsúcsára. Kénes gyógyvízzel táplált beltéri és kültéri medencék, vadvízi sodrófolyosó, csúszdák, pezsgőfürdők és prémium szaunavilág gondoskodik a teljes kikapcsolódásról.",
+      tips: "Ideális választás zakopanei kirándulás, a Krupówki sétálóutca felkeresése vagy túrázás után, mivel a központtól és a vasútállomástól is percek alatt kényelmesen elérhető.",
+      link: "https://www.termy-zakopianskie.pl/",
+      linkText: "Termy Zakopiańskie hivatalos honlap & jegyek",
+      logo: "https://www.termy-zakopianskie.pl/images/termy-logo-300x107.webp",
     },
   ];
 
@@ -140,23 +145,47 @@ export default function WellnessSection({ isSubpage = false }: { isSubpage?: boo
                 </div>
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
-                {bath.title}
-              </h3>
-              <p className="text-xs font-medium text-cyan-400 mb-2">{bath.subtitle}</p>
-
-              <div className="flex items-center gap-1.5 text-xs text-slate-400 mb-3">
-                <MapPin className="w-3.5 h-3.5 text-sky-400" />
-                <span>{bath.location}</span>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
+                    {bath.title}
+                  </h3>
+                  <p className="text-xs font-medium text-cyan-400">{bath.subtitle}</p>
+                </div>
+                {bath.logo && (
+                  <div className="bg-white p-2.5 sm:p-3 rounded-2xl shadow-md border border-slate-200 shrink-0 flex items-center justify-center self-start sm:self-auto min-w-[130px] sm:min-w-[160px] h-16 sm:h-20">
+                    <img
+                      src={bath.logo}
+                      alt={`${bath.title} Logo`}
+                      className="h-12 sm:h-14 w-auto max-w-[140px] sm:max-w-[170px] object-contain"
+                    />
+                  </div>
+                )}
               </div>
 
-              <p className="text-sm text-slate-300 leading-relaxed mb-4">
+              <div className="flex items-start gap-1.5 text-xs text-slate-400 mb-3">
+                <MapPin className="w-3.5 h-3.5 text-sky-400 shrink-0 mt-0.5" />
+                <span className="leading-tight">{bath.location}</span>
+              </div>
+
+              <p
+                lang="hu"
+                className="text-sm text-slate-300 leading-relaxed mb-4 text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+              >
                 {bath.description}
               </p>
 
-              <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 mb-4">
-                <strong className="text-cyan-300 font-semibold">Tipp: </strong>
-                <span>{bath.tips}</span>
+              <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 mb-4">
+                <div className="flex items-center gap-2 mb-2 text-cyan-300 font-bold text-xs">
+                  <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                  <span>Tipp & jótanács:</span>
+                </div>
+                <p
+                  lang="hu"
+                  className="text-xs text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+                >
+                  {bath.tips}
+                </p>
               </div>
             </div>
 
@@ -175,32 +204,8 @@ export default function WellnessSection({ isSubpage = false }: { isSubpage?: boo
         ))}
       </div>
 
-      {/* Wellness Checklist Box: Icon & title in one row, full width justified text in new row */}
-      <div className="glass-panel p-6 rounded-2xl border border-sky-500/20 flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div className="flex-1">
-          <div className="flex items-center gap-3 mb-2.5">
-            <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 shrink-0">
-              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
-            </div>
-            <h4 className="text-base sm:text-lg font-bold text-white">
-              Fürdőzéshez készített praktikus tanácsok
-            </h4>
-          </div>
-          <p
-            lang="hu"
-            className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
-          >
-            Mindenképp legyen a kocsiban fejenként legalább egy fürdőruha, fürdőlepedő/törölköző és vízálló strandpapucs. Vrbovban a kénes gyógyvíz miatt az ezüst ékszereket érdemes előre levenni!
-          </p>
-        </div>
-
-        <Link
-          href="/csomagolas"
-          className="shrink-0 px-4 py-2.5 rounded-xl text-xs font-semibold bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-200 border border-cyan-400/30 transition-all text-center"
-        >
-          Fürdős holmik a csomagolási listában
-        </Link>
-      </div>
+      {/* Interactive Wellness Map showing Villa Greystone and the 4 baths */}
+      <WellnessMap />
     </section>
   );
 }

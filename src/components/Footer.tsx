@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUp, Heart, Snowflake, Train } from "lucide-react";
+import { ArrowUp, Heart, Snowflake, Train, HeartPulse } from "lucide-react";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -73,6 +73,11 @@ export default function Footer() {
           <Link href="/kozlekedes" className="text-sky-400 hover:text-white font-semibold transition-colors flex items-center gap-1">
             <Train className="w-3 h-3" />
             <span>Közlekedés & TEŽ</span>
+          </Link>
+          <span>•</span>
+          <Link href="/ugyelet" className="text-rose-400 hover:text-rose-300 font-semibold transition-colors flex items-center gap-1">
+            <HeartPulse className="w-3 h-3" />
+            <span>Ügyelet & Patikák</span>
           </Link>
           <span>•</span>
           <Link href="/csomagolas" className="hover:text-sky-300 transition-colors">Csomagolás</Link>

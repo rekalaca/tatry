@@ -15,6 +15,7 @@ import {
   Video,
   Train,
   CheckSquare,
+  HeartPulse,
 } from "lucide-react";
 
 const navItems = [
@@ -25,6 +26,7 @@ const navItems = [
   { name: "Boltok", href: "#boltok", icon: ShoppingBag },
   { name: "Webkamerák", href: "#webkamerak", icon: Video },
   { name: "Közlekedés", href: "/kozlekedes", icon: Train },
+  { name: "Ügyelet", href: "/ugyelet", icon: HeartPulse },
   { name: "Csomagolás", href: "/csomagolas", icon: CheckSquare },
 ];
 

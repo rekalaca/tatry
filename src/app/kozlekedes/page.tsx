@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SnowEffect from "@/components/SnowEffect";
 import KozlekedesVideoModal from "@/components/KozlekedesVideoModal";
+import UtinformacioMap from "@/components/UtinformacioMap";
 import TezOverviewSection from "@/components/TezOverviewSection";
 import TezLiveMap from "@/components/TezLiveMap";
 import TezTimetable from "@/components/TezTimetable";
@@ -173,7 +175,8 @@ export default function KozlekedesPage() {
       {/* Sticky Navbar */}
       <Navbar />
 
-      {/* Hero Section */}
+      <div className="animate-subpage-fade-in">
+        {/* Hero Section */}
       <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
         {/* Title: 2 lines, line 2 "Magas-Tátrában" in one piece with plenty of descender room */}
         <div className="max-w-4xl mx-auto mb-8">
@@ -221,7 +224,27 @@ export default function KozlekedesPage() {
         </div>
 
         {/* Quick Jump Buttons: Larger, rectangular glassmorphism buttons with subtle border & clear click affordance */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5 max-w-6xl mx-auto">
+          <a
+            href="#utinformacio"
+            className="group relative p-4 sm:p-5 rounded-2xl backdrop-blur-xl bg-slate-900/70 hover:bg-slate-800/80 border border-sky-500/20 hover:border-sky-400/60 shadow-lg shadow-black/40 hover:shadow-sky-500/15 transition-all duration-300 hover:-translate-y-1 text-left flex items-center justify-between"
+          >
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-sky-500/15 text-sky-300 border border-sky-400/30 group-hover:bg-sky-500/25 transition-colors shrink-0">
+                <MapPin className="w-5 h-5 text-sky-400" />
+              </div>
+              <div>
+                <span className="text-sm sm:text-base font-bold text-white group-hover:text-sky-300 transition-colors block">
+                  Útinformáció & Térkép
+                </span>
+                <span className="text-[11px] text-slate-400 block mt-0.5">Élő útviszonyok & hókotrók</span>
+              </div>
+            </div>
+            <div className="w-7 h-7 rounded-lg bg-slate-800/80 border border-slate-700/80 group-hover:border-sky-400/50 group-hover:bg-sky-500/20 flex items-center justify-center text-slate-400 group-hover:text-sky-300 transition-all shrink-0 ml-2">
+              <ChevronDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
+            </div>
+          </a>
+
           <a
             href="#elo-terkep"
             className="group relative p-4 sm:p-5 rounded-2xl backdrop-blur-xl bg-slate-900/70 hover:bg-slate-800/80 border border-sky-500/20 hover:border-sky-400/60 shadow-lg shadow-black/40 hover:shadow-sky-500/15 transition-all duration-300 hover:-translate-y-1 text-left flex items-center justify-between"
@@ -306,6 +329,9 @@ export default function KozlekedesPage() {
 
       {/* Main Content Sections */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        {/* Útinformáció & Térkép (Zjazdnosť.sk) */}
+        <UtinformacioMap />
+
         {/* Section 1: Megközelíthetőségi mutatók & menetidők */}
         <section
           id="megkozelithetoseg"
@@ -629,7 +655,7 @@ export default function KozlekedesPage() {
               <PhoneCall className="w-4 h-4 text-emerald-400" />
               <span>Fontos Szlovákiai Segélyhívó Számok</span>
             </h4>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mb-4">
               {emergencyNumbers.map((em, idx) => (
                 <div key={idx} className="p-3 rounded-xl bg-slate-900 border border-slate-800/80">
                   <span className="text-2xl font-black text-amber-400 font-mono block">{em.num}</span>
@@ -637,6 +663,16 @@ export default function KozlekedesPage() {
                   <span className="text-[10px] text-slate-400 block">{em.desc}</span>
                 </div>
               ))}
+            </div>
+
+            <div className="text-center pt-2">
+              <Link
+                href="/ugyelet"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 text-xs font-bold transition-all hover:scale-105"
+              >
+                <span>Részletes Orvosi Ügyeletek & Nyitva Tartó Gyógyszertárak kalauzunk</span>
+                <span className="text-sm">➔</span>
+              </Link>
             </div>
           </div>
         </section>
@@ -676,8 +712,9 @@ export default function KozlekedesPage() {
         </section>
       </div>
 
-      {/* Footer */}
-      <Footer />
+        {/* Footer */}
+        <Footer />
+      </div>
     </main>
   );
 }
