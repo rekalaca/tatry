@@ -296,22 +296,22 @@ export default function ApartmentSection() {
       <div className="flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12 mb-12 sm:mb-16">
         {/* Left: Headline & Description */}
         <div
-          className={`flex-1 text-center lg:text-left transition-all duration-700 ease-out transform ${
+          className={`flex-1 text-center transition-all duration-700 ease-out transform ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6 sm:translate-y-10"
           }`}
         >
-          <h2 className="font-extrabold tracking-tight mb-4 leading-tight px-3 sm:px-6">
+          <h2 className="text-center font-extrabold tracking-tight mb-4 leading-tight">
             <span className="block text-4xl sm:text-6xl lg:text-7xl font-black text-white drop-shadow-[0_6px_25px_rgba(0,0,0,0.85)]">
               Villa Greystone
             </span>
-            <span className="block text-right">
-              <span className="inline-block text-xl sm:text-2xl lg:text-3xl font-bold tracking-wide mt-1.5 sm:mt-2 bg-gradient-to-r from-sky-400 via-amber-200 to-amber-400 bg-clip-text text-transparent">
+            <span className="block text-center mt-1.5 sm:mt-2">
+              <span className="inline-block text-xl sm:text-2xl lg:text-3xl font-bold tracking-wide bg-gradient-to-r from-sky-400 via-amber-200 to-amber-400 bg-clip-text text-transparent">
                 apartman
               </span>
             </span>
           </h2>
           <p
-            className="text-slate-300 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mb-6 px-3 sm:px-6 text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+            className="text-slate-300 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mb-6 mx-auto text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
             lang="hu"
           >
             Alsóerdőfalva (Nová Lesná / Starý Smokovec) • Modern 2 szobás prémium hegyi apartman, bőséges reggeli, privát wellness és lélegzetelállító tátrai panoráma közvetlenül a szobákból és az erkélyről.

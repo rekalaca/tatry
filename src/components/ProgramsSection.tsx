@@ -119,7 +119,7 @@ const programs: Program[] = [
     location: "Ótátrafüred (1025 m) ➡️ Tarajka (1285 m)",
     duration: "kb. 5 - 7 perc menetidő",
     description: "A Magas-Tátra ikonikus, sínen futó zárt panorámakocsija (szlovákul: Pozemná lanovka Starý Smokovec – Hrebienok, vagy egyszerűen Lanovka na Hrebienok / funicular). Ótátrafüredről (Starý Smokovec, 1025 m) kapaszkodik fel a Tarajkára (Hrebienok, 1285 m), leküzdve a 247 méteres szintkülönbséget alig 5-7 perc alatt, kényelmes és akadálymentes hegyi utazást nyújtva.",
-    tips: "Fent található a téli Tátrai Jégdóm, a Tarpataki-vízesések felé induló túraútvonal, valamint a 2,5 km-es szánkópálya rajtja (a sikló a bérelt szánkókat is kényelmesen felviszi). A menetjegyeket érdemes online a Gopass rendszerben vagy az állomási automatából előre megváltani az olcsóbb ár és a pénztári sorban állás elkerülése végett.",
+    tips: "Fent található a téli Tátrai Jégdóm, a vízesések felé induló sétaút és a 2,5 km-es szánkópálya rajtja. A völgyállomás mellett közvetlenül a Koliba Kamzík, pár percre pedig a nyílt parázson sült ételeiről és élő népzenéjéről ismert Koliba Restaurant Penzión várja a megéhezett túrázókat. A siklójegyeket érdemes online a Gopass felületén előre megvenni.",
     link: "https://gopass.travel/HU/resort/stary-smokovec",
     linkText: "Gopass Starý Smokovec sikló infók & jegyek"
   },
@@ -133,7 +133,7 @@ const programs: Program[] = [
     location: "Hrebienok ➡️ Ótátrafüred",
     duration: "1 - 2 óra",
     description: "Közép-Európa egyik leghosszabb szánkópályája. Nappal és sötétedés után esti kivilágítás mellett is suhanhatunk a havas fenyvesek között.",
-    tips: "A sikló alsó állomásánál komplett szánkóbérlés működik. A sikló felviszi a szánkót!",
+    tips: "A sikló alsó állomásánál komplett szánkóbérlés működik (a sikló felviszi a szánkót). Egy fergeteges lesiklás után a siklóállomás tövében a hangulatos Koliba Kamzík rönkfa étteremben forró fokhagymaleves és juhtúrós sztrapacska vár!",
     link: "https://www.vt.sk/hu/aktivitasok/teli-tevekenysegek/szankozas-tarajkan",
     linkText: "Szánkópálya nyitvatartás & infók"
   },

@@ -1,19 +1,16 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import WeatherSection from "@/components/WeatherSection";
+import ParallaxDivider from "@/components/ParallaxDivider";
 import ApartmentSection from "@/components/ApartmentSection";
 import ShoppingSection from "@/components/ShoppingSection";
 import WinterTrackDivider from "@/components/WinterTrackDivider";
 import WebcamsSection from "@/components/WebcamsSection";
 import Footer from "@/components/Footer";
-import SnowEffect from "@/components/SnowEffect";
 
 export default function Home() {
   return (
     <main className="min-h-screen relative selection:bg-sky-500 selection:text-white">
-      {/* Falling snow particles with toggle */}
-      <SnowEffect />
-
       {/* Sticky frosted glass navbar */}
       <Navbar />
 
@@ -23,8 +20,16 @@ export default function Home() {
       {/* Weather and Snow Report section */}
       <WeatherSection />
 
+      {/* Panoramic Parallax Mountain Divider separating Weather from Apartment */}
+      <ParallaxDivider />
+
       {/* Apartment section featuring 49 photos with fullscreen lightbox */}
       <ApartmentSection />
+
+      {/* Winter Animated Divider separating Gallery / Photos from Supermarkets */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <WinterTrackDivider />
+      </div>
 
       {/* Supermarkets & local shopping */}
       <ShoppingSection />

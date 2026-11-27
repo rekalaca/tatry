@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import SnowEffect from "./SnowEffect";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -53,6 +54,9 @@ export default function Hero() {
         {/* Seamless blend to the content below */}
         <div className="absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#060c14] via-[#060c14]/60 to-transparent" />
       </div>
+
+      {/* Atmospheric gentle snowfall, exclusive to the Hero section with graceful bottom dissolve */}
+      <SnowEffect />
 
       {/* Hero Content: Title shifted higher up with modern glassmorphism countdown below */}
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center justify-start pt-24 sm:pt-28 md:pt-32 lg:pt-36">

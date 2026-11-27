@@ -1,5 +1,6 @@
 import React from "react";
-import { CloudSnow, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import LiveWeatherBox from "./LiveWeatherBox";
 
 interface WeatherLink {
   name: string;
@@ -11,8 +12,8 @@ interface WeatherLink {
 const weatherLinks: WeatherLink[] = [
   {
     name: "SHMÚ Szlovák Meteorológia",
-    desc: "A legpontosabb helyi hivatalos szlovák előrejelzés és magashegyi figyelmeztetések.",
-    url: "https://www.shmu.sk/sk/?page=1",
+    desc: "A legpontosabb helyi hivatalos szlovák előrejelzés és magashegyi figyelmeztetések (Poprad 11934 állomás).",
+    url: "https://www.shmu.sk/sk/?page=1&id=meteo_apocasie_sk&ii=11934",
     logo: "https://spisskabela.sk/wp-content/uploads/2020/06/SHMU_logo.png",
   },
   {
@@ -31,21 +32,31 @@ const weatherLinks: WeatherLink[] = [
 
 export default function WeatherSection() {
   return (
-    <section id="idojaras" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-4 sm:pb-6">
-      <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-sky-500/20 shadow-xl">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-6 flex items-center gap-3">
-          <CloudSnow className="w-6 h-6 sm:w-7 sm:h-7 text-sky-400 shrink-0" />
-          <span>Időjárás és Hójelentés</span>
+    <section id="idojaras" className="scroll-mt-24 sm:scroll-mt-28 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+      {/* Section Header: Clean title matching the scale of other sections, with no icon */}
+      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+        <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+          Időjárás &{" "}
+          <span className="bg-gradient-to-r from-sky-400 via-sky-200 to-blue-400 bg-clip-text text-transparent">
+            Hójelentés
+          </span>
         </h2>
+        <p className="text-slate-300 text-base sm:text-lg">
+          Valós idejű hivatalos tátrai mérési adatok, hóvastagság és meteorológiai előrejelzés.
+        </p>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+      {/* Live Weather Box with SHMÚ station 11934 data & snow depth */}
+      <LiveWeatherBox />
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           {weatherLinks.map((wl, idx) => (
             <a
               key={idx}
               href={wl.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-900/85 hover:bg-slate-800/90 p-5 rounded-2xl border border-slate-800 hover:border-sky-500/40 transition-all duration-300 flex flex-col justify-between group shadow-lg hover:shadow-sky-500/10 hover:-translate-y-0.5"
+              className="bg-slate-900/90 hover:bg-slate-800/95 p-5 rounded-2xl border-2 border-slate-700/80 hover:border-sky-400/60 transition-all duration-300 flex flex-col justify-between group shadow-lg hover:shadow-sky-500/10 hover:-translate-y-0.5"
             >
               <div>
                 {/* Rule: Az ikon és a cím MINDIG EGY SORBAN, egymás mellett helyezkedjen el (flex items-center gap-3 mb-2.5 vagy mb-3) */}
@@ -59,7 +70,7 @@ export default function WeatherSection() {
                       referrerPolicy="no-referrer"
                     />
                   </div>
-                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-sky-300 transition-colors flex items-center justify-between flex-1 leading-snug">
+                  <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors flex items-center justify-between flex-1 leading-snug">
                     <span>{wl.name}</span>
                     <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-sky-400 transition-colors shrink-0 ml-2" />
                   </h3>
@@ -80,7 +91,6 @@ export default function WeatherSection() {
               </div>
             </a>
           ))}
-        </div>
       </div>
     </section>
   );

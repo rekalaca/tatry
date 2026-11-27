@@ -66,32 +66,34 @@ h1, h2, h3, h4, h5, h6 {
   background: #38bdf8;
 }
 
-/* Snowfall animation */
-@keyframes snowfall {
+/* Hero section snowfall animation */
+@keyframes heroSnowfall {
   0% {
-    transform: translateY(-10px) translateX(0);
-    opacity: 0;
+    transform: translate3d(0, -25px, 0);
   }
-  20% {
-    opacity: 0.9;
+  25% {
+    transform: translate3d(var(--drift, 15px), 25vh, 0);
   }
-  80% {
-    opacity: 0.8;
+  50% {
+    transform: translate3d(calc(var(--drift, 15px) * -0.5), 55vh, 0);
+  }
+  75% {
+    transform: translate3d(var(--drift, 15px), 80vh, 0);
   }
   100% {
-    transform: translateY(100vh) translateX(30px);
-    opacity: 0.1;
+    transform: translate3d(calc(var(--drift, 15px) * 0.5), 110vh, 0);
   }
 }
 
-.snowflake {
-  position: fixed;
-  top: -10px;
+.hero-snowflake {
+  position: absolute;
+  top: -25px;
   color: #ffffff;
   pointer-events: none;
-  z-index: 40;
   user-select: none;
-  animation: snowfall linear infinite;
+  will-change: transform;
+  animation: heroSnowfall linear infinite;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
 /* Glassmorphism helpers */

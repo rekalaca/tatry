@@ -11,14 +11,14 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL("https://tatry-griswold.vercel.app"),
   title: "Villa Greystone • Magas-Tátra Családi Utazási Notesz",
-  description: "Családi utazási notesz a szlovákiai Magas-Tátra téli utazáshoz: Villa Greystone apartman 49 fotóval, szobabeosztással és PDF dossziéval, Koliba Tatry étlap, wellness, sípályák és autós kisokos.",
+  description: "Családi utazási notesz a szlovákiai Magas-Tátra téli utazáshoz: Villa Greystone apartman 49 fotóval, szobabeosztással és PDF dossziéval, autentikus Koliba éttermek (Koliba Tatry, Koliba Kamzík, Koliba Penzión), wellness, sípályák és autós kisokos.",
   openGraph: {
     type: "website",
     locale: "hu_HU",
     url: "https://tatry-griswold.vercel.app",
     siteName: "Villa Greystone Családi Utazási Notesz",
     title: "Villa Greystone • Magas-Tátra Családi Utazási Notesz",
-    description: "Családi utazási notesz a szlovákiai Magas-Tátra téli utazáshoz: Villa Greystone apartman 49 fotóval, szobabeosztással és PDF dossziéval, Koliba Tatry étlap, wellness, sípályák és autós kisokos.",
+    description: "Családi utazási notesz a szlovákiai Magas-Tátra téli utazáshoz: Villa Greystone apartman 49 fotóval, szobabeosztással és PDF dossziéval, autentikus Koliba éttermek (Koliba Tatry, Koliba Kamzík, Koliba Penzión), wellness, sípályák és autós kisokos.",
     images: [
       {
         url: "https://tatry-griswold.vercel.app/pictures/share.png",

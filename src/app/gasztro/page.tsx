@@ -9,7 +9,7 @@ import { Compass, Waves, Train, CheckSquare, HeartPulse } from "lucide-react";
 export const metadata: Metadata = {
   title: "Gasztronómia & Koliba Élmény • Magas-Tátra | Villa Greystone",
   description:
-    "Autentikus tátrai ízek, juhtúrós sztrapacska, fokhagymaleves cipóban, a szomszédos Koliba Tatry magyar étlapja és ingyenes házhoz szállítás a Villa Greystone apartmanba.",
+    "Autentikus tátrai ízek, juhtúrós sztrapacska, fokhagymaleves cipóban, a legjobb tátrai koliba éttermek (Koliba Tatry, Koliba Kamzík, Koliba Restaurant Penzión), olasz bisztró és gasztro tippek a Villa Greystone vendégeinek.",
 };
 
 export default function GasztroPage() {
