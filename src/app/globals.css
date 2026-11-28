@@ -176,6 +176,48 @@ h1, h2, h3, h4, h5, h6 {
   transform-origin: center center;
 }
 
+@keyframes spotlightPopIn {
+  0% {
+    transform: scale(0.65) translateY(15px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-spotlight-pop {
+  animation: spotlightPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: center center;
+}
+
+@keyframes countdown2s {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.animate-countdown-2s {
+  animation: countdown2s 2s linear forwards;
+}
+
+@keyframes countdown4s {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.animate-countdown-4s {
+  animation: countdown4s 4s linear forwards;
+}
+
 @keyframes progress20s {
   from {
     width: 0%;

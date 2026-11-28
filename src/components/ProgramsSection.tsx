@@ -25,6 +25,7 @@ interface Program {
   duration: string;
   description: string;
   tips: string;
+  routeInfo?: string;
   link?: string;
   linkText?: string;
   logo?: string;
@@ -120,8 +121,8 @@ const programs: Program[] = [
     duration: "kb. 5 - 7 perc menetidő",
     description: "A Magas-Tátra ikonikus, sínen futó zárt panorámakocsija (szlovákul: Pozemná lanovka Starý Smokovec – Hrebienok, vagy egyszerűen Lanovka na Hrebienok / funicular). Ótátrafüredről (Starý Smokovec, 1025 m) kapaszkodik fel a Tarajkára (Hrebienok, 1285 m), leküzdve a 247 méteres szintkülönbséget alig 5-7 perc alatt, kényelmes és akadálymentes hegyi utazást nyújtva.",
     tips: "Fent található a téli Tátrai Jégdóm, a vízesések felé induló sétaút és a 2,5 km-es szánkópálya rajtja. A völgyállomás mellett közvetlenül a Koliba Kamzík, pár percre pedig a nyílt parázson sült ételeiről és élő népzenéjéről ismert Koliba Restaurant Penzión várja a megéhezett túrázókat. A siklójegyeket érdemes online a Gopass felületén előre megvenni.",
-    link: "https://gopass.travel/HU/resort/stary-smokovec",
-    linkText: "Gopass Starý Smokovec sikló infók & jegyek"
+    link: "https://gopass.travel/HU/gyalogos-jegyek-stary-smokovec-d2_851",
+    linkText: "Gopass Tarajkai sikló gyalogos jegyek & menetrend"
   },
   {
     id: "hrebienok-sanko",
@@ -166,6 +167,21 @@ const programs: Program[] = [
     linkText: "Téli kirándulás a Csorba-tóhoz (beszámoló)"
   },
   {
+    id: "skalnate-pleso-lanovka",
+    title: "Kő-pataki-tó kabinos felvonó (Tatranská Lomnica – Skalnaté pleso)",
+    region: "lomnica",
+    category: "outdoor",
+    categoryLabel: "Zárt Kabinos Panorámafelvonó",
+    badgeColor: "bg-sky-500/20 text-sky-300 border-sky-500/30",
+    location: "Tátralomnic (888 m) ➡️ Štart (1173 m) ➡️ Kő-pataki-tó (1751 m)",
+    duration: "Félnapos program (menetidő fel kb. 15-20 perc)",
+    description: "Kényelmes, modern, zárt kabinos kötélpályával juthatunk fel Tátralomnic völgyállomásáról a Magas-Tátra egyik leghíresebb és legfestőibb tengerszeméhez, a Kő-pataki-tóhoz (Skalnaté pleso, 1751 m). Az utazás két összefüggő szakaszból áll: a völgyből először a Štart középállomásig emelkedik a felvonó, majd onnan a korszerű, szélálló 15 személyes panorámakabinnal érkezünk a magashegyi katlanba. A befagyott tó partján páratlan kilátás nyílik a közvetlenül fölé magasodó Lomnici-csúcs sziklafalaira és a Poprádi-medencére. Fent panorámateraszos hegyi étterem, kávézó, a Szlovák Tudományos Akadémia csillagvizsgáló obszervatóriuma, valamint a gyermekeknek kialakított fedett játszóház várja a kirándulókat.",
+    routeInfo: "A tátralomnici TEŽ vasútállomást elhagyva induljunk el észak felé (a hegy és a felvonók irányába), átsétálva a tágas központi parkon (Mestský park). A parkot követően a Kúpeľná utca felé, a Hotel Morava irányába enyhe emelkedőn haladjunk tovább a tiszta aszfaltozott gyalogos sétányon. A Humno Tatry étterem és a nagy központi parkoló mellett érkezünk meg a modern 15 személyes kabinos felvonó alsó állomásához (Údolná stanica). A távolság kb. 800–900 méter, kényelmes tempóban 10–12 perc séta, és a zöld/sárga túrajelzések, valamint a sípálya-táblák is egyértelműen mutatják az utat.",
+    tips: "A gyalogos jegyeket (retúrjegy Skalnaté plesoig) érdemes online megváltani előre a Gopass felületén, mert így kedvezőbb az ár és elkerülhető a kasszák előtti sorban állás (a felvonó beléptetőkapuinál közvetlenül a telefonos QR-kóddal vagy chipkártyával lehet áthaladni). A tótól jó időben libegővel a Lomnici-nyeregbe is fel lehet menni, vagy külön jeggyel a Lomnici-csúcsra.",
+    link: "https://gopass.travel/HU/gyalogos-jegyek-tatranska-lomnica-d2_848",
+    linkText: "Gopass Kő-pataki-tó gyalogos jegyek & menetrend"
+  },
+  {
     id: "lomnic-csucs",
     title: "Lomnici-csúcs felvonó (Lanovka na Lomnický štít)",
     region: "lomnica",
@@ -175,8 +191,9 @@ const programs: Program[] = [
     location: "Tátralomnic ➡️ Kő-pataki-tó (1761 m) ➡️ Lomnici-csúcs (2634 m)",
     duration: "3 - 5 óra (csúcstartózkodás: 50 perc)",
     description: "A kötélen lebegő, zárt kabinos tátrai kötélpálya (szlovákul és a jegyrendszerben: Kabínková lanovka Tatranská Lomnica – Skalnaté pleso – Lomnický štít). Két szakaszból áll: először Tátralomnicról (Tatranská Lomnica) modern, zárt kabinokkal jutunk fel a Kő-pataki-tóhoz (Skalnaté pleso, 1761 m), onnan pedig a legendás lebegő piros nagykabin repít fel a Magas-Tátra második legmagasabb pontjára, a 2634 méteres Lomnici-csúcsra.",
-    tips: "A Lomnici-csúcsra a nagykabin szigorúan korlátozott létszáma miatt a jegyet kötelező jó előre megváltani a Gopass rendszerében fix idősávra! A csúcson 50 perc tölthető el a kilátóteraszon, a csillagvizsgálónál és a kávézóban. A Kő-pataki-tóig (1761 m) tartó első szakaszra aznap is könnyen váltható jegy.",
-    link: "https://gopass.travel/HU/resort/tatranska-lomnica",
+    routeInfo: "A csúcsfelvonó első szakasza ugyanabból a tátralomnici völgyállomásból indul, mint a Kő-pataki-tó felvonója: a TEŽ vasútállomástól a parkon át észak felé haladva kb. 10–12 perc (850 m) kényelmes sétával érhető el az alsó állomás a Humno étterem és a nagy parkoló mellett.",
+    tips: "A Lomnici-csúcsra a nagykabin szigorúan korlátozott létszáma miatt a jegyet kötelező jó előre megváltani a Gopass rendszerében fix idősávra! A csúcson 50 perc tölthető el a kilátóteraszon, a csillagvizsgálónál és a kávézóban. Ha a csúcsra minden hely betelt, a Kő-pataki-tóig tartó első szakaszra aznap is könnyen váltható gyalogos jegy online.",
+    link: "https://gopass.travel/HU/gyalogos-jegyek-tatranska-lomnica-d2_848",
     linkText: "Gopass Lomnici-csúcs menetrend & jegyek"
   },
   {
@@ -544,9 +561,25 @@ export default function ProgramsSection({ isSubpage = false }: { isSubpage?: boo
                         {program.description}
                       </p>
 
+                      {/* Route Info Box: Gyalogos megközelítés a TEŽ vasútállomástól */}
+                      {program.routeInfo && (
+                        <div className="p-3.5 rounded-xl bg-slate-900/90 border border-sky-500/30 mb-4">
+                          <div className="flex items-center gap-2.5 mb-2.5 text-sky-300 font-bold text-xs">
+                            <Train className="w-4 h-4 shrink-0 text-sky-400" />
+                            <span>Gyalogos útvonal a TEŽ vasútállomástól:</span>
+                          </div>
+                          <p
+                            lang="hu"
+                            className="text-xs text-slate-300 leading-relaxed text-justify [text-align:justify] [text-justify:inter-word] hyphens-auto [hyphens:auto] [-webkit-hyphens:auto] w-full"
+                          >
+                            {program.routeInfo}
+                          </p>
+                        </div>
+                      )}
+
                       {/* Tip Box: Icon & title in one row, full width justified text in new row */}
                       <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800/80 mb-4">
-                        <div className="flex items-center gap-2 mb-2 text-amber-300 font-bold text-xs">
+                        <div className="flex items-center gap-2.5 mb-2.5 text-amber-300 font-bold text-xs">
                           <Sparkles className="w-3.5 h-3.5 shrink-0" />
                           <span>Tipp & jótanács:</span>
                         </div>

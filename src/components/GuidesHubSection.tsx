@@ -37,7 +37,7 @@ export default function GuidesHubSection() {
       desc: "Autentikus tátrai rönkfa éttermek (szomszédos Koliba Tatry magyar étlappal és házhoz szállítással, Koliba Kamzík és Koliba Restaurant Ótátrafüreden), olasz kávézó és forró levesek.",
       href: "/gasztro",
       icon: Utensils,
-      tag: "Koliba Tatry • Koliba Kamzík • Koliba Penzión • Manuel Caffé",
+      tag: "Koliba Tatry • Koliba Kamzík • Humno Tatry • La Famiglia",
       gradient: "from-orange-500/20 via-slate-900/80 to-slate-950",
       borderHover: "hover:border-orange-400/60 hover:shadow-orange-500/15",
       badgeClass: "bg-orange-500/20 text-orange-300 border-orange-400/30",

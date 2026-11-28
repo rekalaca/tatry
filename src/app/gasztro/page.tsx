@@ -9,7 +9,7 @@ import { Compass, Waves, Train, CheckSquare, HeartPulse } from "lucide-react";
 export const metadata: Metadata = {
   title: "Gasztronómia & Koliba Élmény • Magas-Tátra | Villa Greystone",
   description:
-    "Autentikus tátrai ízek, juhtúrós sztrapacska, fokhagymaleves cipóban, a legjobb tátrai koliba éttermek (Koliba Tatry, Koliba Kamzík, Koliba Restaurant Penzión), olasz bisztró és gasztro tippek a Villa Greystone vendégeinek.",
+    "Autentikus tátrai ízek, juhtúrós sztrapacska, fokhagymaleves cipóban, a legjobb tátrai éttermek (Koliba Tatry, Koliba Kamzík, Humno Tatry, Koliba Restaurant Penzión), La Famiglia, La Primavera és Dobré Časy a Villa Greystone vendégeinek.",
 };
 
 export default function GasztroPage() {
@@ -26,8 +26,8 @@ export default function GasztroPage() {
         <DiningSection isSubpage={true} />
 
         {/* Quick Navigation to Other Guides */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
-          <div className="p-6 sm:p-8 rounded-3xl bg-slate-950/70 border border-slate-800 shadow-xl text-center">
+        <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mt-8 sm:mt-12">
+          <div className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-slate-950/70 border border-slate-800 shadow-xl text-center">
             <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
               További Tátrai Kalauzaink
             </h3>

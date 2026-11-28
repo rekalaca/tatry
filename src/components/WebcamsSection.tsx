@@ -64,7 +64,7 @@ export default function WebcamsSection() {
       category: "Középállomás & Hegyitó",
       thumbUrl: "https://cdn-dwh.tmr.sk/api/v2/file-fetch/uploads/cams/cam-65-640.jpg",
       streamUrl: "https://stream.profi-net.sk/tmr/STREAM29.stream/playlist.m3u8",
-      gopassUrl: "https://gopass.travel/HU/resort/tatranska-lomnica/webcams?cam=3",
+      gopassUrl: "https://gopass.travel/HU/gyalogos-jegyek-tatranska-lomnica-d2_848",
     },
     {
       title: "Štart Középállomás",
@@ -97,7 +97,7 @@ export default function WebcamsSection() {
       category: "Szánkópálya & Jégdóm",
       thumbUrl: "https://cdn-dwh.tmr.sk/api/v2/file-fetch/uploads/cams/cam-43-640.jpg",
       streamUrl: "https://stream.profi-net.sk/tmr/STREAM14.stream/playlist.m3u8",
-      gopassUrl: "https://gopass.travel/HU/resort/stary-smokovec/webcams?cam=2",
+      gopassUrl: "https://gopass.travel/HU/gyalogos-jegyek-stary-smokovec-d2_851",
     },
     {
       title: "Csorba-tó Sáncok & Pályák",
